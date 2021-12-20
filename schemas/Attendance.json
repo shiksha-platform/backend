@@ -25,10 +25,7 @@
           "attendance": {
             "$id": "#/properties/attendance",
             "type": "string",
-            "items": {
-                "type": "string",
-                "enum" : ["Present", "Absent"]
-            }
+            "enum" : ["Present", "Absent"]
           },
           "attendanceNote": {
             "$id": "#/properties/attendanceNote",

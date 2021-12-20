@@ -70,6 +70,7 @@
         "osUpdatedBy"
       ],
       "attestationPolicies": [],
-      "subjectJsonPath": "email"
+      "subjectJsonPath": "email",
+      "enableLogin": true
     }
   }
