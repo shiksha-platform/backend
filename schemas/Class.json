@@ -19,15 +19,15 @@
       "required": [],
       "properties": {
         "classID": {
-          "$id": "#/properties/classID",
+          "$id": "#/properties/classId",
           "type": "string"
         },
         "schoolID": {
-          "$id": "#/properties/schoolID",
+          "$id": "#/properties/schoolId",
           "type": "string"
         },
-        "class": {
-          "$id": "#/properties/class",
+        "gradeLevel": {
+          "$id": "#/properties/gradeLevel",
           "type": "string",
           "title": "The grade of the class eg: 4 or 5"
         },
@@ -63,6 +63,7 @@
       "osCreatedBy",
       "osUpdatedBy"
     ],
-    "attestationPolicies": []
+    "attestationPolicies": [],
+    "roles": ["class-management"]
   }
 }
