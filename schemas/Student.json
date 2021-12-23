@@ -41,6 +41,10 @@
             "$id": "#/properties/currentClassID",
             "type": "string"
           },
+          "studentFathersName": {
+            "$id": "#/properties/studentFathersName",
+            "type": "string"
+          },
           "email": {
             "$id": "#/properties/email",
             "type": "string",

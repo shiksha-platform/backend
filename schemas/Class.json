@@ -40,6 +40,11 @@
           "$id": "#/properties/className",
           "type": "string",
           "title": "A name for the class eg: IV A Division"
+        },
+        "teacherId": {
+          "$id": "#/properties/teacherId",
+          "type": "array",
+          "title": "Array of teacherids teaching this class"
         }
       }
     }
