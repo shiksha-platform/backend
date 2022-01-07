@@ -34,8 +34,12 @@
           "$id": "#/properties/section",
           "type": "string"
         },
-        "schoolId": {
-          "$id": "#/properties/schoolId",
+        "context": {
+          "$id": "#/properties/context",
+          "type": "array"
+        },
+        "contextId": {
+          "$id": "#/properties/contextId",
           "type": "array"
         }
       }
