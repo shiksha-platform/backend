@@ -26,10 +26,15 @@
           "$id": "#/properties/value",
           "type": "string"
         },
-        "schoolId": {
-          "$id": "#/properties/schoolId",
+        "module": {
+          "$id": "#/properties/module",
+          "type": "string"
+        },
+        "context": {
+          "$id": "#/properties/context",
           "type": "string"
         }
+        
       }
     }
   },
