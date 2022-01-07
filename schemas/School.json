@@ -1,79 +1,128 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "properties": {
-      "School": {
-        "$ref": "#/definitions/School"
-      }
-    },
-    "required": [
-      "School"
-    ],
-    "title": "School",
-    "definitions": {
-      "School": {
-        "$id": "#/properties/School",
-        "type": "object",
-        "title": "The School schema",
-        "required": [],
-        "properties": {
-          "schoolName": {
-              "$id": "#/properties/schoolName",
-              "type": "string"
-            },
-            "schoolRefId": {
-              "$id": "#/properties/schoolRefId",
-              "type": "string",
-              "title": "School ID as defined by a secondary state database of schools"
-            },
-          "address": {
-            "$ref": "Common.json/#/definitions/Address",
-            "title": "Address"
-          },
-          "email": {
-            "$id": "#/properties/email",
-            "type": "string",
-            "format": "email",
-            "title": "Email"
-          },
-          "website": {
-            "$id": "#/properties/website",
-            "type": "string",
-            "format": "uri",
-            "title": "Website"
-          },
-          "schoolType": {
-            "$id": "#/properties/schoolType",
-            "type": "string",
-            "title": "School Type ",
-            "enum": [
-              "Boys",
-              "Girls",
-              "Co-ed"
-            ]
-          },
-          "instituteManagement": {
-            "$id": "#/properties/instituteManagement",
-            "type": "string",
-            "title": "Management of institute"
-          }
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "School": {
+      "$ref": "#/definitions/School"
+    }
+  },
+  "required": [
+    "School"
+  ],
+  "title": "School",
+  "definitions": {
+    "School": {
+      "$id": "#/properties/School",
+      "type": "object",
+      "title": "The School schema",
+      "required": [],
+      "properties": {
+        "schoolId": {
+          "$id": "#/properties/schoolId",
+          "type": "string"
+        },
+        "name": {
+          "$id": "#/properties/name",
+          "type": "string"
+        },
+        "refschoolId": {
+          "$id": "#/properties/refschoolId",
+          "type": "string",
+          "title": "School ID as defined by a secondary state database of schools"
+        },
+        "regulatorName": {
+          "$id": "#/properties/regulatorName",
+          "type": "string"
+        },
+        "schoolCategory": {
+          "$id": "#/properties/schoolCategory",
+          "type": "string"
+        },
+        "locationType": {
+          "$id": "#/properties/locationType",
+          "type": "string"
+        },
+        "districtId": {
+          "$id": "#/properties/districtId",
+          "type": "string"
+        },
+        "blockId": {
+          "$id": "#/properties/blockId",
+          "type": "string"
+        },
+        "clusterId": {
+          "$id": "#/properties/clusterId",
+          "type": "string"
+        },
+        "villageId": {
+          "$id": "#/properties/villageId",
+          "type": "string"
+        },
+        "pincode": {
+          "$id": "#/properties/pincode",
+          "type": "string"
+        },
+        "assemblyConst": {
+          "$id": "#/properties/assemblyConst",
+          "type": "string"
+        },
+        "parlConst": {
+          "$id": "#/properties/parlConst",
+          "type": "string"
+        },
+        "gpsPoints": {
+          "$id": "#/properties/gpsPoints",
+          "type": "number"
+        },
+        "startYear": {
+          "$id": "#/properties/startYear",
+          "type": "string"
+        },
+        "teacherId": {
+          "$id": "#/properties/teacherId",
+          "type": "string"
+        },
+        "instMedium": {
+          "$id": "#/properties/instMedium",
+          "type": "string"
+        },
+        "upgradeYear": {
+          "$id": "#/properties/upgradeYear",
+          "type": "string"
+        },
+        "residenceType": {
+          "$id": "#/properties/residenceType",
+          "type": "string"
+        },
+        "shiftId": {
+          "$id": "#/properties/shiftId",
+          "type": "string"
+        },
+        "sessionId": {
+          "$id": "#/properties/sessionId",
+          "type": "string"
+        },
+        "status": {
+          "$id": "#/properties/status",
+          "type": "string"
         }
       }
-    },
-    "_osConfig": {
-      "osComment": [
-        "This section contains the OpenSABER specific configuration information",
-        "privateFields: Optional; list of field names to be encrypted and stored in database",
-        "signedFields: Optional; list of field names that must be pre-signed",
-        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
-        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
-        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
-      ],
-      "privateFields": [],
-      "indexFields": [],
-      "uniqueIndexFields": [],
-      "systemFields": [],
-      "attestationPolicies": [],
-      "subjectJsonPath": "email"
     }
+  },
+  "_osConfig": {
+    "osComment": [
+      "This section contains the OpenSABER specific configuration information",
+      "privateFields: Optional; list of field names to be encrypted and stored in database",
+      "signedFields: Optional; list of field names that must be pre-signed",
+      "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+      "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+      "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+    ],
+    "privateFields": [],
+    "indexFields": [],
+    "uniqueIndexFields": [],
+    "systemFields": [],
+    "attestationPolicies": [],
+    "subjectJsonPath": "email"
   }
+}

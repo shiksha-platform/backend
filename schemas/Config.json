@@ -3,51 +3,31 @@
   "type": "object",
   "properties": {
     "Class": {
-      "$ref": "#/definitions/Class"
+      "$ref": "#/definitions/Config"
     }
   },
   "required": [
-    "Class"
+    "Config"
   ],
-  "title": "Class",
+  "title": "Config",
   "definitions": {
     "Class": {
-      "$id": "#/properties/Class",
+      "$id": "#/properties/Holiday",
       "type": "object",
-      "title": "The Class schema",
-      "description": "A class is an entity linked to a single school. Multiple teachers and students are linked to a class.",
+      "title": "The Config schema",
+      "description": "All configurations stored in key value pair.",
       "required": [],
       "properties": {
-        "classId": {
-          "$id": "#/properties/classId",
+        "key": {
+          "$id": "#/properties/key",
+          "type": "string"
+        },
+        "value": {
+          "$id": "#/properties/value",
           "type": "string"
         },
         "schoolId": {
           "$id": "#/properties/schoolId",
-          "type": "string"
-        },
-        "gradeLevel": {
-          "$id": "#/properties/gradeLevel",
-          "type": "string",
-          "title": "The grade of the class eg: 4 or 5"
-        },
-        "section": {
-          "$id": "#/properties/section",
-          "type": "string",
-          "title": "The section or division of the class"
-        },
-        "name": {
-          "$id": "#/properties/name",
-          "type": "string",
-          "title": "A name for the class eg: IV A Division"
-        },
-        "teacherId": {
-          "$id": "#/properties/teacherId",
-          "type": "array",
-          "title": "Array of teacherids teaching this class"
-        },
-        "frameworkid": {
-          "$id": "#/properties/frameworkid",
           "type": "string"
         }
       }

@@ -17,20 +17,20 @@
         "title": "The Student schema",
         "required": [],
         "properties": {
-          "studentFullName": {
-            "$id": "#/properties/studentFullName",
+          "studentId": {
+            "$id": "#/properties/studentId",
             "type": "string"
           },
-          "studentFirstName": {
-            "$id": "#/properties/studentFirstName",
+          "firstName": {
+            "$id": "#/properties/firstName",
             "type": "string"
           },
-          "studentLastName": {
-            "$id": "#/properties/studentLastName",
+          "lastName": {
+            "$id": "#/properties/lastName",
             "type": "string"
           },
-          "studentRefId": {
-            "$id": "#/properties/studentRefId",
+          "refStudentId": {
+            "$id": "#/properties/refStudentId",
             "type": "string"
           },
           "admissionNo": {
@@ -41,8 +41,8 @@
             "$id": "#/properties/currentClassID",
             "type": "string"
           },
-          "studentFathersName": {
-            "$id": "#/properties/studentFathersName",
+          "fatherName": {
+            "$id": "#/properties/fatherName",
             "type": "string"
           },
           "email": {
@@ -50,7 +50,80 @@
             "type": "string",
             "format": "email",
             "title": "Email"
+          },
+          "aadhaar": {
+            "$id": "#/properties/aadhaar",
+            "type": "string"
+          },
+          "motherName": {
+            "$id": "#/properties/motherName",
+            "type": "string"
+          },
+          "contactNumber": {
+            "$id": "#/properties/contactNumber",
+            "type": "integer"
+          },
+          "gender": {
+            "$id": "#/properties/gender",
+            "type": "string"
+          },
+          "socialCategory": {
+            "$id": "#/properties/socialCategory",
+            "type": "string"
+          },
+          "iscwsn": {
+            "$id": "#/properties/iscwsn",
+            "type": "string"
+          },
+          "religion": {
+            "$id": "#/properties/religion",
+            "type": "string"
+          },
+          "singleGirl": {
+            "$id": "#/properties/singleGirl",
+            "type": "string"
+          },
+          "weight": {
+            "$id": "#/properties/weight",
+            "type": "string"
+          },
+          "height": {
+            "$id": "#/properties/height",
+            "type": "string"
+          },
+          "bloodGroup": {
+            "$id": "#/properties/bloodGroup",
+            "type": "string"
+          },
+          "birthDate": {
+            "$id": "#/properties/birthDate",
+            "type": "string"
+          },
+          "homeless": {
+            "$id": "#/properties/homeless",
+            "type": "string"
+          },
+          "bpl": {
+            "$id": "#/properties/bpl",
+            "type": "string"
+          },
+          "migrant": {
+            "$id": "#/properties/migrant",
+            "type": "string"
+          },
+          "schoolId": {
+            "$id": "#/properties/schoolId",
+            "type": "string"
+          },
+          "classId": {
+            "$id": "#/properties/classId",
+            "type": "string"
+          },
+          "status": {
+            "$id": "#/properties/status",
+            "type": "string"
           }
+
         }
       }
     },

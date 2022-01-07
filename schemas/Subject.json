@@ -3,51 +3,31 @@
   "type": "object",
   "properties": {
     "Class": {
-      "$ref": "#/definitions/Class"
+      "$ref": "#/definitions/Subject"
     }
   },
   "required": [
-    "Class"
+    "Subject"
   ],
-  "title": "Class",
+  "title": "Subject",
   "definitions": {
     "Class": {
-      "$id": "#/properties/Class",
+      "$id": "#/properties/Subject",
       "type": "object",
-      "title": "The Class schema",
-      "description": "A class is an entity linked to a single school. Multiple teachers and students are linked to a class.",
+      "title": "The Subject schema",
+      "description": "A subject is an entity linked to a class.",
       "required": [],
       "properties": {
-        "classId": {
-          "$id": "#/properties/classId",
+        "id": {
+          "$id": "#/properties/id",
           "type": "string"
-        },
-        "schoolId": {
-          "$id": "#/properties/schoolId",
-          "type": "string"
-        },
-        "gradeLevel": {
-          "$id": "#/properties/gradeLevel",
-          "type": "string",
-          "title": "The grade of the class eg: 4 or 5"
-        },
-        "section": {
-          "$id": "#/properties/section",
-          "type": "string",
-          "title": "The section or division of the class"
         },
         "name": {
           "$id": "#/properties/name",
-          "type": "string",
-          "title": "A name for the class eg: IV A Division"
+          "type": "string"
         },
-        "teacherId": {
-          "$id": "#/properties/teacherId",
-          "type": "array",
-          "title": "Array of teacherids teaching this class"
-        },
-        "frameworkid": {
-          "$id": "#/properties/frameworkid",
+        "classId": {
+          "$id": "#/properties/classId",
           "type": "string"
         }
       }
