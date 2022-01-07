@@ -12,7 +12,7 @@
   "title": "Config",
   "definitions": {
     "Class": {
-      "$id": "#/properties/Holiday",
+      "$id": "#/properties/Config",
       "type": "object",
       "title": "The Config schema",
       "description": "All configurations stored in key value pair.",
