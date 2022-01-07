@@ -33,7 +33,16 @@
         "context": {
           "$id": "#/properties/context",
           "type": "string"
-        }
+        },
+        "contextId": {
+          "$id": "#/properties/contextId",
+          "type": "string"
+        },
+        "core": {
+          "$id": "#/properties/core",
+          "type": "string"
+        },
+        
         
       }
     }
