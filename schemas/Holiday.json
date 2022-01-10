@@ -3,52 +3,44 @@
   "type": "object",
   "properties": {
     "Class": {
-      "$ref": "#/definitions/Class"
+      "$ref": "#/definitions/Holiday"
     }
   },
   "required": [
-    "Class"
+    "Holiday"
   ],
-  "title": "Class",
+  "title": "Holiday",
   "definitions": {
     "Class": {
-      "$id": "#/properties/Class",
+      "$id": "#/properties/Holiday",
       "type": "object",
-      "title": "The Class schema",
-      "description": "A class is an entity linked to a single school. Multiple teachers and students are linked to a class.",
+      "title": "The Holiday schema",
+      "description": "A holiday is an entity linked to a single year. Multiple dates can be linked to single year.",
       "required": [],
       "properties": {
-        "classId": {
-          "$id": "#/properties/classId",
+        "holidayId": {
+          "$id": "#/properties/holidayId",
           "type": "string"
         },
-        "schoolId": {
-          "$id": "#/properties/schoolId",
+        "date": {
+          "$id": "#/properties/date",
           "type": "string"
         },
-        "gradeLevel": {
-          "$id": "#/properties/gradeLevel",
-          "type": "string",
-          "title": "The grade of the class eg: 4 or 5"
+        "remark": {
+          "$id": "#/properties/remark",
+          "type": "string"
         },
-        "section": {
+        "year": {
           "$id": "#/properties/section",
-          "type": "string",
-          "title": "The section or division of the class"
-        },
-        "name": {
-          "$id": "#/properties/name",
-          "type": "string",
-          "title": "A name for the class eg: IV A Division"
-        },
-        "teacherId": {
-          "$id": "#/properties/teacherId",
-          "type": "array",
-          "title": "Array of teacherids teaching this class"
-        },
-        "frameworkid": {
-          "$id": "#/properties/frameworkid",
           "type": "string"
+        },
+        "context": {
+          "$id": "#/properties/context",
+          "type": "array"
+        },
+        "contextId": {
+          "$id": "#/properties/contextId",
+          "type": "array"
         }
       }
     }

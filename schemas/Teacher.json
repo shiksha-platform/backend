@@ -17,19 +17,19 @@
         "title": "The Teacher schema",
         "required": [],
         "properties": {
-          "teacherFullName": {
-            "$id": "#/properties/teacherFullName",
+          "teacherId": {
+            "$id": "#/properties/teacherId",
             "type": "string"
           },
-          "teacherFirstName": {
+          "firstName": {
             "$id": "#/properties/teacherFirstName",
             "type": "string"
           },
-          "teacherLastName": {
+          "lastName": {
             "$id": "#/properties/teacherLastName",
             "type": "string"
           },
-          "teacherRefId": {
+          "refteacherId": {
             "$id": "#/properties/teacherRefId",
             "type": "string"
           },
@@ -46,6 +46,98 @@
             "type": "string",
             "format": "email",
             "title": "Email"
+          },
+          "classId": {
+            "$id": "#/properties/classId",
+            "type": "string"
+          },
+          "contactNumber": {
+            "$id": "#/properties/contactNumber",
+            "type": "integer"
+          },
+          "gender": {
+            "$id": "#/properties/gender",
+            "type": "string"
+          },
+          "socialCategory": {
+            "$id": "#/properties/socialCategory",
+            "type": "string"
+          },
+          "birthDate": {
+            "$id": "#/properties/birthDate",
+            "type": "string"
+          },
+          "designation": {
+            "$id": "#/properties/designation",
+            "type": "string"
+          },
+          "cadre": {
+            "$id": "#/properties/cadre",
+            "type": "string"
+          },
+          "profQualification": {
+            "$id": "#/properties/profQualification",
+            "type": "string"
+          },
+          "joiningDate": {
+            "$id": "#/properties/joiningDate",
+            "type": "string"
+          },
+          "subjectId": {
+            "$id": "#/properties/subjectId",
+            "type": "string"
+          },
+          "bloodGroup": {
+            "$id": "#/properties/bloodGroup",
+            "type": "string"
+          },
+          "maritalStatus": {
+            "$id": "#/properties/maritalStatus",
+            "type": "string"
+          },
+          "blockId": {
+            "$id": "#/properties/blockId",
+            "type": "string"
+          },
+          "address": {
+            "$id": "#/properties/address",
+            "type": "string"
+          },
+          "compSkills": {
+            "$id": "#/properties/compSkills",
+            "type": "string"
+          },
+          "disability": {
+            "$id": "#/properties/disability",
+            "type": "string"
+          },
+          "religion": {
+            "$id": "#/properties/religion",
+            "type": "string"
+          },
+          "homeDistance": {
+            "$id": "#/properties/homeDistance",
+            "type": "string"
+          },
+          "roles": {
+            "$id": "#/properties/roles",
+            "type": "string"
+          },
+          "schoolId": {
+            "$id": "#/properties/schoolId",
+            "type": "string"
+          },
+          "acrId": {
+            "$id": "#/properties/acrId",
+            "type": "string"
+          },
+          "retirementDate": {
+            "$id": "#/properties/retirementDate",
+            "type": "string"
+          },
+          "workingStatus": {
+            "$id": "#/properties/workingStatus",
+            "type": "string"
           }
         }
       }

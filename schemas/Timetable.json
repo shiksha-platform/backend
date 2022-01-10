@@ -3,55 +3,54 @@
     "type": "object",
     "properties": {
       "Attendance": {
-        "$ref": "#/definitions/StudentAttendance"
+        "$ref": "#/definitions/Timetable"
       }
     },
     "required": [
-      "StudentAttendance"
+      "Timetable"
     ],
-    "title": "StudentAttendance",
+    "title": "Timetable",
     "definitions": {
-      "Attendance": {
-        "$id": "#/properties/StudentAttendance",
+      "Timetable": {
+        "$id": "#/properties/Timetable",
         "type": "object",
-        "title": "The Student Attendance schema",
-        "description": "An attendance record is used to represent the attendance of a student. The attendance record may be at date level or optionally at the subject level, in cases where attendance is marked multiple times a day, once for each subject.",
+        "title": "The Timetable schema",
+        "description": "An timetable record is used to represent the timetable of the class. The record is at the subject level",
         "required": [],
         "properties": {
-          "attendanceRecordId": {
-            "$id": "#/properties/attendanceRecordId",
+          "timetableRecordId": {
+            "$id": "#/properties/timetableRecordId",
             "type": "string"
           },
-          "studentId": {
-            "$id": "#/properties/studentId",
+          "schoolId": {
+            "$id": "#/properties/schoolId",
             "type": "string"
           },
-          "attendance": {
-            "$id": "#/properties/attendance",
-            "type": "string",
-            "enum" : ["Present", "Absent"]
-          },
-          "attendanceNote": {
-            "$id": "#/properties/attendanceNote",
-            "type": "string"
-          },
-          "date": {
-            "$id": "#/properties/date",
-            "type": "string",
-            "format": "date",
-            "title": "The date for which attendance is to be marked"
-          },
-          "classId": {
-            "$id": "#/properties/classId",
+          "teacherId": {
+            "$id": "#/properties/teacherId",
             "type": "string"
           },
           "subjectId": {
             "$id": "#/properties/subjectId",
             "type": "string"
           },
-          "teacherId": {
-            "$id": "#/properties/teacherId",
+          "classId": {
+            "$id": "#/properties/classId",
             "type": "string"
+          },
+          "dayOfWeek": {
+            "$id": "#/properties/dayOfWeek",
+            "type": "string"
+          },
+          "inTime": {
+            "$id": "#/properties/inTime",
+            "type": "string",
+            "format": "time"
+          },
+          "outTime": {
+            "$id": "#/properties/outTime",
+            "type": "string",
+            "format": "time"
           }
 
         }
