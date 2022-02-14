@@ -53,7 +53,7 @@
           },
           "contactNumber": {
             "$id": "#/properties/contactNumber",
-            "type": "integer"
+            "type": "string"
           },
           "gender": {
             "$id": "#/properties/gender",
