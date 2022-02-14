@@ -14,13 +14,14 @@ import { GroupModule } from './group/group.module';
 import { SchoolModule } from './school/school.module';
 import { GroupMembershipModule } from './groupMembership/groupMembership.module';
 import { AdminConfigModule } from './adminConfig/adminConfig.module';
+import { TopicModule } from "./topic/topic.module";
 import * as typeOrmConfig from './typeorm.config';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     ConfigModule.forRoot(),
-    StudentModule,HolidayModule,ConfigurationModule,AttendanceModule,TimetableModule,TeacherModule,SchoolModule,GroupModule,GroupMembershipModule,AdminConfigModule],
+    StudentModule,HolidayModule,ConfigurationModule,AttendanceModule,TimetableModule,TeacherModule,SchoolModule,GroupModule,GroupMembershipModule,AdminConfigModule,TopicModule],
     controllers: [AppController],
     providers: [AppService],
 })
