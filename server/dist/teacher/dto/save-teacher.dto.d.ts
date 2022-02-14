@@ -1,0 +1,29 @@
+export declare class SaveTeacherDto {
+    refTeacherId: string;
+    firstName: string;
+    lastName: string;
+    contactNumber: string;
+    email: string;
+    gender: string;
+    socialCategory: string;
+    birthDate: string;
+    designation: string;
+    cadre: string;
+    profQualification: string;
+    joiningDate: string;
+    subjectId: string;
+    bloodGroup: string;
+    maritalStatus: string;
+    blockId: string;
+    address: string;
+    compSkills: string;
+    schoolId: string;
+    disability: string;
+    religion: string;
+    homeDistance: string;
+    roles: string;
+    acrId: string;
+    retirementDate: string;
+    workingStatus: string;
+    constructor(obj: SaveTeacherDto);
+}

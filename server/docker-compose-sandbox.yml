@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  sandbox_nestjs:
+    container_name: sandbox_nestjs
+    image: urvish91/samagara_sandbox_shiksha_platform:linux1
+    volumes:
+      - /app
+      - /app/node_modules
+    ports:
+      - 9229:9229
+    environment:
+      POSTGRES_HOST: shiksha-db-do-user-2082728-0.b.db.ondigitalocean.com
+      POSTGRES_PORT: 25060
+      POSTGRES_USER: doadmin
+      POSTGRES_PASSWORD: P6fnqHrYQVY6UbEV
+      POSTGRES_DATABASE: shiksha-sandbox
+      PORT: 9229
+      MODE: PRODUCTION
+      BASE_URL: https://dev-shiksha.uniteframework.io/registry/api/v1
+    networks:
+      - webnet
+networks:
+  webnet:
