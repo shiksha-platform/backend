@@ -1,0 +1,6 @@
+{
+   "teacherId":"{{result.Teacher.osid}}",
+   "responseMessage":"Teacher Saved Successfully",
+   "responseCode":"{{responseCode}}"
+
+}

@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  nestjs:
+    container_name: dev_nestjs
+    image: urvish91/samagara_dev_shiksha_platform:linux1
+    volumes:
+      - /app
+      - /app/node_modules
+    ports:
+      - 9229:9229
+    env_file:
+      - .env.dev
+    networks:
+      - webnet
+networks:
+  webnet:
