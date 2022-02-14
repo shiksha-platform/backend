@@ -21,6 +21,7 @@ export class TeacherDto {
   @IsNumber()
   contactNumber: string;
   
+  @Expose()
   @IsEmail()
   email: string;
   

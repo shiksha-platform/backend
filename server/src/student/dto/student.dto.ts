@@ -39,6 +39,7 @@ export class StudentDto {
   @IsNumber()
   contactNumber: string;
 
+  @Expose()
   @IsEmail()
   email: string;
 
