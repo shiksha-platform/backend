@@ -5,7 +5,7 @@ import {HttpService} from '@nestjs/axios'
 import { Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { StudentDto} from './dto/student.dto';
-import { ErrorResponse } from './../error-response';
+import { ErrorResponse } from '../error-response';
 import { StudentResponseDto } from './dto/student-response.dto';
 import { StudentSearchDto } from './dto/student-search.dto';
 
@@ -18,9 +18,9 @@ export class StudentService {
   
   url = `${process.env.BASE_URL}/Student`;
   
-  public async findById(studentId: string)  {
+  public async findById(studentId: string, header)  {
     var template = require('./../../response_templates/student/find_student_response.json');
-    return this.httpService.get(`${this.url}/${studentId}`)
+    return this.httpService.get(`${this.url}/${studentId}`, { headers: header })
     .pipe(
         map(response => {
          var output = Mustache.render(JSON.stringify(template), response.data);
@@ -38,7 +38,7 @@ export class StudentService {
 
  
 
-  public async createStudent(studentDto: StudentDto) {
+  public async createStudent(header, studentDto: StudentDto) {
       var responseTemplate = require('./../../response_templates/student/create_student_response.json');
       var requestTemplate = require('./../../response_templates/student/create_student_request.json');
       var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
@@ -46,7 +46,7 @@ export class StudentService {
         'Content-Type': 'application/json', 
         // 'Authorization': `Basic ${encodeToken}`,
       };
-      return this.httpService.post(`${this.url}`,new SaveStudentDto(JSON.parse(input)),{ headers: headersRequest })
+      return this.httpService.post(`${this.url}`,new SaveStudentDto(JSON.parse(input)),{ headers: header })
       .pipe(
           map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
@@ -63,7 +63,7 @@ export class StudentService {
   }
 
 
-  public async updateStudent(studentId:string,studentDto: StudentDto) {
+  public async updateStudent(studentId:string,header,studentDto: StudentDto) {
     var responseTemplate = require('./../../response_templates/student/create_student_response.json');
     var requestTemplate = require('./../../response_templates/student/create_student_request.json');
     var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
@@ -71,7 +71,7 @@ export class StudentService {
       'Content-Type': 'application/json', 
       // 'Authorization': `Basic ${encodeToken}`,
     };
-    return this.httpService.patch(`${this.url}/${studentId}`,new SaveStudentDto(JSON.parse(input)),{ headers: headersRequest })
+    return this.httpService.patch(`${this.url}/${studentId}`,new SaveStudentDto(JSON.parse(input)),{ headers: header })
     .pipe(
         map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
@@ -87,13 +87,13 @@ export class StudentService {
     );
 }
 
-public async searchStudent(studentSearchDto: StudentSearchDto) {
+public async searchStudent(header, studentSearchDto: StudentSearchDto) {
   var template = require('./../../response_templates/student/find_student_response.json');
   const headersRequest = {
     'Content-Type': 'application/json', 
     // 'Authorization': `Basic ${encodeToken}`,
   };
-  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: headersRequest })
+  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: header })
   .pipe(
       map(response => {
         return response.data.map(item =>{
@@ -114,7 +114,7 @@ public async searchStudent(studentSearchDto: StudentSearchDto) {
  
 }
 
-public async findStudentByClass(searchClassId: String) {
+public async findStudentByClass(searchClassId: String, header) {
   var template = require('./../../response_templates/student/find_student_response.json');
 
   const headersRequest = {
@@ -130,7 +130,7 @@ public async findStudentByClass(searchClassId: String) {
     filters : searchFilter
   })
 
-  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: headersRequest })
+  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: header })
   .pipe(
       map(response => {
         return response.data.map(item =>{

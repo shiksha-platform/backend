@@ -15,7 +15,9 @@ import {
   SerializeOptions,
   UsePipes,
   ValidationPipe,
+    Req
 } from "@nestjs/common";
+import { Request } from "express";
 import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
 import { StudentSearchDto } from "./dto/student-search.dto";
 import { StudentDto } from "./dto/student.dto";
@@ -33,8 +35,8 @@ export class StudentController {
   @SerializeOptions({
     strategy: 'excludeAll'
   })
-  public async getStudentById(@Param("id") studentId: string )  {
-    return this.studentService.findById(studentId);
+  public async getStudentById(@Param("id") studentId: string, @Req() request: Request )  {
+    return this.studentService.findById(studentId, request.headers);
   }
 
   @Post()
@@ -42,16 +44,16 @@ export class StudentController {
   @ApiBody({ type: StudentDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
-  public async createStudent(@Body() studentDto: StudentDto )  {
-    return this.studentService.createStudent(studentDto);
+  public async createStudent(@Req() request: Request, @Body() studentDto: StudentDto )  {
+    return this.studentService.createStudent(request.headers, studentDto);
   }
 
   @Put("/:id")
   @ApiOkResponse({ description: "Student has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
-  public async updateStudent(@Param("id") studentId: string, @Body() studentDto: StudentDto )  {
-    return this.studentService.updateStudent(studentId,studentDto);
+  public async updateStudent(@Param("id") studentId: string, @Req() request: Request, @Body() studentDto: StudentDto )  {
+    return this.studentService.updateStudent(studentId,request.headers,studentDto);
   }
 
   @Post("/search")
@@ -62,8 +64,8 @@ export class StudentController {
   @SerializeOptions({
     strategy: 'excludeAll'
   })
-  public async searchStudent(@Body() studentSearchDto: StudentSearchDto )  {
-   return this.studentService.searchStudent(studentSearchDto);
+  public async searchStudent(@Req() request: Request, @Body() studentSearchDto: StudentSearchDto )  {
+   return this.studentService.searchStudent(request.headers, studentSearchDto);
 
   }
 
@@ -74,8 +76,8 @@ export class StudentController {
   @SerializeOptions({
     strategy: 'excludeAll'
   })
-  public async findStudentByClass(@Query('classId') classId : String)  {
-    return this.studentService.findStudentByClass(''+classId);
+  public async findStudentByClass(@Query('classId') classId : String, @Req() request: Request,)  {
+    return this.studentService.findStudentByClass(''+classId, request.headers);
   } 
  
 }
