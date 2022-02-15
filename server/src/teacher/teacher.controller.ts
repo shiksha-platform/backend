@@ -77,8 +77,8 @@ export class TeacherController {
   @SerializeOptions({
     strategy: 'excludeAll'
   })
-  public async findTeacherBySubject(@Query('subjectId') subjectId : String, @Req() request: Request,)  {
-    return this.teacherService.findTeacherBySubject(''+subjectId, request.headers);
+  public async findTeacherBySubject(@Query('subjectId') subjectId : string, @Req() request: Request)  {
+    return this.teacherService.findTeacherBySubject(subjectId, request.headers);
   } 
  
 }

@@ -76,8 +76,8 @@ export class StudentController {
   @SerializeOptions({
     strategy: 'excludeAll'
   })
-  public async findStudentByClass(@Query('classId') classId : String, @Req() request: Request,)  {
-    return this.studentService.findStudentByClass(''+classId, request.headers);
+  public async findStudentByClass(@Query('classId') classId : string, @Req() request: Request)  {
+    return this.studentService.findStudentByClass(classId, request.headers);
   } 
  
 }

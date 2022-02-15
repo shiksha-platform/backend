@@ -18,7 +18,7 @@ export class TeacherService {
   
   url = `${process.env.BASE_URL}/Teacher`;
   
-  public async findById(teacherId: string, header)  {
+  public async findById(teacherId: string, header: any)  {
     var template = require('./../../response_templates/teacher/find_teacher_response.json');
     return this.httpService.get(`${this.url}/${teacherId}`, { headers: header })
     .pipe(
@@ -38,14 +38,11 @@ export class TeacherService {
 
  
 
-  public async createTeacher(header, teacherDto: TeacherDto) {
+  public async createTeacher(header: any, teacherDto: TeacherDto) {
       var responseTemplate = require('./../../response_templates/teacher/create_teacher_response.json');
       var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
       var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
-      const headersRequest = {
-        'Content-Type': 'application/json', 
-        // 'Authorization': `Basic ${encodeToken}`,
-      };
+    
       return this.httpService.post(`${this.url}`,new SaveTeacherDto(JSON.parse(input)),{ headers: header })
       .pipe(
           map(response => {
@@ -63,14 +60,11 @@ export class TeacherService {
   }
 
 
-  public async updateTeacher(teacherId:string,header,teacherDto: TeacherDto) {
+  public async updateTeacher(teacherId:string,header: any,teacherDto: TeacherDto) {
     var responseTemplate = require('./../../response_templates/teacher/create_teacher_response.json');
     var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
     var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
-    const headersRequest = {
-      'Content-Type': 'application/json', 
-      // 'Authorization': `Basic ${encodeToken}`,
-    };
+    
     return this.httpService.patch(`${this.url}/${teacherId}`,new SaveTeacherDto(JSON.parse(input)),{ headers: header })
     .pipe(
         map(response => {
@@ -87,12 +81,9 @@ export class TeacherService {
     );
 }
 
-public async searchTeacher(header, teacherSearchDto: TeacherSearchDto) {
+public async searchTeacher(header: any, teacherSearchDto: TeacherSearchDto) {
   var template = require('./../../response_templates/teacher/find_teacher_response.json');
-  const headersRequest = {
-    'Content-Type': 'application/json', 
-    // 'Authorization': `Basic ${encodeToken}`,
-  };
+  
   return this.httpService.post(`${this.url}/search`,teacherSearchDto,{ headers: header })
   .pipe(
       map(response => {
@@ -114,12 +105,8 @@ public async searchTeacher(header, teacherSearchDto: TeacherSearchDto) {
  
 }
 
-public async findTeacherBySubject(searchSubjectId: String, header) {
+public async findTeacherBySubject(searchSubjectId: String, header: any) {
   var template = require('./../../response_templates/teacher/find_teacher_response.json');
-
-  const headersRequest = {
-    'Content-Type': 'application/json', 
-  };
 
   var searchFilter = {
     subjectId : {
