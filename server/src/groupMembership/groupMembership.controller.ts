@@ -1,13 +1,18 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
 import { GroupMembershipDto } from './dto/groupMembership.dto';
 import { GroupMembershipService } from './groupMembership.service';
 
+@ApiTags('Group Membership')
 @Controller('groupMembership')
 export class GroupMembershipController {
     
     constructor(private readonly groupMembershipService: GroupMembershipService) {}
 
     @Post()
+    @ApiCreatedResponse({ description: "Group membership has been created successfully."})
+    @ApiBody({ type: GroupMembershipDto })
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createGroupMembershipDto: GroupMembershipDto) {
         const result = await this.groupMembershipService.createGroupMembership(createGroupMembershipDto);
         if (!result)
@@ -16,6 +21,8 @@ export class GroupMembershipController {
     }
 
     @Get()
+    @ApiOkResponse({ description: "Group membership list."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async get() {
         const result = await this.groupMembershipService.getGroupMembership();
         if (!result)
@@ -24,6 +31,8 @@ export class GroupMembershipController {
     }
 
     @Get(':id')
+    @ApiOkResponse({ description: "Group membership detail."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async findOne(@Param('id') id: string) {
         const result = await this.groupMembershipService.findGroupMembershipById(id);
         if (!result)
@@ -32,6 +41,8 @@ export class GroupMembershipController {
     }
 
     @Get('school/:schoolId')
+    @ApiOkResponse({ description: "Group membership detail."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async findBySchoolId(@Param('schoolId') schoolId: string) {
         const result = await this.groupMembershipService.findGroupMembershipBySchoolId(schoolId);
         if (!result)
@@ -40,6 +51,8 @@ export class GroupMembershipController {
     }
 
     @Get('user/:userId')
+    @ApiOkResponse({ description: "Group membership detail."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async find(@Param('userId') userId: string) {
         const result = await this.groupMembershipService.findGroupMembershipByUserId(userId);
         if (!result)
@@ -48,6 +61,8 @@ export class GroupMembershipController {
     }
     
     @Put(':id')
+    @ApiOkResponse({ description: "Group membership has been updated successfully."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateGroupDto: GroupMembershipDto) {
         const result = await this.groupMembershipService.updateGroupMembership(id, updateGroupDto);
         if (!result)
@@ -56,6 +71,8 @@ export class GroupMembershipController {
     }
     
     @Delete(':id')
+    @ApiOkResponse({ description: "Group membership has been deleted successfully."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
     async delete(@Param('id') id: string) {
         const result = await this.groupMembershipService.deleteGroupMembership(id);
         if (!result)
