@@ -17,17 +17,22 @@ import {
   ValidationPipe,
   Req
 } from "@nestjs/common";
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
 import { TeacherSearchDto } from "./dto/teacher-search.dto";
 import { TeacherDto } from "./dto/teacher.dto";
 import { TeacherService } from "./teacher.service";
 import {Request} from "express";
+import {StudentDto} from "../student/dto/student.dto";
 
+@ApiTags('Teacher')
 @Controller("teacher")
 export class TeacherController {
   constructor(private readonly teacherService: TeacherService) {}
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiOkResponse({ description: "Teacher detail."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @SerializeOptions({
     strategy: 'excludeAll'
   })
@@ -36,18 +41,26 @@ export class TeacherController {
   }
 
   @Post()
+  @ApiCreatedResponse({ description: "Teacher has been created successfully."})
+  @ApiBody({ type: TeacherDto })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
   public async createTeacher(@Req() request: Request, @Body() teacherDto: TeacherDto )  {
     return this.teacherService.createTeacher(request.headers, teacherDto);
   }
 
   @Put("/:id")
+  @ApiOkResponse({ description: "Teacher has been updated successfully."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
   public async updateTeacher(@Param("id") teacherId: string, @Req() request: Request, @Body() teacherDto: TeacherDto )  {
     return this.teacherService.updateTeacher(teacherId,request.headers,teacherDto);
   }
 
   @Post("/search")
+  @ApiCreatedResponse({ description: "Teacher list."})
+  @ApiBody({ type: TeacherSearchDto })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({
     strategy: 'excludeAll'
@@ -58,6 +71,8 @@ export class TeacherController {
   }
 
   @Post("/findBySubject")
+  @ApiOkResponse({ description: "Teacher list."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({
     strategy: 'excludeAll'
