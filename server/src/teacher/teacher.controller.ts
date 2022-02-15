@@ -22,7 +22,6 @@ import { TeacherSearchDto } from "./dto/teacher-search.dto";
 import { TeacherDto } from "./dto/teacher.dto";
 import { TeacherService } from "./teacher.service";
 import {Request} from "express";
-import {StudentDto} from "../student/dto/student.dto";
 
 @ApiTags('Teacher')
 @Controller("teacher")
