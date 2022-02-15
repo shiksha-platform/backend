@@ -1,22 +1,43 @@
 import { Exclude, Expose } from 'class-transformer';
+import {ApiProperty} from "@nestjs/swagger";
 
 export class AdminConfigDto {
   
   @Exclude()
-  osid : string 
+  osid : string
 
+  @ApiProperty({
+    type: String,
+    description: 'The adminConfigId of the admin config'
+  })
   @Expose()
   adminConfigId : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The key of the admin config'
+  })
   @Expose()
   key : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The value of the admin config'
+  })
   @Expose()
   value : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The context of the admin config'
+  })
   @Expose()
   context : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The contextId of the admin config'
+  })
   @Expose()
   contextId : string;
 
