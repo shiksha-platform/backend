@@ -17,16 +17,20 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { AttendanceSearchDto } from "./dto/attendance-search.dto";
+import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
 import { AttendanceDto } from "./dto/attendance.dto";
 import { AttendanceService } from "./attendance.service";
 import { Attendance } from "./attendance.entity";
 
+@ApiTags('Attendance')
 @Controller("attendance")
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiOkResponse({ description: "Attendance by id."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @SerializeOptions({
     strategy: 'excludeAll'
   })
@@ -35,6 +39,8 @@ export class AttendanceController {
   }
 
   @Get()
+  @ApiOkResponse({ description: "Listed attendance."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   public async getAttendanceByDate(@Query("fromDate") fromDate: string,
   @Query("toDate") toDate: string, 
   @Query("groupId") groupId: string,
@@ -44,6 +50,8 @@ export class AttendanceController {
   }
 
   @Get('/find/report')
+    @ApiOkResponse({ description: "Listed attendance by id."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   public async getAttendanceReports(@Query("fromDate") fromDate: string,
   @Query("toDate") toDate: string, 
   @Query("groupId") groupId: string,
@@ -53,11 +61,16 @@ export class AttendanceController {
   }
 
   @Post()
+  @ApiCreatedResponse({ description: "Attendance has been created successfully."})
+  @ApiBody({ type: AttendanceDto })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   public async createAttendance(@Body() attendanceDto: AttendanceDto[] )  {
     return this.attendanceService.createAttendance(attendanceDto);
   }
 
   @Put()
+  @ApiOkResponse({ description: "Attendance has been updated successfully."})
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   public async updateAttendance(@Body() attendanceDto: AttendanceDto)  {
     return this.attendanceService.updateAttendance(attendanceDto);
   }

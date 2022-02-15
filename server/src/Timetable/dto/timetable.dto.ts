@@ -1,32 +1,73 @@
 import { Exclude, Expose } from 'class-transformer';
 import { MaxLength, IsNotEmpty, IsEmail, IsString, IsNumber } from 'class-validator';
+import {ApiProperty} from "@nestjs/swagger";
 
 export class TimetableDto {
   
   @Exclude()
-  osid : string 
-  
+  osid : string
+
+  @ApiProperty({
+    type: String,
+    description: 'The timetableRecordId of the timetable',
+    default: ''
+  })
   @Expose()
   timetableRecordId: string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The schoolId of the timetable',
+    default: ''
+  })
   @Expose()
   schoolId: string;
-  
+
+  @ApiProperty({
+    type: String,
+    description: 'The classId of the timetable',
+    default: ''
+  })
   @Expose()
   classId: string;
-  
+
+  @ApiProperty({
+    type: String,
+    description: 'The teacherId of the timetable',
+    default: ''
+  })
   @Expose()
   teacherId: string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The subjectId of the timetable',
+    default: ''
+  })
   @Expose()
   subjectId: string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The day of week of the timetable',
+    default: ''
+  })
   @Expose()
   dayOfWeek : string
 
+  @ApiProperty({
+    type: String,
+    description: 'The inTime of the timetable',
+    default: ''
+  })
   @Expose()
   inTime : string
 
+  @ApiProperty({
+    type: String,
+    description: 'The outTime of the timetable',
+    default: ''
+  })
   @Expose()
   outTime : string
 

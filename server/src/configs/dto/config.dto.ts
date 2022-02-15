@@ -1,26 +1,51 @@
 import { Exclude, Expose } from 'class-transformer';
 import { MaxLength, IsNotEmpty, IsEmail, IsString, IsNumber } from 'class-validator';
+import { ApiProperty } from "@nestjs/swagger";
 
 export class ConfigDto {
   
   @Exclude()
-  osid : string 
+  osid : string
 
+  @ApiProperty({
+    type: String,
+    description: 'The configId of the config'
+  })
   @Expose()
   configId : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The key of the config'
+  })
   @Expose()
   key : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The value of the config'
+  })
   @Expose()
   value : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The core of the config'
+  })
   @Expose()
   core : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The context of the config'
+  })
   @Expose()
   context : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The context id of the config'
+  })
   @Expose()
   contextId : string;
 

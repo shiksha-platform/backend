@@ -1,26 +1,51 @@
 import { Exclude, Expose } from 'class-transformer';
 import { MaxLength, IsNotEmpty, IsEmail, IsString, IsNumber } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class HolidayDto {
   
   @Exclude()
-  osid : string 
+  osid : string
 
+  @ApiProperty({
+    type: String,
+    description: 'The holiday id of the holiday'
+  })
   @Expose()
   holidayId : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The date of the holiday'
+  })
   @Expose()
   date : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The remark of the holiday'
+  })
   @Expose()
   remark : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The year of the holiday'
+  })
   @Expose()
   year : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The context of the holiday'
+  })
   @Expose()
   context : string;
 
+  @ApiProperty({
+    type: String,
+    description: 'The context id of the holiday'
+  })
   @Expose()
   contextId : string;
 
