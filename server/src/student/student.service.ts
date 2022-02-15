@@ -1,9 +1,7 @@
 import { Injectable, NotFoundException, HttpException, HttpStatus } from '@nestjs/common';
 import { catchError, map } from 'rxjs/operators';
-import { firstValueFrom } from 'rxjs';
 import {HttpService} from '@nestjs/axios'
-import { Observable } from 'rxjs';
-import { AxiosResponse } from 'axios';
+
 import { StudentDto} from './dto/student.dto';
 import { ErrorResponse } from '../error-response';
 import { StudentResponseDto } from './dto/student-response.dto';
@@ -18,7 +16,7 @@ export class StudentService {
   
   url = `${process.env.BASE_URL}/Student`;
   
-  public async findById(studentId: string, header)  {
+  public async findById(studentId: string, header: any)  {
     var template = require('./../../response_templates/student/find_student_response.json');
     return this.httpService.get(`${this.url}/${studentId}`, { headers: header })
     .pipe(
@@ -38,14 +36,11 @@ export class StudentService {
 
  
 
-  public async createStudent(header, studentDto: StudentDto) {
+  public async createStudent(header: any, studentDto: StudentDto) {
       var responseTemplate = require('./../../response_templates/student/create_student_response.json');
       var requestTemplate = require('./../../response_templates/student/create_student_request.json');
       var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
-      const headersRequest = {
-        'Content-Type': 'application/json', 
-        // 'Authorization': `Basic ${encodeToken}`,
-      };
+     
       return this.httpService.post(`${this.url}`,new SaveStudentDto(JSON.parse(input)),{ headers: header })
       .pipe(
           map(response => {
@@ -63,14 +58,11 @@ export class StudentService {
   }
 
 
-  public async updateStudent(studentId:string,header,studentDto: StudentDto) {
+  public async updateStudent(studentId:string, header: any, studentDto: StudentDto) {
     var responseTemplate = require('./../../response_templates/student/create_student_response.json');
     var requestTemplate = require('./../../response_templates/student/create_student_request.json');
     var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
-    const headersRequest = {
-      'Content-Type': 'application/json', 
-      // 'Authorization': `Basic ${encodeToken}`,
-    };
+   
     return this.httpService.patch(`${this.url}/${studentId}`,new SaveStudentDto(JSON.parse(input)),{ headers: header })
     .pipe(
         map(response => {
@@ -87,12 +79,9 @@ export class StudentService {
     );
 }
 
-public async searchStudent(header, studentSearchDto: StudentSearchDto) {
+public async searchStudent(header: any, studentSearchDto: StudentSearchDto) {
   var template = require('./../../response_templates/student/find_student_response.json');
-  const headersRequest = {
-    'Content-Type': 'application/json', 
-    // 'Authorization': `Basic ${encodeToken}`,
-  };
+
   return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: header })
   .pipe(
       map(response => {
@@ -114,12 +103,10 @@ public async searchStudent(header, studentSearchDto: StudentSearchDto) {
  
 }
 
-public async findStudentByClass(searchClassId: String, header) {
+public async findStudentByClass(searchClassId: String, header: any) {
   var template = require('./../../response_templates/student/find_student_response.json');
 
-  const headersRequest = {
-    'Content-Type': 'application/json', 
-  };
+
 
   var searchFilter = {
     classId : {
