@@ -17,7 +17,7 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { AttendanceSearchDto } from "./dto/attendance-search.dto";
-import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
 import { AttendanceDto } from "./dto/attendance.dto";
 import { AttendanceService } from "./attendance.service";
 import { Attendance } from "./attendance.entity";
@@ -31,16 +31,18 @@ export class AttendanceController {
   @Get("/:id")
   @ApiOkResponse({ description: "Attendance by id."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
-  @SerializeOptions({
-    strategy: 'excludeAll'
-  })
   public async getAttendanceById(@Param("id") attendanceId: string )  {
-    return this.attendanceService.findById(attendanceId);
+    return await this.attendanceService.findById(attendanceId);
   }
 
   @Get()
   @ApiOkResponse({ description: "Listed attendance."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiQuery({ name: 'fromDate', required: false })
+  @ApiQuery({ name: 'toDate', required: false })
+  @ApiQuery({ name: 'groupId', required: false })
+  @ApiQuery({ name: 'topicId', required: false })
+  @ApiQuery({ name: 'schoolId', required: false })
   public async getAttendanceByDate(@Query("fromDate") fromDate: string,
   @Query("toDate") toDate: string, 
   @Query("groupId") groupId: string,
@@ -52,6 +54,11 @@ export class AttendanceController {
   @Get('/find/report')
     @ApiOkResponse({ description: "Listed attendance by id."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiQuery({ name: 'fromDate', required: false })
+  @ApiQuery({ name: 'toDate', required: false })
+  @ApiQuery({ name: 'groupId', required: false })
+  @ApiQuery({ name: 'topicId', required: false })
+  @ApiQuery({ name: 'schoolId', required: false })
   public async getAttendanceReports(@Query("fromDate") fromDate: string,
   @Query("toDate") toDate: string, 
   @Query("groupId") groupId: string,
