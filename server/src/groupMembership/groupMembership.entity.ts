@@ -5,16 +5,16 @@ import { BaseEntity } from './../model/base.entity';
 @Entity({ name: 'groupMembership' })
 export class GroupMembership extends BaseEntity {
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true })
     schoolId: string;
 
     @ManyToOne(type => Group)
     @JoinColumn({name: 'groupId', referencedColumnName: "id"})
     group: Group;   
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true })
     userId: string;
 
-    @Column({ type: 'varchar', length: 300 })
+    @Column({ type: 'varchar', length: 300, nullable: true })
     role: string;
 }
