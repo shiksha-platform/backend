@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { response } from 'express';
 import { ErrorResponse } from './../error-response';
@@ -143,5 +143,75 @@ export class GroupMembershipService {
       })
       throw new HttpException(error, e.response.status);
     }
+  }
+
+  public async findMembersOfGroup(groupId:string, role: string, schoolId: string): Promise<SuccessResponse> {
+    let query ='';
+    query += 'groupMembership.groupId = :groupId'
+
+    // Dynamic query for role & schoolId - if get then add
+    if(role!='' && role!=null) {
+      query += ' and groupMembership.role = :role'
+    }
+    if(schoolId!='' && schoolId!=null) {
+      query += ' and groupMembership.schoolId = :schoolId'
+    }
+
+    const membersOfGroup = await this.groupMembershipRepository.createQueryBuilder()
+        .select("groupMembership")
+        .from(GroupMembership, "groupMembership")
+        .where(query, {
+          groupId: groupId,
+          role: role,
+          schoolId: schoolId
+        }).getMany();
+
+    if (!membersOfGroup) {
+      var error = new ErrorResponse({
+        errorCode : ''+HttpStatus.NOT_FOUND,
+        errorMessage : 'Data Not found'
+      })
+      throw new HttpException(error,HttpStatus.NOT_FOUND);
+    }
+    return new SuccessResponse({
+      statusCode : response.statusCode,
+      message :'Group of members found Successfully',
+      data : membersOfGroup,
+    });
+  }
+
+  public async findGroupsByUserId(userId: string, role: string, schoolId: string): Promise<SuccessResponse> {
+    let query ='';
+    query += 'groupMembership.userId = :userId'
+
+    // Dynamically add role & schoolId value
+    if(role!='' && role!=null) {
+      query += ' and groupMembership.role = :role'
+    }
+    if(schoolId!='' && schoolId!=null) {
+      query += ' and groupMembership.schoolId = :schoolId'
+    }
+
+    const membersOfGroup = await this.groupMembershipRepository.createQueryBuilder()
+        .select("groupMembership")
+        .from(GroupMembership, "groupMembership")
+        .where(query, {
+          userId: userId,
+          role: role,
+          schoolId: schoolId
+        }).getMany();
+
+    if (!membersOfGroup) {
+      var error = new ErrorResponse({
+        errorCode : ''+HttpStatus.NOT_FOUND,
+        errorMessage : 'Data Not found'
+      })
+      throw new HttpException(error,HttpStatus.NOT_FOUND);
+    }
+    return new SuccessResponse({
+      statusCode : response.statusCode,
+      message :'Group of members found Successfully',
+      data : membersOfGroup,
+    });
   }
 }

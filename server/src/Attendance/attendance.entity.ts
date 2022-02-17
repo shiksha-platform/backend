@@ -4,13 +4,13 @@ import { BaseEntity } from '../model/base.entity';
 @Entity({ name: 'attendance' })
 export class Attendance extends BaseEntity {
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true })
     schoolId: string;
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true })
     userId: string;   
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', nullable: true })
     groupId: string; 
 
     @Column({ type: 'varchar', nullable: true })
@@ -19,10 +19,10 @@ export class Attendance extends BaseEntity {
     @Column({ type: 'varchar', nullable: true })
     eventId: string;
 
-    @Column({ type: 'date' })
+    @Column({ type: 'date', nullable: true })
     date: Date;
 
-    @Column({ type: 'varchar', length: 20 })
+    @Column({ type: 'varchar', length: 20, nullable: true })
     attendance: string;
 
     @Column({ type: 'varchar', length: 100, nullable: true })

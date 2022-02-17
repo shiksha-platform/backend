@@ -8,10 +8,6 @@ export class GroupMembershipDto {
   @Exclude()
   osid : string
 
-  @ApiProperty({
-    type: String,
-    description: 'The groupMembershipId of the group membership'
-  })
   @Expose()
   groupMembershipId : string;
 
