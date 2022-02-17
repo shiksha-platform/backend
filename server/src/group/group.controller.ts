@@ -73,4 +73,15 @@ export class GroupController {
                                   @Query("schoolId") schoolId: string) {
         return await this.groupMembershipService.findMembersOfGroup(id, role, schoolId);
     }
+
+    @Get('memberships/:userId')
+    @ApiOkResponse({ description: "Group detail."})
+    @ApiForbiddenResponse({ description: 'Forbidden' })
+    @ApiQuery({ name: 'role', required: false })
+    @ApiQuery({ name: 'schoolId', required: false })
+    public async getGroupsByUserId(@Param('userId') id: string,
+                                   @Query("role") role: string,
+                                   @Query("schoolId") schoolId: string) {
+        return await this.groupMembershipService.findGroupsByUserId(id, role, schoolId);
+    }
 }

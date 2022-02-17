@@ -179,4 +179,39 @@ export class GroupMembershipService {
       data : membersOfGroup,
     });
   }
+
+  public async findGroupsByUserId(userId: string, role: string, schoolId: string): Promise<SuccessResponse> {
+    let query ='';
+    query += 'groupMembership.userId = :userId'
+
+    // Dynamically add role & schoolId value
+    if(role!='' && role!=null) {
+      query += ' and groupMembership.role = :role'
+    }
+    if(schoolId!='' && schoolId!=null) {
+      query += ' and groupMembership.schoolId = :schoolId'
+    }
+
+    const membersOfGroup = await this.groupMembershipRepository.createQueryBuilder()
+        .select("groupMembership")
+        .from(GroupMembership, "groupMembership")
+        .where(query, {
+          userId: userId,
+          role: role,
+          schoolId: schoolId
+        }).getMany();
+
+    if (!membersOfGroup) {
+      var error = new ErrorResponse({
+        errorCode : ''+HttpStatus.NOT_FOUND,
+        errorMessage : 'Data Not found'
+      })
+      throw new HttpException(error,HttpStatus.NOT_FOUND);
+    }
+    return new SuccessResponse({
+      statusCode : response.statusCode,
+      message :'Group of members found Successfully',
+      data : membersOfGroup,
+    });
+  }
 }
