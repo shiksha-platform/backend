@@ -65,7 +65,7 @@ export class TeacherService {
     var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
     var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
     
-    return this.httpService.patch(`${this.url}/${teacherId}`,new SaveTeacherDto(JSON.parse(input)),{ headers: header })
+    return this.httpService.put(`${this.url}/${teacherId}`,new SaveTeacherDto(JSON.parse(input)),{ headers: header })
     .pipe(
         map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);

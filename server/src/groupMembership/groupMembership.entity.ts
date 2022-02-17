@@ -2,14 +2,15 @@ import { Group } from '../group/group.entity';
 import { Entity, Column, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from './../model/base.entity';
 
+
 @Entity({ name: 'groupMembership' })
 export class GroupMembership extends BaseEntity {
 
     @Column({ type: 'varchar' })
     schoolId: string;
 
-    @ManyToOne(type => Group)
-    @JoinColumn({name: 'groupId', referencedColumnName: "id"})
+    @Column({name: 'groupId', })
+    @ManyToOne(type => Group, group => group.id)
     group: Group;   
 
     @Column({ type: 'varchar' })

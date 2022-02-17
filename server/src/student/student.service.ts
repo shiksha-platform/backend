@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, HttpException, HttpStatus } from '@nestjs/common';
 import { catchError, map } from 'rxjs/operators';
-import {HttpService} from '@nestjs/axios'
+import {HttpService } from '@nestjs/axios'
 
 import { StudentDto} from './dto/student.dto';
 import { ErrorResponse } from '../error-response';
@@ -15,6 +15,10 @@ export class StudentService {
   constructor(private httpService:HttpService) {}
   
   url = `${process.env.BASE_URL}/Student`;
+
+  // At request level
+ // At request level
+
   
   public async findById(studentId: string, header: any)  {
     var template = require('./../../response_templates/student/find_student_response.json');
@@ -25,6 +29,7 @@ export class StudentService {
          return new StudentDto(JSON.parse(output))
       }),
         catchError(e => {
+          console.error('E', { ...e });
           var error = new ErrorResponse({
             errorCode : e.response?.status,
             errorMessage : e.response?.data?.params?.errmsg
