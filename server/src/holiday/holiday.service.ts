@@ -18,7 +18,7 @@ export class HolidayService {
     private readonly holidayRepository: Repository<Holiday>
   ) {}
   
-  public async createHoliday(holidayDto: HolidayDto) {
+  public async createHoliday(holidayDto: Holiday) {
     try{
       const data = await this.holidayRepository.save(holidayDto);
       
@@ -72,9 +72,9 @@ export class HolidayService {
     }
   }
 
-  public async updateHoliday(holidayId:string, updateHolidayto:HolidayDto): Promise<SuccessResponse>  {
+  public async updateHoliday(holidayId:string, updateHolidayDto:Holiday): Promise<SuccessResponse>  {
     try{
-      const data = await this.holidayRepository.update(holidayId, updateHolidayto);
+      const data = await this.holidayRepository.update(holidayId, updateHolidayDto);
       
       return new SuccessResponse({
         statusCode : response.statusCode,

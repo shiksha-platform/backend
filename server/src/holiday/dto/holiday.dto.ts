@@ -7,10 +7,6 @@ export class HolidayDto {
   @Exclude()
   osid : string
 
-  @ApiProperty({
-    type: String,
-    description: 'The holiday id of the holiday'
-  })
   @Expose()
   holidayId : string;
 

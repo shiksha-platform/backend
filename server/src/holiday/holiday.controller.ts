@@ -12,6 +12,7 @@ import {
 import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
 import { HolidayDto } from "./dto/holiday.dto";
 import { HolidayService } from "./holiday.service";
+import {Holiday} from "./holiday.entity";
 
 @ApiTags("Holiday")
 @Controller("holiday")
@@ -23,7 +24,9 @@ export class HolidayController {
   @ApiBody({ type: HolidayDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async create(@Body() holidayDto: HolidayDto) {
-    const result = await this.holidayService.createHoliday(holidayDto);
+    const createHolidayEntity = new Holiday();
+    Object.assign(createHolidayEntity, holidayDto);
+    const result = await this.holidayService.createHoliday(createHolidayEntity);
     if (!result)
     throw new HttpException('Error adding new holiday', HttpStatus.BAD_REQUEST);
     return result;
@@ -53,7 +56,9 @@ export class HolidayController {
   @ApiOkResponse({ description: "Holiday has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async update(@Param('id') holidayId: string, @Body() holidayDto: HolidayDto) {
-      const result = await this.holidayService.updateHoliday(holidayId, holidayDto);
+    const updateHolidayEntity = new Holiday();
+    Object.assign(updateHolidayEntity, holidayDto);
+      const result = await this.holidayService.updateHoliday(holidayId, updateHolidayEntity);
       if (!result)
       throw new HttpException('Error updating holiday', HttpStatus.BAD_REQUEST);
     return result;
