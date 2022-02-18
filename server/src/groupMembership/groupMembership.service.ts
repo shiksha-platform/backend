@@ -109,7 +109,7 @@ export class GroupMembershipService {
     }
   }
 
-  public async updateGroupMembership(groupMembershipId:string, updateGroupMembershipDto:GroupMembershipDto): Promise<SuccessResponse>  {
+  public async updateGroupMembership(groupMembershipId:string, updateGroupMembershipDto:GroupMembership): Promise<SuccessResponse>  {
     try{
       const data = await this.groupMembershipRepository.update(groupMembershipId, updateGroupMembershipDto);
       

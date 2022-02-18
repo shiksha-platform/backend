@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { GroupMembershipDto } from './dto/groupMembership.dto';
 import { GroupMembership } from './groupMembership.entity';
 import { GroupMembershipService } from './groupMembership.service';
+import {ErrorResponse} from "../error-response";
 
 @ApiTags('Group Membership')
 @Controller('groupMembership')
@@ -20,8 +21,6 @@ export class GroupMembershipController {
     @ApiBody({ type: GroupMembershipDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createGroupMembershipDto: GroupMembershipDto) {
-        console.log('DTO', createGroupMembershipDto);
-
         const groupMembershipEntity = new GroupMembership();
         groupMembershipEntity.role = createGroupMembershipDto.role;
         groupMembershipEntity.group = await this.groupRepository.findOne(createGroupMembershipDto.groupId);
@@ -78,7 +77,13 @@ export class GroupMembershipController {
     @ApiOkResponse({ description: "Group membership has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateGroupDto: GroupMembershipDto) {
-        const result = await this.groupMembershipService.updateGroupMembership(id, updateGroupDto);
+        const updateGroupMembershipEntity = new GroupMembership();
+        updateGroupMembershipEntity.role = updateGroupDto.role;
+        updateGroupMembershipEntity.group = await this.groupRepository.findOne(updateGroupDto.groupId);
+        updateGroupMembershipEntity.schoolId = updateGroupDto.schoolId;
+        updateGroupMembershipEntity.userId = updateGroupDto.userId;
+
+        const result = await this.groupMembershipService.updateGroupMembership(id, updateGroupMembershipEntity);
         if (!result)
         throw new HttpException('Error updating groupMembership', HttpStatus.BAD_REQUEST);
       return result;
