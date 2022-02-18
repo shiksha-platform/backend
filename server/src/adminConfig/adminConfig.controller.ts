@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, 
 import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
 import { AdminConfigDto } from './dto/adminConfig.dto';
 import { AdminConfigService } from './adminConfig.service';
+import {AdminConfig} from "./adminConfig.entity";
 
 @ApiTags('Admin Config')
 @Controller('adminConfig')
@@ -14,7 +15,9 @@ export class AdminConfigController {
     @ApiBody({ type: AdminConfigDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createAdminConfigDto: AdminConfigDto) {
-        const result = await this.adminConfigService.createAdminConfig(createAdminConfigDto);
+        const adminConfigEntity = new AdminConfig();
+        Object.assign(adminConfigEntity, createAdminConfigDto);
+        const result = await this.adminConfigService.createAdminConfig(adminConfigEntity);
         if (!result)
         throw new HttpException('Error creating new admin config', HttpStatus.BAD_REQUEST);
       return result;
@@ -44,7 +47,9 @@ export class AdminConfigController {
     @ApiOkResponse({ description: "Admin config has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateAdminConfigDto: AdminConfigDto) {
-        const result = await this.adminConfigService.updateAdminConfig(id, updateAdminConfigDto);
+        const updateAdminConfigEntity = new AdminConfig();
+        Object.assign(updateAdminConfigEntity, updateAdminConfigDto);
+        const result = await this.adminConfigService.updateAdminConfig(id, updateAdminConfigEntity);
         if (!result)
         throw new HttpException('Error updating admin configs', HttpStatus.BAD_REQUEST);
       return result;

@@ -18,7 +18,7 @@ export class AdminConfigService {
     private readonly adminConfigRepository: Repository<AdminConfig>
   ) {}
   
-  public async createAdminConfig(adminConfigDto: AdminConfigDto): Promise<SuccessResponse>  {
+  public async createAdminConfig(adminConfigDto: AdminConfig): Promise<SuccessResponse>  {
     try{
       const data = await this.adminConfigRepository.save(adminConfigDto);
       
@@ -72,7 +72,7 @@ export class AdminConfigService {
     }
   }
 
-  public async updateAdminConfig(adminConfigId:string, updateAdminConfigDto:AdminConfigDto): Promise<SuccessResponse>  {
+  public async updateAdminConfig(adminConfigId:string, updateAdminConfigDto:AdminConfig): Promise<SuccessResponse>  {
     try{
       const data = await this.adminConfigRepository.update(adminConfigId, updateAdminConfigDto);
       
