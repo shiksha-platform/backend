@@ -71,15 +71,19 @@ export class AttendanceController {
   @ApiCreatedResponse({ description: "Attendance has been created successfully."})
   @ApiBody({ type: AttendanceDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
-  public async createAttendance(@Body() attendanceDto: AttendanceDto[] )  {
-    return this.attendanceService.createAttendance(attendanceDto);
+  public async createAttendance(@Body() attendanceDto: AttendanceDto )  {
+     const createAttendanceEntity = new Attendance();
+     Object.assign(createAttendanceEntity, attendanceDto);
+    return this.attendanceService.createAttendance(createAttendanceEntity);
   }
 
-  @Put()
+  @Put(':id')
   @ApiOkResponse({ description: "Attendance has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
-  public async updateAttendance(@Body() attendanceDto: AttendanceDto)  {
-    return this.attendanceService.updateAttendance(attendanceDto);
+  public async updateAttendance(@Param('id') id: string, @Body() attendanceDto: AttendanceDto)  {
+    const updateAttendanceEntity = new Attendance();
+    Object.assign(updateAttendanceEntity, attendanceDto);
+    return this.attendanceService.updateAttendance(id, updateAttendanceEntity);
   }
 
  

@@ -121,7 +121,7 @@ export class AttendanceService {
       return totalArray;
   }
 
-  public async createAttendance(attendanceDto: AttendanceDto[]) {
+  public async createAttendance(attendanceDto: Attendance) {
     try {
       return await this.attendanceRepository.save(attendanceDto);
     } catch (err) {
@@ -134,9 +134,9 @@ export class AttendanceService {
   }
 
 
-  public async updateAttendance(attendanceDto: AttendanceDto) {
+  public async updateAttendance(attendanceId: string, attendanceDto: Attendance) {
     try {
-      return await this.attendanceRepository.save(attendanceDto);
+      return await this.attendanceRepository.update(attendanceId, attendanceDto);
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
