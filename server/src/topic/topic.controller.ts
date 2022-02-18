@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, 
 import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
 import { TopicDto } from './dto/topic.dto';
 import { TopicService } from './topic.service';
+import {Topic} from "./topic.entity";
 
 @ApiTags('Topic')
 @Controller('topic')
@@ -14,7 +15,9 @@ export class TopicController {
     @ApiBody({ type: TopicDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createTopicDto: TopicDto) {
-        const result = await this.topicService.createTopic(createTopicDto);
+        const createTopicEntity = new Topic();
+        Object.assign(createTopicEntity, createTopicDto);
+        const result = await this.topicService.createTopic(createTopicEntity);
         if (!result)
         throw new HttpException('Error adding new topic', HttpStatus.BAD_REQUEST);
       return result;
@@ -44,7 +47,9 @@ export class TopicController {
     @ApiOkResponse({ description: "Topic has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateTopicDto: TopicDto) {
-        const result = await this.topicService.updateTopic(id, updateTopicDto);
+        const updateTopicEntity = new Topic();
+        Object.assign(updateTopicEntity, updateTopicDto);
+        const result = await this.topicService.updateTopic(id, updateTopicEntity);
         if (!result)
         throw new HttpException('Error updating topic', HttpStatus.BAD_REQUEST);
       return result;

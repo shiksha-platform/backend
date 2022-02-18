@@ -18,7 +18,7 @@ export class TopicService {
     private readonly topicRepository: Repository<Topic>
   ) {}
   
-  public async createTopic(topicDto: TopicDto): Promise<SuccessResponse>  {
+  public async createTopic(topicDto: Topic): Promise<SuccessResponse>  {
     try{
       const data = await this.topicRepository.save(topicDto);
       
@@ -72,7 +72,7 @@ export class TopicService {
     }
   }
 
-  public async updateTopic(topicId:string, updateTopicDto:TopicDto): Promise<SuccessResponse>  {
+  public async updateTopic(topicId:string, updateTopicDto:Topic): Promise<SuccessResponse>  {
     try{
       const data = await this.topicRepository.update(topicId, updateTopicDto);
       

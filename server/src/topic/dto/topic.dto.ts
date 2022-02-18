@@ -6,11 +6,6 @@ export class TopicDto {
   @Exclude()
   osid : string 
 
-
-  @ApiProperty({
-    type: String,
-    description: 'The topicId of the topic'
-  })
   @Expose()
   topicId : string;
 
