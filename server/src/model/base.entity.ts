@@ -14,5 +14,5 @@ export abstract class BaseEntity {
     updatedOn: Date;
 
     @Column({ type: 'varchar', nullable: true })
-    updatedy: string;
+    updatedBy: string;
 }
