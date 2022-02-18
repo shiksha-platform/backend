@@ -9,7 +9,7 @@ export class GroupMembership extends BaseEntity {
     @Column({ type: 'varchar', nullable: true })
     schoolId: string;
 
-    @Column({name: 'groupId', })
+    @Column({name: 'groupId'})
     @ManyToOne(type => Group, group => group.id)
     group: Group;   
 

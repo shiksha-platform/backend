@@ -19,7 +19,7 @@ export class GroupMembershipService {
     private readonly groupMembershipRepository: Repository<GroupMembership>
   ) {}
   
-  public async createGroupMembership(groupMembershipDto: GroupMembershipDto): Promise<SuccessResponse>  {
+  public async createGroupMembership(groupMembershipDto: GroupMembership): Promise<SuccessResponse>  {
     try{
       const data = await this.groupMembershipRepository.save(groupMembershipDto);
       

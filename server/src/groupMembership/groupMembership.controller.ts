@@ -1,20 +1,34 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import { InjectRepository } from '@nestjs/typeorm';
+import { Group } from '../group/group.entity';
+import { Repository } from 'typeorm';
 import { GroupMembershipDto } from './dto/groupMembership.dto';
+import { GroupMembership } from './groupMembership.entity';
 import { GroupMembershipService } from './groupMembership.service';
 
 @ApiTags('Group Membership')
 @Controller('groupMembership')
 export class GroupMembershipController {
     
-    constructor(private readonly groupMembershipService: GroupMembershipService) {}
+    constructor(private readonly groupMembershipService: GroupMembershipService, 
+      @InjectRepository(Group)
+      private readonly groupRepository: Repository<Group>) {}
 
     @Post()
     @ApiCreatedResponse({ description: "Group membership has been created successfully."})
     @ApiBody({ type: GroupMembershipDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createGroupMembershipDto: GroupMembershipDto) {
-        const result = await this.groupMembershipService.createGroupMembership(createGroupMembershipDto);
+        console.log('DTO', createGroupMembershipDto);
+
+        const groupMembershipEntity = new GroupMembership();
+        groupMembershipEntity.role = createGroupMembershipDto.role;
+        groupMembershipEntity.group = await this.groupRepository.findOne(createGroupMembershipDto.groupId);
+        groupMembershipEntity.schoolId = createGroupMembershipDto.schoolId;
+        groupMembershipEntity.userId = createGroupMembershipDto.userId;
+      
+        const result = await this.groupMembershipService.createGroupMembership(groupMembershipEntity);
         if (!result)
         throw new HttpException('Error adding new groupMembership', HttpStatus.BAD_REQUEST);
       return result;
