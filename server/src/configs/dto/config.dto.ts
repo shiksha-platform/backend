@@ -7,10 +7,6 @@ export class ConfigDto {
   @Exclude()
   osid : string
 
-  @ApiProperty({
-    type: String,
-    description: 'The configId of the config'
-  })
   @Expose()
   configId : string;
 

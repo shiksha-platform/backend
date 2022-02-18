@@ -148,10 +148,6 @@ export class StudentDto {
   @Expose()
   status: string;
 
-  @ApiProperty({
-    type: String,
-    description: 'The student id of the student'
-  })
   @Expose()
   studentId : string;
 

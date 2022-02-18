@@ -7,10 +7,6 @@ export class SchoolDto {
   @Exclude()
   osid : string
 
-  @ApiProperty({
-    type: String,
-    description: 'The schoolId of the school'
-  })
   @Expose()
   schoolId: string;
 

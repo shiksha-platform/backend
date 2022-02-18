@@ -7,11 +7,6 @@ export class TimetableDto {
   @Exclude()
   osid : string
 
-  @ApiProperty({
-    type: String,
-    description: 'The timetableRecordId of the timetable',
-    default: ''
-  })
   @Expose()
   timetableRecordId: string;
 
