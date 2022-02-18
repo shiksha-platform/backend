@@ -18,7 +18,7 @@ export class GroupService {
     private readonly groupRepository: Repository<Group>
   ) {}
   
-  public async createGroup(groupDto: GroupDto): Promise<SuccessResponse>  {
+  public async createGroup(groupDto: Group): Promise<SuccessResponse>  {
     try{
       const data = await this.groupRepository.save(groupDto);
       
@@ -72,7 +72,7 @@ export class GroupService {
     }
   }
 
-  public async updateGroup(groupId:string, updateGroupDto:GroupDto): Promise<SuccessResponse>  {
+  public async updateGroup(groupId:string, updateGroupDto:Group): Promise<SuccessResponse>  {
     try{
       const data = await this.groupRepository.update(groupId, updateGroupDto);
       

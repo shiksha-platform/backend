@@ -3,6 +3,7 @@ import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBod
 import { GroupDto } from './dto/group.dto';
 import { GroupService } from './group.service';
 import { GroupMembershipService } from "../groupMembership/groupMembership.service";
+import { Group } from "./group.entity";
 
 @ApiTags('Group')
 @Controller('group')
@@ -17,7 +18,9 @@ export class GroupController {
     @ApiBody({ type: GroupDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createGroupDto: GroupDto) {
-        const result = await this.groupService.createGroup(createGroupDto);
+        const createGroupEntity = new Group();
+        Object.assign(createGroupEntity, createGroupDto);
+        const result = await this.groupService.createGroup(createGroupEntity);
         if (!result)
         throw new HttpException('Error adding new group', HttpStatus.BAD_REQUEST);
       return result;
@@ -47,7 +50,9 @@ export class GroupController {
     @ApiOkResponse({ description: "Group has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateGroupDto: GroupDto) {
-        const result = await this.groupService.updateGroup(id, updateGroupDto);
+        const updateGroupEntity = new Group();
+        Object.assign(updateGroupEntity, updateGroupDto);
+        const result = await this.groupService.updateGroup(id, updateGroupEntity);
         if (!result)
         throw new HttpException('Error updating group', HttpStatus.BAD_REQUEST);
       return result;
