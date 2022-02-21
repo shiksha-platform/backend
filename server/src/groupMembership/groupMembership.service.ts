@@ -6,6 +6,7 @@ import { SuccessResponse } from './../success-response';
 import { getManager, Repository } from 'typeorm';
 import { GroupMembershipDto } from './dto/groupMembership.dto';
 import { GroupMembership } from './groupMembership.entity';
+import { Group } from "../group/group.entity";
 
 @Injectable()
 export class GroupMembershipService {
@@ -146,25 +147,17 @@ export class GroupMembershipService {
   }
 
   public async findMembersOfGroup(groupId:string, role: string, schoolId: string): Promise<SuccessResponse> {
-    let query ='';
-    query += 'groupMembership.groupId = :groupId'
-
-    // Dynamic query for role & schoolId - if get then add
+    let query: any = { group: groupId }
+    // Dynamically add role & schoolId value
     if(role!='' && role!=null) {
-      query += ' and groupMembership.role = :role'
+      query.role = role
     }
     if(schoolId!='' && schoolId!=null) {
-      query += ' and groupMembership.schoolId = :schoolId'
+      query.schoolId = schoolId
     }
 
-    const membersOfGroup = await this.groupMembershipRepository.createQueryBuilder()
-        .select("groupMembership")
-        .from(GroupMembership, "groupMembership")
-        .where(query, {
-          groupId: groupId,
-          role: role,
-          schoolId: schoolId
-        }).getMany();
+    const membersOfGroup = await this.groupMembershipRepository
+        .find({ where: query, relations: ["group"] })
 
     if (!membersOfGroup) {
       var error = new ErrorResponse({
@@ -181,25 +174,17 @@ export class GroupMembershipService {
   }
 
   public async findGroupsByUserId(userId: string, role: string, schoolId: string): Promise<SuccessResponse> {
-    let query ='';
-    query += 'groupMembership.userId = :userId'
-
+    let query: any = { userId: userId }
     // Dynamically add role & schoolId value
     if(role!='' && role!=null) {
-      query += ' and groupMembership.role = :role'
+      query.role = role
     }
     if(schoolId!='' && schoolId!=null) {
-      query += ' and groupMembership.schoolId = :schoolId'
+      query.schoolId = schoolId
     }
 
-    const membersOfGroup = await this.groupMembershipRepository.createQueryBuilder()
-        .select("groupMembership")
-        .from(GroupMembership, "groupMembership")
-        .where(query, {
-          userId: userId,
-          role: role,
-          schoolId: schoolId
-        }).getMany();
+    const membersOfGroup = await this.groupMembershipRepository
+        .find({ where: query, relations: ["group"], select: ["group"]})
 
     if (!membersOfGroup) {
       var error = new ErrorResponse({
@@ -211,7 +196,7 @@ export class GroupMembershipService {
     return new SuccessResponse({
       statusCode : response.statusCode,
       message :'Group of members found Successfully',
-      data : membersOfGroup,
+      data : membersOfGroup.map(item => item.group),
     });
   }
 }

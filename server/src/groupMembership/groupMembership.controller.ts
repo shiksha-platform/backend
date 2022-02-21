@@ -14,13 +14,24 @@ export class GroupMembershipController {
     
     constructor(private readonly groupMembershipService: GroupMembershipService, 
       @InjectRepository(Group)
-      private readonly groupRepository: Repository<Group>) {}
+      private readonly groupRepository: Repository<Group>,
+      @InjectRepository(GroupMembership)
+      private readonly groupMembershipRepository: Repository<GroupMembership>) {}
 
     @Post()
     @ApiCreatedResponse({ description: "Group membership has been created successfully."})
     @ApiBody({ type: GroupMembershipDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async create(@Body() createGroupMembershipDto: GroupMembershipDto) {
+        // Validation for user can't join same group again
+        const response = await this.groupMembershipRepository.findOne(
+            { where: {
+                    group: createGroupMembershipDto.groupId,
+                    userId: createGroupMembershipDto.userId }});
+        if(response !== undefined && Object.keys(response).length > 0) {
+            throw new HttpException('Error adding new groupMembership', HttpStatus.BAD_REQUEST);
+        }
+
         const groupMembershipEntity = new GroupMembership();
         groupMembershipEntity.role = createGroupMembershipDto.role;
         groupMembershipEntity.group = await this.groupRepository.findOne(createGroupMembershipDto.groupId);
