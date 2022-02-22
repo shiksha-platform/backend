@@ -21,6 +21,7 @@ import { SchoolSearchDto } from "./dto/school-search.dto";
 import { SchoolDto } from "./dto/school.dto";
 import { SchoolService } from "./school.service";
 import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
+import { Request } from 'express';
 
 @ApiTags('School')
 @Controller("school")
@@ -43,16 +44,16 @@ export class SchoolController {
   @ApiBody({ type: SchoolDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
-  public async createSchool(@Body() schoolDto: SchoolDto )  {
-    return this.schoolService.createSchool(schoolDto);
+  public async createSchool(@Body() schoolDto: SchoolDto, @Req() request: Request )  {
+    return this.schoolService.createSchool(schoolDto, request.headers);
   }
 
   @Put("/:id")
   @ApiOkResponse({ description: "School detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
-  public async updateSchool(@Param("id") schoolId: string, @Body() schoolDto: SchoolDto )  {
-    return this.schoolService.updateSchool(schoolId,schoolDto);
+  public async updateSchool(@Param("id") schoolId: string, @Body() schoolDto: SchoolDto, @Req() request: Request )  {
+    return this.schoolService.updateSchool(schoolId,schoolDto, request.headers);
   }
 
   @Post("/search")
@@ -63,8 +64,8 @@ export class SchoolController {
   @SerializeOptions({
     strategy: 'excludeAll'
   })
-  public async searchSchool(@Body() schoolSearchDto: SchoolSearchDto )  {
-   return this.schoolService.searchSchool(schoolSearchDto);
+  public async searchSchool(@Body() schoolSearchDto: SchoolSearchDto, @Req() request: Request )  {
+   return this.schoolService.searchSchool(schoolSearchDto, request.headers);
 
   }
  

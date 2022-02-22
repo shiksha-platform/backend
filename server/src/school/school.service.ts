@@ -11,6 +11,9 @@ import { SchoolSearchDto } from './dto/school-search.dto';
 
 import Mustache = require("mustache");
 import { SaveSchoolDto } from './dto/save-school.dto';
+import { IncomingHttpHeaders } from 'http';
+import {SuccessResponse} from "../success-response";
+import {StudentDto} from "../student/dto/student.dto";
 
 @Injectable()
 export class SchoolService {
@@ -22,9 +25,13 @@ export class SchoolService {
     var template = require('./../../response_templates/school/find_school_response.json');
     return this.httpService.get(`${this.url}/${schoolId}`)
     .pipe(
-        map(response => {
-         var output = Mustache.render(JSON.stringify(template), response.data);
-         return new SchoolDto(JSON.parse(output))
+      map(response => {
+        var output = Mustache.render(JSON.stringify(template), response.data);
+        return new SuccessResponse({
+          statusCode: response.status,
+          message: 'School found Successfully',
+          data: new SchoolDto(JSON.parse(output))
+        });
       }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -38,15 +45,12 @@ export class SchoolService {
 
  
 
-  public async createSchool(schoolDto: SchoolDto) {
+  public async createSchool(schoolDto: SchoolDto, header: IncomingHttpHeaders) {
       var responseTemplate = require('./../../response_templates/school/create_school_response.json');
       var requestTemplate = require('./../../response_templates/school/create_school_request.json');
       var input = Mustache.render(JSON.stringify(requestTemplate), schoolDto);
-      const headersRequest = {
-        'Content-Type': 'application/json', 
-        // 'Authorization': `Basic ${encodeToken}`,
-      };
-      return this.httpService.post(`${this.url}`,new SaveSchoolDto(JSON.parse(input)),{ headers: headersRequest })
+
+      return this.httpService.post(`${this.url}`,new SaveSchoolDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
       .pipe(
           map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
@@ -63,15 +67,12 @@ export class SchoolService {
   }
 
 
-  public async updateSchool(schoolId:string,schoolDto: SchoolDto) {
+  public async updateSchool(schoolId:string,schoolDto: SchoolDto, header: IncomingHttpHeaders) {
     var responseTemplate = require('./../../response_templates/school/create_school_response.json');
     var requestTemplate = require('./../../response_templates/school/create_school_request.json');
     var input = Mustache.render(JSON.stringify(requestTemplate), schoolDto);
-    const headersRequest = {
-      'Content-Type': 'application/json', 
-      // 'Authorization': `Basic ${encodeToken}`,
-    };
-    return this.httpService.patch(`${this.url}/${schoolId}`,new SaveSchoolDto(JSON.parse(input)),{ headers: headersRequest })
+
+    return this.httpService.put(`${this.url}/${schoolId}`,new SaveSchoolDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
@@ -87,18 +88,19 @@ export class SchoolService {
     );
 }
 
-public async searchSchool(schoolSearchDto: SchoolSearchDto) {
+public async searchSchool(schoolSearchDto: SchoolSearchDto, header: IncomingHttpHeaders) {
   var template = require('./../../response_templates/school/find_school_response.json');
-  const headersRequest = {
-    'Content-Type': 'application/json', 
-    // 'Authorization': `Basic ${encodeToken}`,
-  };
-  return this.httpService.post(`${this.url}/search`,schoolSearchDto,{ headers: headersRequest })
+
+  return this.httpService.post(`${this.url}/search`,schoolSearchDto,{ headers: { Authorization: header.authorization } })
   .pipe(
       map(response => {
         return response.data.map(item =>{
           var output = Mustache.render(JSON.stringify(template), item);
-          return new SchoolDto(JSON.parse(output))    
+          return new SuccessResponse({
+            statusCode: response.status,
+            message: 'School found Successfully',
+            data: new SchoolDto(JSON.parse(output))
+          });
         });
        
     }),
