@@ -1,5 +1,5 @@
 import { Exclude, Expose } from 'class-transformer';
-import { ApiProperty } from '@nestjs/swagger';
+import {ApiProperty, ApiPropertyOptional} from '@nestjs/swagger';
 
 import { MaxLength, IsNotEmpty, IsEmail, IsString, IsNumber } from 'class-validator';
 
@@ -15,6 +15,7 @@ export class StudentSearchDto {
     type: Object,
     description: 'Filters'
   })
+  @ApiPropertyOptional()
   filters: object;
   
   
