@@ -9,6 +9,8 @@ import { StudentSearchDto } from './dto/student-search.dto';
 
 import Mustache = require("mustache");
 import { SaveStudentDto } from './dto/save-student.dto';
+import { IncomingHttpHeaders } from 'http';
+import { SuccessResponse } from '../success-response';
 
 @Injectable()
 export class StudentService {
@@ -20,13 +22,18 @@ export class StudentService {
  // At request level
 
   
-  public async findById(studentId: string, header: any)  {
+  public async findById(studentId: string, header: IncomingHttpHeaders)  {
     var template = require('./../../response_templates/student/find_student_response.json');
-    return this.httpService.get(`${this.url}/${studentId}`, { headers: header })
+
+    return this.httpService.get(`${this.url}/${studentId}`, { headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
-         var output = Mustache.render(JSON.stringify(template), response.data);
-         return new StudentDto(JSON.parse(output))
+          var output = Mustache.render(JSON.stringify(template), response.data);
+          return new SuccessResponse({
+            statusCode: response.status,
+            message: 'Student found Successfully',
+            data: new StudentDto(JSON.parse(output))
+          });
       }),
         catchError(e => {
           console.error('E', { ...e });
@@ -41,12 +48,11 @@ export class StudentService {
 
  
 
-  public async createStudent(header: any, studentDto: StudentDto) {
+  public async createStudent(header: IncomingHttpHeaders, studentDto: StudentDto) {
       var responseTemplate = require('./../../response_templates/student/create_student_response.json');
       var requestTemplate = require('./../../response_templates/student/create_student_request.json');
       var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
-     
-      return this.httpService.post(`${this.url}`,new SaveStudentDto(JSON.parse(input)),{ headers: header })
+      return this.httpService.post(`${this.url}`,new SaveStudentDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
       .pipe(
           map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
@@ -63,12 +69,11 @@ export class StudentService {
   }
 
 
-  public async updateStudent(studentId:string, header: any, studentDto: StudentDto) {
+  public async updateStudent(studentId:string, header: IncomingHttpHeaders, studentDto: StudentDto) {
     var responseTemplate = require('./../../response_templates/student/create_student_response.json');
     var requestTemplate = require('./../../response_templates/student/create_student_request.json');
     var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
-   
-    return this.httpService.patch(`${this.url}/${studentId}`,new SaveStudentDto(JSON.parse(input)),{ headers: header })
+    return this.httpService.put(`${this.url}/${studentId}`,new SaveStudentDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
           var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
@@ -84,15 +89,18 @@ export class StudentService {
     );
 }
 
-public async searchStudent(header: any, studentSearchDto: StudentSearchDto) {
+public async searchStudent(header: IncomingHttpHeaders, studentSearchDto: StudentSearchDto) {
   var template = require('./../../response_templates/student/find_student_response.json');
-
-  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: header })
+  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: { Authorization: header.authorization } })
   .pipe(
       map(response => {
         return response.data.map(item =>{
           var output = Mustache.render(JSON.stringify(template), item);
-          return new StudentDto(JSON.parse(output))    
+          return new SuccessResponse({
+            statusCode: response.status,
+            message: 'Student found Successfully',
+            data: new StudentDto(JSON.parse(output))
+          });
         });
        
     }),
@@ -108,10 +116,8 @@ public async searchStudent(header: any, studentSearchDto: StudentSearchDto) {
  
 }
 
-public async findStudentByClass(searchClassId: String, header: any) {
+public async findStudentByClass(searchClassId: String, header: IncomingHttpHeaders) {
   var template = require('./../../response_templates/student/find_student_response.json');
-
-
 
   var searchFilter = {
     classId : {
@@ -122,12 +128,16 @@ public async findStudentByClass(searchClassId: String, header: any) {
     filters : searchFilter
   })
 
-  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: header })
+  return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: { Authorization: header.authorization } })
   .pipe(
       map(response => {
         return response.data.map(item =>{
           var output = Mustache.render(JSON.stringify(template), item);
-          return new StudentDto(JSON.parse(output))   
+          return new SuccessResponse({
+            statusCode: response.status,
+            message: 'Student found Successfully',
+            data: new StudentDto(JSON.parse(output))
+          });
       });
     }),
       catchError(e => {
