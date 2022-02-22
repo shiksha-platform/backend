@@ -1,6 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
 import { MaxLength, IsNotEmpty, IsEmail, IsString, IsNumber } from 'class-validator';
-import {ApiProperty} from "@nestjs/swagger";
+import {ApiProperty, ApiPropertyOptional} from "@nestjs/swagger";
 
 export class TimetableSearchDto {
 
@@ -14,6 +14,7 @@ export class TimetableSearchDto {
     type: Object,
     description: 'Filters'
   })
+  @ApiPropertyOptional()
   filters: object;
   
   
