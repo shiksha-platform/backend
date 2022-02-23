@@ -18,7 +18,7 @@ import {
     Req
 } from "@nestjs/common";
 import { Request } from "express";
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody, ApiBasicAuth} from "@nestjs/swagger";
 import { StudentSearchDto } from "./dto/student-search.dto";
 import { StudentDto } from "./dto/student.dto";
 import { StudentService } from "./student.service";
@@ -30,6 +30,7 @@ export class StudentController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Student detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @SerializeOptions({
@@ -40,6 +41,7 @@ export class StudentController {
   }
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Student has been created successfully."})
   @ApiBody({ type: StudentDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -49,6 +51,7 @@ export class StudentController {
   }
 
   @Put("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Student has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -57,6 +60,7 @@ export class StudentController {
   }
 
   @Post("/search")
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Student has been listed."})
   @ApiBody({ type: StudentSearchDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -70,6 +74,7 @@ export class StudentController {
   }
 
   @Post("/findByClass")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Student detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)

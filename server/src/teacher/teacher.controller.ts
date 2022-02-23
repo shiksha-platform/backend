@@ -48,6 +48,7 @@ export class TeacherController {
   }
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Teacher has been created successfully."})
   @ApiBody({ type: TeacherDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -57,6 +58,7 @@ export class TeacherController {
   }
 
   @Put("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Teacher has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -65,6 +67,7 @@ export class TeacherController {
   }
 
   @Post("/search")
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Teacher list."})
   @ApiBody({ type: TeacherSearchDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -78,6 +81,7 @@ export class TeacherController {
   }
 
   @Post("/findBySubject")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Teacher list."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)

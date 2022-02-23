@@ -20,7 +20,7 @@ import {
 import { SchoolSearchDto } from "./dto/school-search.dto";
 import { SchoolDto } from "./dto/school.dto";
 import { SchoolService } from "./school.service";
-import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
 import { Request } from 'express';
 
 @ApiTags('School')
@@ -40,6 +40,7 @@ export class SchoolController {
   }
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "School has been created successfully."})
   @ApiBody({ type: SchoolDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -49,6 +50,7 @@ export class SchoolController {
   }
 
   @Put("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "School detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -57,6 +59,7 @@ export class SchoolController {
   }
 
   @Post("/search")
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "School list."})
   @ApiBody({ type: SchoolSearchDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
