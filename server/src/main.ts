@@ -10,6 +10,9 @@ async function bootstrap() {
       .setTitle('Samgra API')
       .setDescription('Samgra CRUD API')
       .setVersion('1.0.0')
+      .addApiKey(
+      { type: 'apiKey', name: 'Authorization', in:'header' },
+      'access-token',)
       .build();
 
   const doc = SwaggerModule.createDocument(app, swaggerConfig);

@@ -17,7 +17,14 @@ import {
   ValidationPipe,
   Req
 } from "@nestjs/common";
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import {
+  ApiTags,
+  ApiOkResponse,
+  ApiForbiddenResponse,
+  ApiCreatedResponse,
+  ApiBody,
+  ApiBasicAuth
+} from "@nestjs/swagger";
 import { TeacherSearchDto } from "./dto/teacher-search.dto";
 import { TeacherDto } from "./dto/teacher.dto";
 import { TeacherService } from "./teacher.service";
@@ -30,6 +37,7 @@ export class TeacherController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Teacher detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @SerializeOptions({
