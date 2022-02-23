@@ -1,5 +1,13 @@
 import {Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query} from '@nestjs/common';
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody, ApiQuery} from "@nestjs/swagger";
+import {
+    ApiTags,
+    ApiOkResponse,
+    ApiForbiddenResponse,
+    ApiCreatedResponse,
+    ApiBody,
+    ApiQuery,
+    ApiBasicAuth
+} from "@nestjs/swagger";
 import { GroupDto } from './dto/group.dto';
 import { GroupService } from './group.service';
 import { GroupMembershipService } from "../groupMembership/groupMembership.service";
@@ -14,6 +22,7 @@ export class GroupController {
     ) {}
 
     @Post()
+    @ApiBasicAuth('access-token')
     @ApiCreatedResponse({ description: "Group has been created successfully."})
     @ApiBody({ type: GroupDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -27,6 +36,7 @@ export class GroupController {
     }
 
     @Get()
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group list."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async get() {
@@ -37,6 +47,7 @@ export class GroupController {
     }
 
     @Get(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async findOne(@Param('id') id: string) {
@@ -59,6 +70,7 @@ export class GroupController {
     }
     
     @Delete(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group has been deleted successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async delete(@Param('id') id: string) {
@@ -69,6 +81,7 @@ export class GroupController {
     }
 
     @Get(':id/members')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     @ApiQuery({ name: 'role', required: false })
@@ -80,6 +93,7 @@ export class GroupController {
     }
 
     @Get('memberships/:userId')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     @ApiQuery({ name: 'role', required: false })

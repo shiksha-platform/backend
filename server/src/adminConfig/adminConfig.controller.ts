@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody, ApiBasicAuth} from "@nestjs/swagger";
 import { AdminConfigDto } from './dto/adminConfig.dto';
 import { AdminConfigService } from './adminConfig.service';
 import {AdminConfig} from "./adminConfig.entity";
@@ -11,6 +11,7 @@ export class AdminConfigController {
     constructor(private readonly adminConfigService: AdminConfigService) {}
 
     @Post()
+    @ApiBasicAuth('access-token')
     @ApiCreatedResponse({ description: "Admin config has been created successfully."})
     @ApiBody({ type: AdminConfigDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -24,6 +25,7 @@ export class AdminConfigController {
     }
 
     @Get()
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Admin config list."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async get() {
@@ -34,6 +36,7 @@ export class AdminConfigController {
     }
 
     @Get(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Admin config detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async findOne(@Param('id') id: string) {
@@ -44,6 +47,7 @@ export class AdminConfigController {
     }
     
     @Put(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Admin config has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateAdminConfigDto: AdminConfigDto) {
@@ -56,6 +60,7 @@ export class AdminConfigController {
     }
     
     @Delete(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Admin config has been deleted successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async delete(@Param('id') id: string) {

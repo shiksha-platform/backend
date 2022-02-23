@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody, ApiBasicAuth} from "@nestjs/swagger";
 import { TopicDto } from './dto/topic.dto';
 import { TopicService } from './topic.service';
 import {Topic} from "./topic.entity";
@@ -11,6 +11,7 @@ export class TopicController {
     constructor(private readonly topicService: TopicService) {}
 
     @Post()
+    @ApiBasicAuth('access-token')
     @ApiCreatedResponse({ description: "Topic has been created successfully."})
     @ApiBody({ type: TopicDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -24,6 +25,7 @@ export class TopicController {
     }
 
     @Get()
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Topic list."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async get() {
@@ -34,6 +36,7 @@ export class TopicController {
     }
 
     @Get(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Topic detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async findOne(@Param('id') id: string) {
@@ -44,6 +47,7 @@ export class TopicController {
     }
     
     @Put(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Topic has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateTopicDto: TopicDto) {
@@ -56,6 +60,7 @@ export class TopicController {
     }
     
     @Delete(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Topic deleted successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async delete(@Param('id') id: string) {

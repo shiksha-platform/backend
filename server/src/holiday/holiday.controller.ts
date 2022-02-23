@@ -9,7 +9,7 @@ import {
   HttpException,
   Delete,
 } from "@nestjs/common";
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody, ApiBasicAuth} from "@nestjs/swagger";
 import { HolidayDto } from "./dto/holiday.dto";
 import { HolidayService } from "./holiday.service";
 import {Holiday} from "./holiday.entity";
@@ -20,6 +20,7 @@ export class HolidayController {
   constructor(private readonly holidayService: HolidayService) {}
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Holiday has been created successfully."})
   @ApiBody({ type: HolidayDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -33,6 +34,7 @@ export class HolidayController {
   }
 
   @Get()
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Holiday's list."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async findAll() {
@@ -43,6 +45,7 @@ export class HolidayController {
   }
   
   @Get(':id')
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Holiday detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async findOne(@Param('id') holidayId: string) {
@@ -53,6 +56,7 @@ export class HolidayController {
   }
 
   @Put(':id')
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Holiday has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async update(@Param('id') holidayId: string, @Body() holidayDto: HolidayDto) {
@@ -65,6 +69,7 @@ export class HolidayController {
   }
 
   @Delete(':id')
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Holiday deleted successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async delete(@Param('id') holidayId: string) {
@@ -75,6 +80,7 @@ export class HolidayController {
   }
 
   @Get('/findByYear/:year')
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Holiday list."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async findByYear(@Param('year') year: string) {
@@ -85,6 +91,7 @@ export class HolidayController {
   }
 
   @Get('/findByContext/:context')
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Holiday list."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   async findByContext(@Param('context') context: string) {

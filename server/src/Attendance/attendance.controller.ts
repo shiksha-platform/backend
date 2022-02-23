@@ -17,7 +17,15 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { AttendanceSearchDto } from "./dto/attendance-search.dto";
-import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiQuery, ApiTags} from "@nestjs/swagger";
+import {
+  ApiBasicAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
+  ApiOkResponse,
+  ApiQuery,
+  ApiTags
+} from "@nestjs/swagger";
 import { AttendanceDto } from "./dto/attendance.dto";
 import { AttendanceService } from "./attendance.service";
 import { Attendance } from "./attendance.entity";
@@ -29,6 +37,7 @@ export class AttendanceController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Attendance by id."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   public async getAttendanceById(@Param("id") attendanceId: string )  {
@@ -36,6 +45,7 @@ export class AttendanceController {
   }
 
   @Get()
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Listed attendance."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiQuery({ name: 'fromDate', required: false })
@@ -52,6 +62,7 @@ export class AttendanceController {
   }
 
   @Get('/find/report')
+  @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Listed attendance by id."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiQuery({ name: 'fromDate', required: false })
@@ -68,6 +79,7 @@ export class AttendanceController {
   }
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Attendance has been created successfully."})
   @ApiBody({ type: AttendanceDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -78,6 +90,7 @@ export class AttendanceController {
   }
 
   @Put(':id')
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Attendance has been updated successfully."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   public async updateAttendance(@Param('id') id: string, @Body() attendanceDto: AttendanceDto)  {

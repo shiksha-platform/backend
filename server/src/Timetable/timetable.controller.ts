@@ -16,7 +16,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
-import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from '@nestjs/swagger';
+import {ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from '@nestjs/swagger';
 import { TimetableSearchDto } from "./dto/timetable-search.dto";
 import { TimetableDto } from "./dto/timetable.dto";
 import { TimetableService } from "./timetable.service";
@@ -29,6 +29,7 @@ export class TimetableController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Timetable detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @SerializeOptions({
@@ -39,6 +40,7 @@ export class TimetableController {
   }
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Timetable has been created successfully."})
   @ApiBody({ type: TimetableDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -48,6 +50,7 @@ export class TimetableController {
   }
 
   @Put("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Timetable detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -56,6 +59,7 @@ export class TimetableController {
   }
 
   @Post("/search")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Timetable detail."})
   @ApiBody({ type: TimetableSearchDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -69,6 +73,7 @@ export class TimetableController {
   }
 
   @Post("/findByClass")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Timetable detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)

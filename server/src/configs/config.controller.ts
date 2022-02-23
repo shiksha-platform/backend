@@ -16,7 +16,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
-import {ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags} from "@nestjs/swagger";
 import { ConfigSearchDto } from "./dto/config-search.dto";
 import { ConfigDto } from "./dto/config.dto";
 import { ConfigService } from "./config.service";
@@ -29,6 +29,7 @@ export class ConfigController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Config detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @SerializeOptions({
@@ -39,6 +40,7 @@ export class ConfigController {
   }
 
   @Get()
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Config list."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -50,6 +52,7 @@ export class ConfigController {
   } 
 
   @Post()
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Config has been created successfully."})
   @ApiBody({ type: ConfigDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -59,6 +62,7 @@ export class ConfigController {
   }
 
   @Put("/:id")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Config detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -67,6 +71,7 @@ export class ConfigController {
   }
 
   @Post("/search")
+  @ApiBasicAuth('access-token')
   @ApiCreatedResponse({ description: "Config details."})
   @ApiBody({ type: ConfigSearchDto })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -80,6 +85,7 @@ export class ConfigController {
   }
 
   @Get("/findByKey/:key")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Config detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)
@@ -91,6 +97,7 @@ export class ConfigController {
   } 
 
   @Get("/findByContext/:context")
+  @ApiBasicAuth('access-token')
   @ApiOkResponse({ description: "Config detail."})
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @UseInterceptors(ClassSerializerInterceptor)

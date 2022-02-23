@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
-import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody} from "@nestjs/swagger";
+import {ApiTags, ApiOkResponse, ApiForbiddenResponse, ApiCreatedResponse, ApiBody, ApiBasicAuth} from "@nestjs/swagger";
 import { InjectRepository } from '@nestjs/typeorm';
 import { Group } from '../group/group.entity';
 import { Repository } from 'typeorm';
@@ -19,6 +19,7 @@ export class GroupMembershipController {
       private readonly groupMembershipRepository: Repository<GroupMembership>) {}
 
     @Post()
+    @ApiBasicAuth('access-token')
     @ApiCreatedResponse({ description: "Group membership has been created successfully."})
     @ApiBody({ type: GroupMembershipDto })
     @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -45,6 +46,7 @@ export class GroupMembershipController {
     }
 
     @Get()
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group membership list."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async get() {
@@ -55,6 +57,7 @@ export class GroupMembershipController {
     }
 
     @Get(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group membership detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async findOne(@Param('id') id: string) {
@@ -65,6 +68,7 @@ export class GroupMembershipController {
     }
 
     @Get('school/:schoolId')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group membership detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async findBySchoolId(@Param('schoolId') schoolId: string) {
@@ -75,6 +79,7 @@ export class GroupMembershipController {
     }
 
     @Get('user/:userId')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group membership detail."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async find(@Param('userId') userId: string) {
@@ -85,6 +90,7 @@ export class GroupMembershipController {
     }
     
     @Put(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group membership has been updated successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async update(@Param('id') id: string, @Body() updateGroupDto: GroupMembershipDto) {
@@ -101,6 +107,7 @@ export class GroupMembershipController {
     }
     
     @Delete(':id')
+    @ApiBasicAuth('access-token')
     @ApiOkResponse({ description: "Group membership has been deleted successfully."})
     @ApiForbiddenResponse({ description: 'Forbidden' })
     async delete(@Param('id') id: string) {
