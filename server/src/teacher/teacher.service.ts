@@ -60,8 +60,14 @@ export class TeacherService {
       return this.httpService.post(`${this.url}`,new SaveTeacherDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
       .pipe(
           map(response => {
-          var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new TeacherResponseDto(JSON.parse(output))
+            const createdRes = response.data;
+            const teacherResponseDto = new TeacherResponseDto(responseTemplate);
+            Object.keys(responseTemplate).forEach(key => {
+              teacherResponseDto[key] = resolvePath(createdRes, responseTemplate[key]);
+            })
+            return teacherResponseDto;
+          /*var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
+          return new TeacherResponseDto(JSON.parse(output))*/
         }),
           catchError(e => {
             var error = new ErrorResponse({
@@ -82,8 +88,14 @@ export class TeacherService {
     return this.httpService.put(`${this.url}/${teacherId}`,new SaveTeacherDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
-          var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new TeacherDto(JSON.parse(output))
+          const updatedRes = response.data;
+          const teacherDto = new TeacherDto(responseTemplate);
+          Object.keys(responseTemplate).forEach(key => {
+            teacherDto[key] = resolvePath(updatedRes, responseTemplate[key]);
+          })
+          return teacherDto;
+          /*var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
+          return new TeacherDto(JSON.parse(output))*/
       }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -143,11 +155,16 @@ public async findTeacherBySubject(searchSubjectId: String, header: IncomingHttpH
   .pipe(
       map(response => {
         return response.data.map(item =>{
-          var output = Mustache.render(JSON.stringify(template), item);
+          const responseData = response.data;
+          const teacherDetailDto = new TeacherDetailDto(template);
+          Object.keys(template).forEach(key => {
+            teacherDetailDto[key] = resolvePath(responseData, template[key]);
+          });
+          
           return new SuccessResponse({
               statusCode: response.status,
               message: 'Teacher found Successfully',
-              data: new TeacherDetailDto(JSON.parse(output)),
+              data: teacherDetailDto,
           });
       });
     }),
