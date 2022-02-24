@@ -27,12 +27,17 @@ export class TeacherService {
     return this.httpService.get(`${this.url}/${teacherId}`, { headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
-         var output = Mustache.render(JSON.stringify(template), response.data);
+          const data = response.data;
+          const teacherDetailDto = new TeacherDetailDto(template);
+          Object.keys(template).forEach(key => {
+            teacherDetailDto[key] = resolvePath(data, template[key]);
+          });
+       
 
          return new SuccessResponse({
              statusCode : response.status,
              message :'Teacher found Successfully',
-             data : new TeacherDetailDto(JSON.parse(output)),
+             data : teacherDetailDto,
          });
       }),
         catchError(e => {
