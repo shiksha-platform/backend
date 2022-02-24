@@ -6,7 +6,8 @@
     "identityType": "identityDetails.identityType",
     "identityValue": "identityDetails.identityValue",
     "email": "contactDetails.email",
+    "mobile": "contactDetails.mobile",
+    "address": "contactDetails.address",
     "education": "education",
-    
-
+    "experience": "experience"
 }

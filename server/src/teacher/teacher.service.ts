@@ -9,6 +9,7 @@ import { TeacherDto} from './dto/teacher.dto';
 import { ErrorResponse } from './../error-response';
 import { TeacherResponseDto } from './dto/teacher-response.dto';
 import { TeacherSearchDto } from './dto/teacher-search.dto';
+import { TeacherDetailDto } from './dto/teacher-detail.dto';
 
 import Mustache = require("mustache");
 import { SaveTeacherDto } from './dto/save-teacher.dto';
@@ -31,7 +32,7 @@ export class TeacherService {
          return new SuccessResponse({
              statusCode : response.status,
              message :'Teacher found Successfully',
-             data : new TeacherDto(JSON.parse(output)),
+             data : new TeacherDetailDto(JSON.parse(output)),
          });
       }),
         catchError(e => {
@@ -96,11 +97,11 @@ public async searchTeacher(header: IncomingHttpHeaders, teacherSearchDto: Teache
   .pipe(
       map(response => {
         const responsedata = response.data.map(item => {
-          const teacherDto = new TeacherDto(template);
+          const teacherDetailDto = new TeacherDetailDto(template);
           Object.keys(template).forEach(key => {
-            teacherDto[key] = resolvePath(item, template[key]);
+            teacherDetailDto[key] = resolvePath(item, template[key]);
           });
-          return teacherDto;
+          return teacherDetailDto;
         });
 
         return new SuccessResponse({
@@ -141,7 +142,7 @@ public async findTeacherBySubject(searchSubjectId: String, header: IncomingHttpH
           return new SuccessResponse({
               statusCode: response.status,
               message: 'Teacher found Successfully',
-              data: new TeacherDto(JSON.parse(output)),
+              data: new TeacherDetailDto(JSON.parse(output)),
           });
       });
     }),
