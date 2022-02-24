@@ -55,9 +55,15 @@ export class TeacherService {
   public async createTeacher(header: IncomingHttpHeaders, teacherDto: TeacherDto) {
       var responseTemplate = require('./../../response_templates/teacher/create_teacher_response.json');
       var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
-      var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
+      // var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
 
-      return this.httpService.post(`${this.url}`,new SaveTeacherDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
+    // Add object resolver for create teacher request
+      const saveTeacherDto = new SaveTeacherDto(requestTemplate);
+      Object.keys(requestTemplate).forEach(key => {
+        saveTeacherDto[key] = resolvePath(teacherDto, requestTemplate[key]);
+      })
+
+      return this.httpService.post(`${this.url}`,saveTeacherDto,{ headers: { Authorization: header.authorization } })
       .pipe(
           map(response => {
             const createdRes = response.data;
@@ -83,9 +89,15 @@ export class TeacherService {
   public async updateTeacher(teacherId:string,header: IncomingHttpHeaders,teacherDto: TeacherDto) {
     var responseTemplate = require('./../../response_templates/teacher/create_teacher_response.json');
     var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
-    var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
+    // var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
 
-    return this.httpService.put(`${this.url}/${teacherId}`,new SaveTeacherDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
+    // Add object resolver for create teacher request
+    const updateTeacherDto = new SaveTeacherDto(requestTemplate);
+    Object.keys(requestTemplate).forEach(key => {
+      updateTeacherDto[key] = resolvePath(teacherDto, requestTemplate[key]);
+    })
+
+    return this.httpService.put(`${this.url}/${teacherId}`,updateTeacherDto,{ headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
           const updatedRes = response.data;
