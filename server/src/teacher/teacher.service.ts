@@ -13,7 +13,7 @@ import { TeacherSearchDto } from './dto/teacher-search.dto';
 import Mustache = require("mustache");
 import { SaveTeacherDto } from './dto/save-teacher.dto';
 import {SuccessResponse} from "../success-response";
-import {response} from 'express';
+const resolvePath = require('object-resolve-path');
 
 @Injectable()
 export class TeacherService {
@@ -23,7 +23,6 @@ export class TeacherService {
 
   public async findById(teacherId: string, header: IncomingHttpHeaders)  {
     var template = require('./../../response_templates/teacher/find_teacher_response.json');
-
     return this.httpService.get(`${this.url}/${teacherId}`, { headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
@@ -96,16 +95,19 @@ public async searchTeacher(header: IncomingHttpHeaders, teacherSearchDto: Teache
   return this.httpService.post(`${this.url}/search`,teacherSearchDto,{ headers: { Authorization: header.authorization } })
   .pipe(
       map(response => {
-        return response.data.map(item =>{
-          var output = Mustache.render(JSON.stringify(template), item);
-
-          return new SuccessResponse({
-            statusCode: response.status,
-            message: 'Teacher found Successfully',
-            data: new TeacherDto(JSON.parse(output)),
+        const responsedata = response.data.map(item => {
+          const teacherDto = new TeacherDto(template);
+          Object.keys(template).forEach(key => {
+            teacherDto[key] = resolvePath(item, template[key]);
           });
+          return teacherDto;
         });
 
+        return new SuccessResponse({
+          statusCode: response.status,
+          message: "Teacher found Successfully",
+          data: responsedata
+        })
     }),
       catchError(e => {
         var error = new ErrorResponse({

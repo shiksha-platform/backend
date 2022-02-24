@@ -1,7 +1,7 @@
 {
   "name": "nest-typescript-starter",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
   "scripts": {
@@ -37,6 +37,7 @@
     "configuration-service": "^0.1.0",
     "dotenv": "^14.2.0",
     "mustache": "^4.2.0",
+    "object-resolve-path": "^1.1.1",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
