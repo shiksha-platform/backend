@@ -7,6 +7,10 @@ type TeacherEducation = {
     program: string;
 
 }
+type TeacherExperience = {
+    subject: Array<string>;
+    grades: Array<string>;
+}
 
 export class TeacherDetailDto {
   
