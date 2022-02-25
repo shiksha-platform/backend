@@ -4,16 +4,16 @@ import { firstValueFrom } from 'rxjs';
 import {HttpService} from '@nestjs/axios'
 import { Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
+const resolvePath = require('object-resolve-path');
+
 import { SchoolDto} from './dto/school.dto';
 import { ErrorResponse } from '../error-response';
 import { SchoolResponseDto } from './dto/school-response.dto';
 import { SchoolSearchDto } from './dto/school-search.dto';
 
-import Mustache = require("mustache");
 import { SaveSchoolDto } from './dto/save-school.dto';
 import { IncomingHttpHeaders } from 'http';
 import {SuccessResponse} from "../success-response";
-import {StudentDto} from "../student/dto/student.dto";
 
 @Injectable()
 export class SchoolService {
@@ -26,11 +26,17 @@ export class SchoolService {
     return this.httpService.get(`${this.url}/${schoolId}`)
     .pipe(
       map(response => {
-        var output = Mustache.render(JSON.stringify(template), response.data);
+        // var output = Mustache.render(JSON.stringify(template), response.data);
+        const schoolData = response.data;
+        const schoolDto = new SchoolDto(template);
+        Object.keys(template).forEach(key => {
+          schoolDto[key] = resolvePath(schoolData, template[key]);
+        });
+
         return new SuccessResponse({
           statusCode: response.status,
           message: 'School found Successfully',
-          data: new SchoolDto(JSON.parse(output))
+          data: schoolDto
         });
       }),
         catchError(e => {
@@ -48,13 +54,23 @@ export class SchoolService {
   public async createSchool(schoolDto: SchoolDto, header: IncomingHttpHeaders) {
       var responseTemplate = require('./../../response_templates/school/create_school_response.json');
       var requestTemplate = require('./../../response_templates/school/create_school_request.json');
-      var input = Mustache.render(JSON.stringify(requestTemplate), schoolDto);
+      // var input = Mustache.render(JSON.stringify(requestTemplate), schoolDto);
+      const saveSchoolDto = new SaveSchoolDto(requestTemplate);
+      Object.keys(requestTemplate).forEach(key => {
+        saveSchoolDto[key] = resolvePath(schoolDto, requestTemplate[key]);
+      });
 
-      return this.httpService.post(`${this.url}`,new SaveSchoolDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
+      return this.httpService.post(`${this.url}`,saveSchoolDto,{ headers: { Authorization: header.authorization } })
       .pipe(
           map(response => {
-          var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new SchoolResponseDto(JSON.parse(output))
+        /*  var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
+            return new SchoolResponseDto(JSON.parse(output))*/
+            const createSchoolData = response.data;
+            const schoolResponseDto = new SchoolResponseDto(responseTemplate);
+            Object.keys(responseTemplate).forEach(key => {
+              schoolResponseDto[key] = resolvePath(createSchoolData, responseTemplate[key]);
+            });
+            return createSchoolData;
         }),
           catchError(e => {
             var error = new ErrorResponse({
@@ -70,13 +86,23 @@ export class SchoolService {
   public async updateSchool(schoolId:string,schoolDto: SchoolDto, header: IncomingHttpHeaders) {
     var responseTemplate = require('./../../response_templates/school/create_school_response.json');
     var requestTemplate = require('./../../response_templates/school/create_school_request.json');
-    var input = Mustache.render(JSON.stringify(requestTemplate), schoolDto);
+    // var input = Mustache.render(JSON.stringify(requestTemplate), schoolDto);
+    const updateSchoolDto = new SaveSchoolDto(requestTemplate);
+    Object.keys(requestTemplate).forEach(key => {
+      updateSchoolDto[key] = resolvePath(schoolDto, requestTemplate[key]);
+    });
 
-    return this.httpService.put(`${this.url}/${schoolId}`,new SaveSchoolDto(JSON.parse(input)),{ headers: { Authorization: header.authorization } })
+    return this.httpService.put(`${this.url}/${schoolId}`,updateSchoolDto,{ headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
-          var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new SchoolDto(JSON.parse(output))
+         /* var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
+          return new SchoolDto(JSON.parse(output))*/
+          const updateSchoolData = response.data;
+          const schoolResponseDto = new SchoolDto(responseTemplate);
+          Object.keys(responseTemplate).forEach(key => {
+            schoolResponseDto[key] = resolvePath(updateSchoolData, responseTemplate[key]);
+          });
+          return updateSchoolData;
       }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -95,11 +121,16 @@ public async searchSchool(schoolSearchDto: SchoolSearchDto, header: IncomingHttp
   .pipe(
       map(response => {
         return response.data.map(item =>{
-          var output = Mustache.render(JSON.stringify(template), item);
+          // var output = Mustache.render(JSON.stringify(template), item);
+          const searchStudentData = response.data;
+          const studentDto = new SchoolDto(template);
+          Object.keys(template).forEach(key => {
+            studentDto[key] = resolvePath(searchStudentData, template[key]);
+          });
           return new SuccessResponse({
             statusCode: response.status,
             message: 'School found Successfully',
-            data: new SchoolDto(JSON.parse(output))
+            data: studentDto
           });
         });
        
