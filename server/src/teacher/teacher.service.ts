@@ -11,7 +11,6 @@ import { TeacherResponseDto } from './dto/teacher-response.dto';
 import { TeacherSearchDto } from './dto/teacher-search.dto';
 import { TeacherDetailDto } from './dto/teacher-detail.dto';
 
-import Mustache = require("mustache");
 import { SaveTeacherDto } from './dto/save-teacher.dto';
 import {SuccessResponse} from "../success-response";
 const resolvePath = require('object-resolve-path');
@@ -55,8 +54,7 @@ export class TeacherService {
   public async createTeacher(header: IncomingHttpHeaders, teacherDto: TeacherDto) {
       var responseTemplate = require('./../../response_templates/teacher/create_teacher_response.json');
       var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
-      // var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
-
+      
     // Add object resolver for create teacher request
       const saveTeacherDto = new SaveTeacherDto(requestTemplate);
       Object.keys(requestTemplate).forEach(key => {
@@ -72,8 +70,7 @@ export class TeacherService {
               teacherResponseDto[key] = resolvePath(createdRes, responseTemplate[key]);
             })
             return teacherResponseDto;
-          /*var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new TeacherResponseDto(JSON.parse(output))*/
+          
         }),
           catchError(e => {
             var error = new ErrorResponse({
@@ -89,8 +86,7 @@ export class TeacherService {
   public async updateTeacher(teacherId:string,header: IncomingHttpHeaders,teacherDto: TeacherDto) {
     var responseTemplate = require('./../../response_templates/teacher/create_teacher_response.json');
     var requestTemplate = require('./../../response_templates/teacher/create_teacher_request.json');
-    // var input = Mustache.render(JSON.stringify(requestTemplate), teacherDto);
-
+   
     // Add object resolver for create teacher request
     const updateTeacherDto = new SaveTeacherDto(requestTemplate);
     Object.keys(requestTemplate).forEach(key => {
@@ -106,8 +102,6 @@ export class TeacherService {
             teacherDto[key] = resolvePath(updatedRes, responseTemplate[key]);
           })
           return teacherDto;
-          /*var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new TeacherDto(JSON.parse(output))*/
       }),
         catchError(e => {
           var error = new ErrorResponse({

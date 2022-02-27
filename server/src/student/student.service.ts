@@ -34,7 +34,6 @@ export class StudentService {
             studentDto[key] = resolvePath(studentData, template[key]);
           });
 
-         /* var output = Mustache.render(JSON.stringify(template), response.data);*/
           return new SuccessResponse({
             statusCode: response.status,
             message: 'Student found Successfully',
@@ -57,8 +56,7 @@ export class StudentService {
   public async createStudent(header: IncomingHttpHeaders, studentDto: StudentDto) {
     var responseTemplate = require('./../../response_templates/student/create_student_response.json');
     var requestTemplate = require('./../../response_templates/student/create_student_request.json');
-    // var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
-
+    
     const saveStudentDto = new SaveStudentDto(requestTemplate);
     Object.keys(requestTemplate).forEach(key => {
       saveStudentDto[key] = resolvePath(studentDto, requestTemplate[key]);
@@ -74,8 +72,6 @@ export class StudentService {
             studentResponseDto[key] = resolvePath(createStudentData, responseTemplate[key]);
           });
           return createStudentData;
-          /*var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new StudentResponseDto(JSON.parse(output))*/
         }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -91,7 +87,6 @@ export class StudentService {
   public async updateStudent(studentId:string, header: IncomingHttpHeaders, studentDto: StudentDto) {
     var responseTemplate = require('./../../response_templates/student/create_student_response.json');
     var requestTemplate = require('./../../response_templates/student/create_student_request.json');
-    // var input = Mustache.render(JSON.stringify(requestTemplate), studentDto);
     const updateStudentDto = new SaveStudentDto(requestTemplate);
     Object.keys(requestTemplate).forEach(key => {
       updateStudentDto[key] = resolvePath(studentDto, requestTemplate[key]);
@@ -106,8 +101,6 @@ export class StudentService {
             studentDto[key] = resolvePath(updateStudentData, responseTemplate[key]);
           });
           return updateStudentData;
-          /*var output = Mustache.render(JSON.stringify(responseTemplate), response.data);
-          return new StudentDto(JSON.parse(output))*/
       }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -125,7 +118,6 @@ public async searchStudent(header: IncomingHttpHeaders, studentSearchDto: Studen
   .pipe(
       map(response => {
         return response.data.map(item =>{
-          // var output = Mustache.render(JSON.stringify(template), item);
           const searchStudentData = response.data;
           const studentDto = new StudentDto(template);
           Object.keys(template).forEach(key => {
@@ -168,7 +160,6 @@ public async findStudentByClass(searchClassId: String, header: IncomingHttpHeade
   .pipe(
       map(response => {
         return response.data.map(item =>{
-          // var output = Mustache.render(JSON.stringify(template), item);
           const findStudentData = response.data;
           const studentDto = new StudentDto(template);
           Object.keys(template).forEach(key => {
