@@ -95,8 +95,7 @@ export class TeacherService {
     header: IncomingHttpHeaders,
     teacherDto: TeacherDto
   ) {
-    var responseTemplate = require("./../../response_templates/teacher/create_teacher_response.json");
-    var requestTemplate = require("./../../response_templates/teacher/create_teacher_request.json");
+    var requestTemplate = require("./../templates/request/create_teacher.json");
 
     // Add object resolver for create teacher request
     const updateTeacherDto = new SaveTeacherDto(requestTemplate);
@@ -110,12 +109,11 @@ export class TeacherService {
       })
       .pipe(
         map((response) => {
-          const updatedRes = response.data;
-          const teacherDto = new TeacherDto(responseTemplate);
-          Object.keys(responseTemplate).forEach((key) => {
-            teacherDto[key] = resolvePath(updatedRes, responseTemplate[key]);
+          return new SuccessResponse({
+            data: response.data,
+            message: "Teacher updated successfully",
+            statusCode: response.status,
           });
-          return teacherDto;
         }),
         catchError((e) => {
           var error = new ErrorResponse({
