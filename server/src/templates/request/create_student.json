@@ -1,0 +1,23 @@
+{
+  "aadhaar": "aadhaar",
+  "refStudentId": "refStudentId",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "contactNumber": "contactNumber",
+  "email": "email",
+  "gender": "gender",
+  "socialCategory": "socialCategory",
+  "iscwsn": "iscwsn",
+  "religion": "religion",
+  "singleGirl": "singleGirl",
+  "weight": "weight",
+  "height": "height",
+  "bloodGroup": "bloodGroup",
+  "birthDate": "birthDate",
+  "homeless": "homeless",
+  "bpl": "bpl",
+  "migrant": "migrant",
+  "schoolId": "schoolId",
+  "classId": "classId",
+  "status": "status"
+}

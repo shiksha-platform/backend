@@ -1,6 +1,0 @@
-{
-   "teacherId":"{{result.School.osid}}",
-   "responseMessage":"School Saved Successfully",
-   "responseCode":"{{responseCode}}"
-
-}

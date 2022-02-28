@@ -1,6 +1,0 @@
-{
-   "studentId":"{{result.Student.osid}}",
-   "responseMessage":"Student Saved Successfully",
-   "responseCode":"{{responseCode}}"
-
-}
