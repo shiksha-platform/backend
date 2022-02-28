@@ -23,7 +23,7 @@ export class StudentService {
 
   
   public async findById(studentId: string, header: IncomingHttpHeaders)  {
-    var template = require('./../../response_templates/student/find_student_response.json');
+    var template = require('./../templates/response/teacher_detail.json');
 
     return this.httpService.get(`${this.url}/${studentId}`, { headers: { Authorization: header.authorization } })
     .pipe(
@@ -54,8 +54,7 @@ export class StudentService {
  
 
   public async createStudent(header: IncomingHttpHeaders, studentDto: StudentDto) {
-    var responseTemplate = require('./../../response_templates/student/create_student_response.json');
-    var requestTemplate = require('./../../response_templates/student/create_student_request.json');
+    var requestTemplate = require('./../templates/request/create_student.json');
     
     const saveStudentDto = new SaveStudentDto(requestTemplate);
     Object.keys(requestTemplate).forEach(key => {
@@ -65,13 +64,11 @@ export class StudentService {
     return this.httpService.post(`${this.url}`, saveStudentDto, {headers: {Authorization: header.authorization}})
       .pipe(
         map(response => {
-
-          const createStudentData = response.data;
-          const studentResponseDto = new StudentResponseDto(responseTemplate);
-          Object.keys(responseTemplate).forEach(key => {
-            studentResponseDto[key] = resolvePath(createStudentData, responseTemplate[key]);
+          return new SuccessResponse({
+            data: response.data,
+            message: "Student created successfully",
+            statusCode: response.status,
           });
-          return createStudentData;
         }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -85,8 +82,7 @@ export class StudentService {
 
 
   public async updateStudent(studentId:string, header: IncomingHttpHeaders, studentDto: StudentDto) {
-    var responseTemplate = require('./../../response_templates/student/create_student_response.json');
-    var requestTemplate = require('./../../response_templates/student/create_student_request.json');
+    var requestTemplate = require('./../templates/request/create_student.json');
     const updateStudentDto = new SaveStudentDto(requestTemplate);
     Object.keys(requestTemplate).forEach(key => {
       updateStudentDto[key] = resolvePath(studentDto, requestTemplate[key]);
@@ -95,12 +91,11 @@ export class StudentService {
     return this.httpService.put(`${this.url}/${studentId}`,updateStudentDto,{ headers: { Authorization: header.authorization } })
     .pipe(
         map(response => {
-          const updateStudentData = response.data;
-          const studentDto = new StudentDto(responseTemplate);
-          Object.keys(responseTemplate).forEach(key => {
-            studentDto[key] = resolvePath(updateStudentData, responseTemplate[key]);
+          return new SuccessResponse({
+            data: response.data,
+            message: "Student updated successfully",
+            statusCode: response.status,
           });
-          return updateStudentData;
       }),
         catchError(e => {
           var error = new ErrorResponse({
@@ -113,22 +108,22 @@ export class StudentService {
 }
 
 public async searchStudent(header: IncomingHttpHeaders, studentSearchDto: StudentSearchDto) {
-  var template = require('./../../response_templates/student/find_student_response.json');
+  var template = require('./../templates/response/student_detail.json');
   return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: { Authorization: header.authorization } })
   .pipe(
       map(response => {
-        return response.data.map(item =>{
+        const responseData = response.data.map(item =>{
           const searchStudentData = response.data;
           const studentDto = new StudentDto(template);
           Object.keys(template).forEach(key => {
             studentDto[key] = resolvePath(searchStudentData, template[key]);
           });
+        });
 
-          return new SuccessResponse({
-            statusCode: response.status,
-            message: 'Student found Successfully',
-            data: searchStudentData
-          });
+        return new SuccessResponse({
+          statusCode: response.status,
+          message: 'Student found Successfully',
+          data: responseData
         });
        
     }),
@@ -145,7 +140,7 @@ public async searchStudent(header: IncomingHttpHeaders, studentSearchDto: Studen
 }
 
 public async findStudentByClass(searchClassId: String, header: IncomingHttpHeaders) {
-  var template = require('./../../response_templates/student/find_student_response.json');
+  var template = require('./../templates/response/student_detail.json');
 
   var searchFilter = {
     classId : {
@@ -159,19 +154,18 @@ public async findStudentByClass(searchClassId: String, header: IncomingHttpHeade
   return this.httpService.post(`${this.url}/search`,studentSearchDto,{ headers: { Authorization: header.authorization } })
   .pipe(
       map(response => {
-        return response.data.map(item =>{
+        const resData = response.data.map(item =>{
           const findStudentData = response.data;
           const studentDto = new StudentDto(template);
           Object.keys(template).forEach(key => {
             studentDto[key] = resolvePath(findStudentData, template[key]);
           });
-
-          return new SuccessResponse({
-            statusCode: response.status,
-            message: 'Student found Successfully',
-            data: studentDto
-          });
       });
+        return new SuccessResponse({
+          statusCode: response.status,
+          message: 'Student found Successfully',
+          data: resData
+        });
     }),
       catchError(e => {
         console.log(e)
