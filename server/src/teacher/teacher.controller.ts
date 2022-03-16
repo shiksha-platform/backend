@@ -15,7 +15,7 @@ import {
   SerializeOptions,
   UsePipes,
   ValidationPipe,
-  Req
+  Req,
 } from "@nestjs/common";
 import {
   ApiTags,
@@ -23,73 +23,91 @@ import {
   ApiForbiddenResponse,
   ApiCreatedResponse,
   ApiBody,
-  ApiBasicAuth
+  ApiBasicAuth,
 } from "@nestjs/swagger";
 import { TeacherSearchDto } from "./dto/teacher-search.dto";
 import { TeacherDto } from "./dto/teacher.dto";
 import { TeacherService } from "./teacher.service";
-import {Request} from "express";
+import { Request } from "express";
 
-@ApiTags('Teacher')
+@ApiTags("Teacher")
 @Controller("teacher")
 export class TeacherController {
   constructor(private readonly teacherService: TeacherService) {}
 
   @UseInterceptors(ClassSerializerInterceptor)
   @Get("/:id")
-  @ApiBasicAuth('access-token')
-  @ApiOkResponse({ description: "Teacher detail."})
-  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiBasicAuth("access-token")
+  @ApiOkResponse({ description: "Teacher detail." })
+  @ApiForbiddenResponse({ description: "Forbidden" })
   @SerializeOptions({
-    strategy: 'excludeAll'
+    strategy: "excludeAll",
   })
-  public async getTeacherById(@Param("id") teacherId: string, @Req() request: Request )  {
-    return this.teacherService.findById(teacherId, request.headers);
+  public async getTeacherById(
+    @Param("id") teacherId: string,
+    @Req() request: Request
+  ) {
+    return this.teacherService.findById(teacherId, request);
   }
 
   @Post()
-  @ApiBasicAuth('access-token')
-  @ApiCreatedResponse({ description: "Teacher has been created successfully."})
+  @ApiBasicAuth("access-token")
+  @ApiCreatedResponse({ description: "Teacher has been created successfully." })
   @ApiBody({ type: TeacherDto })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiForbiddenResponse({ description: "Forbidden" })
   @UseInterceptors(ClassSerializerInterceptor)
-  public async createTeacher(@Req() request: Request, @Body() teacherDto: TeacherDto )  {
-    return this.teacherService.createTeacher(request.headers, teacherDto);
+  public async createTeacher(
+    @Req() request: Request,
+    @Body() teacherDto: TeacherDto
+  ) {
+    return this.teacherService.createTeacher(request, teacherDto);
   }
 
   @Put("/:id")
-  @ApiBasicAuth('access-token')
-  @ApiOkResponse({ description: "Teacher has been updated successfully."})
-  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiBasicAuth("access-token")
+  @ApiOkResponse({ description: "Teacher has been updated successfully." })
+  @ApiForbiddenResponse({ description: "Forbidden" })
   @UseInterceptors(ClassSerializerInterceptor)
-  public async updateTeacher(@Param("id") teacherId: string, @Req() request: Request, @Body() teacherDto: TeacherDto )  {
-    return this.teacherService.updateTeacher(teacherId,request.headers,teacherDto);
+  public async updateTeacher(
+    @Param("id") teacherId: string,
+    @Req() request: Request,
+    @Body() teacherDto: TeacherDto
+  ) {
+    return this.teacherService.updateTeacher(
+      teacherId,
+      request.headers,
+      teacherDto
+    );
   }
 
   @Post("/search")
-  @ApiBasicAuth('access-token')
-  @ApiCreatedResponse({ description: "Teacher list."})
+  @ApiBasicAuth("access-token")
+  @ApiCreatedResponse({ description: "Teacher list." })
   @ApiBody({ type: TeacherSearchDto })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiForbiddenResponse({ description: "Forbidden" })
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({
-    strategy: 'excludeAll'
+    strategy: "excludeAll",
   })
-  public async searchTeacher(@Req() request: Request, @Body() teacherSearchDto: TeacherSearchDto )  {
-   return this.teacherService.searchTeacher(request.headers, teacherSearchDto);
-
+  public async searchTeacher(
+    @Req() request: Request,
+    @Body() teacherSearchDto: TeacherSearchDto
+  ) {
+    return this.teacherService.searchTeacher(request.headers, teacherSearchDto);
   }
 
   @Post("/findBySubject")
-  @ApiBasicAuth('access-token')
-  @ApiOkResponse({ description: "Teacher list."})
-  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiBasicAuth("access-token")
+  @ApiOkResponse({ description: "Teacher list." })
+  @ApiForbiddenResponse({ description: "Forbidden" })
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({
-    strategy: 'excludeAll'
+    strategy: "excludeAll",
   })
-  public async findTeacherBySubject(@Query('subjectId') subjectId : string, @Req() request: Request)  {
+  public async findTeacherBySubject(
+    @Query("subjectId") subjectId: string,
+    @Req() request: Request
+  ) {
     return this.teacherService.findTeacherBySubject(subjectId, request.headers);
-  } 
- 
+  }
 }

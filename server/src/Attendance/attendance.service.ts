@@ -32,7 +32,7 @@ export class AttendanceService {
   }
 
   public async findByDate(fromDate: string, toDate:string,topicId:string,
-    groupId:string,schoolId: string) : Promise<Attendance[]>  {
+    groupId:string,schoolId: string,eventId:string) : Promise<Attendance[]>  {
     var query ='';
     if(fromDate!='' && fromDate!=null && toDate!='' && toDate!=null) {
       query += "attendance.date between :fromDate and :toDate"
@@ -47,6 +47,9 @@ export class AttendanceService {
     if(topicId!='' && topicId!=null) {
       query += " and attendance.topicId = :topicId"
     }
+    if(eventId!='' && eventId!=null) {
+      query += " and attendance.eventId = :eventId"
+    }
     if(groupId!='' && groupId!=null) {
       query += " and attendance.groupId = :groupId"
     }
@@ -57,7 +60,7 @@ export class AttendanceService {
     .select("attendance") 
     .from(Attendance, "attendance") 
     .where(query, { fromDate: fromDate,
-    toDate:toDate, topicId:topicId, groupId:groupId,schoolId:schoolId }).getMany();
+    toDate:toDate, topicId:topicId,eventId:eventId, groupId:groupId,schoolId:schoolId }).getMany();
    
     if (!attendance) {
       var error = new ErrorResponse({
@@ -69,7 +72,7 @@ export class AttendanceService {
     return attendance;
   }
 
-  public async findReportRecords(fromDate: string, toDate:string,topicId:string,
+  public async findReportRecords(fromDate: string, toDate:string,topicId:string,eventId:string,
     groupId:string,schoolId: string) : Promise<Attendance[]>  {
       var totalArray =[];
       var query ='';
@@ -86,6 +89,9 @@ export class AttendanceService {
       if(topicId!='' && topicId!=null) {
         query += " and attendance.topicId = :topicId"
       }
+      if(eventId!='' && eventId!=null) {
+        query += " and attendance.eventId = :eventId"
+      }
       if(groupId!='' && groupId!=null) {
         query += " and attendance.groupId = :groupId"
       }
@@ -99,7 +105,7 @@ export class AttendanceService {
       .addSelect("count(*)","count")
       .from(Attendance, "attendance") 
       .where(query, { fromDate: fromDate,
-      toDate:toDate, topicId:topicId, groupId:groupId,schoolId:schoolId })
+      toDate:toDate, topicId:topicId,eventId:eventId, groupId:groupId,schoolId:schoolId })
       .groupBy("attendance.userId")
       .orderBy("attendance.userId")
       .getRawMany();

@@ -4,7 +4,7 @@ import { dbConfigService } from "./app.service";
 
 const typeOrmConfig: TypeOrmModuleOptions = {
   type: "postgres",
-  host: process.env.POSTGRES_HOST || "postgres-db",
+  host: process.env.POSTGRES_HOST || "postgres",
   port: +process.env.POSTGRES_PORT || 5432,
   username: process.env.POSTGRES_USER || "postgres",
   password: process.env.POSTGRES_PASSWORD || "postgres",

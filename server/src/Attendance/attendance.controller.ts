@@ -51,14 +51,16 @@ export class AttendanceController {
   @ApiQuery({ name: 'fromDate', required: false })
   @ApiQuery({ name: 'toDate', required: false })
   @ApiQuery({ name: 'groupId', required: false })
+  @ApiQuery({ name: 'eventId', required: false })
   @ApiQuery({ name: 'topicId', required: false })
   @ApiQuery({ name: 'schoolId', required: false })
   public async getAttendanceByDate(@Query("fromDate") fromDate: string,
   @Query("toDate") toDate: string, 
   @Query("groupId") groupId: string,
   @Query("topicId") topicId: string,
+  @Query("eventId") eventId: string,
   @Query("schoolId") schoolId: string ) : Promise<Attendance[]> {
-    return await this.attendanceService.findByDate(fromDate,toDate,groupId,topicId,schoolId);
+    return await this.attendanceService.findByDate(fromDate,toDate,eventId,groupId,topicId,schoolId);
   }
 
   @Get('/find/report')
@@ -69,13 +71,15 @@ export class AttendanceController {
   @ApiQuery({ name: 'toDate', required: false })
   @ApiQuery({ name: 'groupId', required: false })
   @ApiQuery({ name: 'topicId', required: false })
+  @ApiQuery({ name: 'eventId', required: false })
   @ApiQuery({ name: 'schoolId', required: false })
   public async getAttendanceReports(@Query("fromDate") fromDate: string,
   @Query("toDate") toDate: string, 
   @Query("groupId") groupId: string,
   @Query("topicId") topicId: string,
+  @Query("eventId") eventId: string,
   @Query("schoolId") schoolId: string) : Promise<Attendance[]> {
-    return await this.attendanceService.findReportRecords(fromDate,toDate,groupId,topicId,schoolId);
+    return await this.attendanceService.findReportRecords(fromDate,eventId,toDate,groupId,topicId,schoolId);
   }
 
   @Post()

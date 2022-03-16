@@ -8,6 +8,7 @@ export class ErrorResponse {
     @Expose()
     errorMessage : string
 
+   
     constructor(partial: Partial<ErrorResponse>) {
         Object.assign(this, partial);
     }

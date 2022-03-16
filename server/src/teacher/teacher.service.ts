@@ -26,40 +26,33 @@ export class TeacherService {
 
   url = `${process.env.BASE_URL}/Teacher`;
 
-  public async findById(teacherId: string, header: IncomingHttpHeaders) {
+  public async findById(teacherId: string, request) {
     var template = require("./../templates/response/teacher_detail.json");
-    return this.httpService
-      .get(`${this.url}/${teacherId}`, {
-        headers: { Authorization: header.authorization },
-      })
-      .pipe(
-        map((response) => {
-          const data = response.data;
-          const teacherDetailDto = new TeacherDetailDto(template);
-          Object.keys(template).forEach((key) => {
-            teacherDetailDto[key] = resolvePath(data, template[key]);
-          });
+    return this.httpService.get(`${this.url}/${teacherId}`, request).pipe(
+      map((response) => {
+        const data = response.data;
+        const teacherDetailDto = new TeacherDetailDto(template);
+        Object.keys(template).forEach((key) => {
+          teacherDetailDto[key] = resolvePath(data, template[key]);
+        });
 
-          return new SuccessResponse({
-            statusCode: response.status,
-            message: "Teacher found Successfully",
-            data: teacherDetailDto,
-          });
-        }),
-        catchError((e) => {
-          var error = new ErrorResponse({
-            errorCode: e.response?.status,
-            errorMessage: e.response?.data?.params?.errmsg,
-          });
-          throw new HttpException(error, e.response.status);
-        })
-      );
+        return new SuccessResponse({
+          statusCode: response.status,
+          message: "Teacher found Successfully",
+          data: teacherDetailDto,
+        });
+      }),
+      catchError((e) => {
+        var error = new ErrorResponse({
+          errorCode: e.response?.status,
+          errorMessage: e.response?.data?.params?.errmsg,
+        });
+        throw new HttpException(error, e.response.status);
+      })
+    );
   }
 
-  public async createTeacher(
-    header: IncomingHttpHeaders,
-    teacherDto: TeacherDto
-  ) {
+  public async createTeacher(request, teacherDto: TeacherDto) {
     var requestTemplate = require("./../templates/request/create_teacher.json");
 
     // Add object resolver for create teacher request
@@ -68,26 +61,22 @@ export class TeacherService {
       saveTeacherDto[key] = resolvePath(teacherDto, requestTemplate[key]);
     });
 
-    return this.httpService
-      .post(`${this.url}`, saveTeacherDto, {
-        headers: { Authorization: header.authorization },
+    return this.httpService.post(`${this.url}`, saveTeacherDto, request).pipe(
+      map((response) => {
+        return new SuccessResponse({
+          data: response.data,
+          message: "Teacher created successfully",
+          statusCode: response.status,
+        });
+      }),
+      catchError((e) => {
+        var error = new ErrorResponse({
+          errorCode: e.response.status,
+          errorMessage: e.response.data.params.errmsg,
+        });
+        throw new HttpException(error, e.response.status);
       })
-      .pipe(
-        map((response) => {
-          return new SuccessResponse({
-            data: response.data,
-            message: "Teacher created successfully",
-            statusCode: response.status,
-          });
-        }),
-        catchError((e) => {
-          var error = new ErrorResponse({
-            errorCode: e.response.status,
-            errorMessage: e.response.data.params.errmsg,
-          });
-          throw new HttpException(error, e.response.status);
-        })
-      );
+    );
   }
 
   public async updateTeacher(

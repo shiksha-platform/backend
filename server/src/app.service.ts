@@ -32,7 +32,7 @@ class DbConfigService {
 
   public isProduction() {
     const mode = this.getValue("MODE", false);
-    return mode != "DEV";
+    return false;
   }
 }
 
