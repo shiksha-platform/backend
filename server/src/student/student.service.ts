@@ -83,7 +83,7 @@ export class StudentService {
 
   public async updateStudent(
     studentId: string,
-    request,
+    request: any,
     studentDto: StudentDto
   ) {
     var requestTemplate = require("./../templates/request/create_student.json");
@@ -165,16 +165,19 @@ export class StudentService {
       .pipe(
         map((response) => {
           const resData = response.data;
+          //console.log("168", resData);
+
           const findStudentData = response.data;
           const studentDto = new StudentDto(template);
           Object.keys(template).forEach((key) => {
             studentDto[key] = resolvePath(findStudentData, template[key]);
           });
+          // console.log("175", resData);
 
           return new SuccessResponse({
             statusCode: response.status,
             message: "Student found Successfully",
-            data: studentDto,
+            data: resData,
           });
         }),
         catchError((e) => {

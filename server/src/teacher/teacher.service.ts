@@ -26,7 +26,7 @@ export class TeacherService {
 
   url = `${process.env.BASE_URL}/Teacher`;
 
-  public async findById(teacherId: string, request) {
+  public async findById(teacherId: string, request: any) {
     var template = require("./../templates/response/teacher_detail.json");
     return this.httpService.get(`${this.url}/${teacherId}`, request).pipe(
       map((response) => {
@@ -52,7 +52,7 @@ export class TeacherService {
     );
   }
 
-  public async createTeacher(request, teacherDto: TeacherDto) {
+  public async createTeacher(request: any, teacherDto: TeacherDto) {
     var requestTemplate = require("./../templates/request/create_teacher.json");
 
     // Add object resolver for create teacher request

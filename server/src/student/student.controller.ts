@@ -85,7 +85,10 @@ export class StudentController {
     @Req() request: Request,
     @Body() studentSearchDto: StudentSearchDto
   ) {
-    return this.studentService.searchStudent(request.headers, studentSearchDto);
+    return await this.studentService.searchStudent(
+      request.headers,
+      studentSearchDto
+    );
   }
 
   @Post("/findByClass")
