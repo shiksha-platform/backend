@@ -9,7 +9,7 @@ import { firstValueFrom } from "rxjs";
 import { HttpService } from "@nestjs/axios";
 import { Observable } from "rxjs";
 import { AxiosResponse } from "axios";
-import { IncomingHttpHeaders } from "http";
+import { IncomingHttpHeaders, request } from "http";
 import { TeacherDto } from "./dto/teacher.dto";
 import { ErrorResponse } from "./../error-response";
 import { TeacherResponseDto } from "./dto/teacher-response.dto";
@@ -18,6 +18,7 @@ import { TeacherDetailDto } from "./dto/teacher-detail.dto";
 
 import { SaveTeacherDto } from "./dto/save-teacher.dto";
 import { SuccessResponse } from "../success-response";
+import { response } from "express";
 const resolvePath = require("object-resolve-path");
 
 @Injectable()
@@ -81,7 +82,7 @@ export class TeacherService {
 
   public async updateTeacher(
     teacherId: string,
-    header: IncomingHttpHeaders,
+    request: any,
     teacherDto: TeacherDto
   ) {
     var requestTemplate = require("./../templates/request/create_teacher.json");
@@ -93,9 +94,7 @@ export class TeacherService {
     });
 
     return this.httpService
-      .put(`${this.url}/${teacherId}`, updateTeacherDto, {
-        headers: { Authorization: header.authorization },
-      })
+      .put(`${this.url}/${teacherId}`, updateTeacherDto, request)
       .pipe(
         map((response) => {
           return new SuccessResponse({

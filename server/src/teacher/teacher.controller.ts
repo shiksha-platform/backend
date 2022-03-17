@@ -73,11 +73,7 @@ export class TeacherController {
     @Req() request: Request,
     @Body() teacherDto: TeacherDto
   ) {
-    return this.teacherService.updateTeacher(
-      teacherId,
-      request.headers,
-      teacherDto
-    );
+    return this.teacherService.updateTeacher(teacherId, request, teacherDto);
   }
 
   @Post("/search")

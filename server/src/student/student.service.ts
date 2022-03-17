@@ -18,6 +18,7 @@ import { IncomingHttpHeaders, request } from "http";
 import { SuccessResponse } from "../success-response";
 import { response } from "express";
 import axios from "axios";
+import { find } from "rxjs";
 @Injectable()
 export class StudentService {
   constructor(private httpService: HttpService) {}
@@ -112,18 +113,13 @@ export class StudentService {
       );
   }
 
-  public async searchStudent(
-    header: IncomingHttpHeaders,
-    studentSearchDto: StudentSearchDto
-  ) {
+  public async searchStudent(request: any, studentSearchDto: StudentSearchDto) {
     var template = require("./../templates/response/student_detail.json");
     return this.httpService
-      .post(`${this.url}/search`, studentSearchDto, {
-        headers: { Authorization: header.authorization },
-      })
+      .post(`${this.url}/search`, studentSearchDto, request)
       .pipe(
         map((response) => {
-          const responseData = response.data.map((item) => {
+          const responseData = response.data.map(() => {
             const searchStudentData = response.data;
             const studentDto = new StudentDto(template);
             Object.keys(template).forEach((key) => {
@@ -146,10 +142,33 @@ export class StudentService {
         })
       );
   }
+  // public async findStudentByClass(searchClassId: String, request: any) {
+  //   let template = require("./../templates/response/student_detail.json");
+  //   console.log(searchClassId);
 
+  //   //var result = searchClassId;
+
+  //   //let studentArray = [];
+
+  //   const response = await axios.get(`${this.url}/${searchClassId}`, request);
+  //   const data = response.data;
+  //   let studentDto = new StudentDto(template);
+  //   Object.keys(template).forEach((key) => {
+  //     studentDto[key] = resolvePath(data, template[key]);
+  //   });
+
+  //   // studentArray.push(studentDto);
+  //   console.log("159", studentDto);
+  //   console.log("160", data);
+
+  //   return new SuccessResponse({
+  //     statusCode: 200,
+  //     message: "Student found Successfully",
+  //     data: studentDto,
+  //   });
+  // }
   public async findStudentByClass(searchClassId: String, request: any) {
     var template = require("./../templates/response/student_detail.json");
-    console.log(searchClassId);
 
     var searchFilter = {
       classId: {
@@ -164,20 +183,18 @@ export class StudentService {
       .post(`${this.url}/search`, studentSearchDto, request)
       .pipe(
         map((response) => {
-          const resData = response.data;
-          //console.log("168", resData);
-
+          // const resData = response.data;
           const findStudentData = response.data;
           const studentDto = new StudentDto(template);
           Object.keys(template).forEach((key) => {
             studentDto[key] = resolvePath(findStudentData, template[key]);
           });
-          // console.log("175", resData);
+          // console.log(findStudentData);
 
           return new SuccessResponse({
             statusCode: response.status,
             message: "Student found Successfully",
-            data: resData,
+            data: findStudentData,
           });
         }),
         catchError((e) => {

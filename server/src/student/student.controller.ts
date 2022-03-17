@@ -85,10 +85,7 @@ export class StudentController {
     @Req() request: Request,
     @Body() studentSearchDto: StudentSearchDto
   ) {
-    return await this.studentService.searchStudent(
-      request.headers,
-      studentSearchDto
-    );
+    return await this.studentService.searchStudent(request, studentSearchDto);
   }
 
   @Post("/findByClass")
@@ -103,7 +100,7 @@ export class StudentController {
     @Query("classId") classId: string,
     @Req() request: Request
   ) {
-    return this.studentService.findStudentByClass(classId, request);
+    return await this.studentService.findStudentByClass(classId, request);
   }
 
   @Post("/getbyids")
