@@ -89,7 +89,7 @@ export class TeacherController {
     @Req() request: Request,
     @Body() teacherSearchDto: TeacherSearchDto
   ) {
-    return this.teacherService.searchTeacher(request.headers, teacherSearchDto);
+    return this.teacherService.searchTeacher(request, teacherSearchDto);
   }
 
   @Post("/findBySubject")
@@ -104,6 +104,9 @@ export class TeacherController {
     @Query("subjectId") subjectId: string,
     @Req() request: Request
   ) {
-    return this.teacherService.findTeacherBySubject(subjectId, request.headers);
+    return await this.teacherService.findTeacherBySubject(
+      subjectId,
+      request.headers
+    );
   }
 }

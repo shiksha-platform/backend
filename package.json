@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@nestjs/axios": "^0.0.7",
+    "@nestjs/cqrs": "^8.0.3",
+    "cors": "^2.8.5"
+  }
+}

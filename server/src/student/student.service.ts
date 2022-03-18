@@ -142,31 +142,7 @@ export class StudentService {
         })
       );
   }
-  // public async findStudentByClass(searchClassId: String, request: any) {
-  //   let template = require("./../templates/response/student_detail.json");
-  //   console.log(searchClassId);
 
-  //   //var result = searchClassId;
-
-  //   //let studentArray = [];
-
-  //   const response = await axios.get(`${this.url}/${searchClassId}`, request);
-  //   const data = response.data;
-  //   let studentDto = new StudentDto(template);
-  //   Object.keys(template).forEach((key) => {
-  //     studentDto[key] = resolvePath(data, template[key]);
-  //   });
-
-  //   // studentArray.push(studentDto);
-  //   console.log("159", studentDto);
-  //   console.log("160", data);
-
-  //   return new SuccessResponse({
-  //     statusCode: 200,
-  //     message: "Student found Successfully",
-  //     data: studentDto,
-  //   });
-  // }
   public async findStudentByClass(searchClassId: String, request: any) {
     var template = require("./../templates/response/student_detail.json");
 

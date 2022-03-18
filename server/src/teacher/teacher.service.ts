@@ -15,10 +15,10 @@ import { ErrorResponse } from "./../error-response";
 import { TeacherResponseDto } from "./dto/teacher-response.dto";
 import { TeacherSearchDto } from "./dto/teacher-search.dto";
 import { TeacherDetailDto } from "./dto/teacher-detail.dto";
-
 import { SaveTeacherDto } from "./dto/save-teacher.dto";
 import { SuccessResponse } from "../success-response";
 import { response } from "express";
+import axios from "axios";
 const resolvePath = require("object-resolve-path");
 
 @Injectable()
@@ -92,6 +92,7 @@ export class TeacherService {
     Object.keys(requestTemplate).forEach((key) => {
       updateTeacherDto[key] = resolvePath(teacherDto, requestTemplate[key]);
     });
+    console.log("95", updateTeacherDto);
 
     return this.httpService
       .put(`${this.url}/${teacherId}`, updateTeacherDto, request)
@@ -113,16 +114,11 @@ export class TeacherService {
       );
   }
 
-  public async searchTeacher(
-    header: IncomingHttpHeaders,
-    teacherSearchDto: TeacherSearchDto
-  ) {
+  public async searchTeacher(request: any, teacherSearchDto: TeacherSearchDto) {
     var template = require("./../templates/response/teacher_detail.json");
 
     return this.httpService
-      .post(`${this.url}/search`, teacherSearchDto, {
-        headers: { Authorization: header.authorization },
-      })
+      .post(`${this.url}/search`, teacherSearchDto, request)
       .pipe(
         map((response) => {
           const responsedata = response.data.map((item) => {
@@ -149,10 +145,7 @@ export class TeacherService {
       );
   }
 
-  public async findTeacherBySubject(
-    searchSubjectId: String,
-    header: IncomingHttpHeaders
-  ) {
+  public async findTeacherBySubject(searchSubjectId: String, request: any) {
     var template = require("./../templates/response/teacher_detail.json");
 
     var searchFilter = {
@@ -164,34 +157,25 @@ export class TeacherService {
       filters: searchFilter,
     });
 
-    return this.httpService
-      .post(`${this.url}/search`, teacherSearchDto, {
-        headers: { Authorization: header.authorization },
-      })
-      .pipe(
-        map((response) => {
-          const responsedata = response.data.map((item) => {
-            const responseData = response.data;
-            const teacherDetailDto = new TeacherDetailDto(template);
-            Object.keys(template).forEach((key) => {
-              teacherDetailDto[key] = resolvePath(responseData, template[key]);
-            });
-          });
+    const dataPrint = await axios.post(
+      `${this.url}/search`,
+      teacherSearchDto,
+      request
+    );
+    let final = {};
 
-          return new SuccessResponse({
-            statusCode: response.status,
-            message: "Teacher found Successfully",
-            data: responsedata,
-          });
-        }),
-        catchError((e) => {
-          console.log(e);
-          var error = new ErrorResponse({
-            errorCode: e.response.status,
-            errorMessage: e.response.data.params.errmsg,
-          });
-          throw new HttpException(e.response.data, e.response.status);
-        })
-      );
+    const responsedata = dataPrint.data;
+    final = responsedata;
+
+    const teacherDetailDto = new TeacherDetailDto(template);
+    Object.keys(template).forEach((key) => {
+      teacherDetailDto[key] = resolvePath(responsedata, template[key]);
+    });
+
+    return new SuccessResponse({
+      statusCode: 200,
+      message: "Teacher found Successfully",
+      data: final,
+    });
   }
 }
