@@ -19,6 +19,7 @@ import { SaveTeacherDto } from "./dto/save-teacher.dto";
 import { SuccessResponse } from "../success-response";
 import { response } from "express";
 import axios from "axios";
+import { StudentDto } from "src/student/dto/student.dto";
 const resolvePath = require("object-resolve-path");
 
 @Injectable()
@@ -144,38 +145,41 @@ export class TeacherService {
         })
       );
   }
-
-  public async findTeacherBySubject(searchSubjectId: String, request: any) {
+  public async findTeacherBySubject(
+    subjectId: String,
+    request: any
+  ): Promise<Observable<SuccessResponse>> {
     var template = require("./../templates/response/teacher_detail.json");
 
     var searchFilter = {
       subjectId: {
-        eq: searchSubjectId,
+        eq: subjectId,
       },
     };
     var teacherSearchDto = new TeacherSearchDto({
       filters: searchFilter,
     });
+    let finalData = {};
 
-    const dataPrint = await axios.post(
-      `${this.url}/search`,
-      teacherSearchDto,
-      request
-    );
-    let final = {};
+    return this.httpService
+      .post(`${this.url}/search`, teacherSearchDto, request)
+      .pipe(
+        map((response) => {
+          const responsedata = response.data;
+          const teacherDetailDto = new TeacherDetailDto(template);
 
-    const responsedata = dataPrint.data;
-    final = responsedata;
+          Object.keys(template).forEach((key) => {
+            teacherDetailDto[key] = resolvePath(responsedata, template[key]);
+          });
 
-    const teacherDetailDto = new TeacherDetailDto(template);
-    Object.keys(template).forEach((key) => {
-      teacherDetailDto[key] = resolvePath(responsedata, template[key]);
-    });
+          finalData = responsedata;
 
-    return new SuccessResponse({
-      statusCode: 200,
-      message: "Teacher found Successfully",
-      data: final,
-    });
+          return new SuccessResponse({
+            statusCode: response.status,
+            message: "Teacher found Successfully",
+            data: responsedata,
+          });
+        })
+      );
   }
 }

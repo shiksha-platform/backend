@@ -73,7 +73,11 @@ export class TeacherController {
     @Req() request: Request,
     @Body() teacherDto: TeacherDto
   ) {
-    return this.teacherService.updateTeacher(teacherId, request, teacherDto);
+    return await this.teacherService.updateTeacher(
+      teacherId,
+      request,
+      teacherDto
+    );
   }
 
   @Post("/search")
@@ -104,9 +108,6 @@ export class TeacherController {
     @Query("subjectId") subjectId: string,
     @Req() request: Request
   ) {
-    return await this.teacherService.findTeacherBySubject(
-      subjectId,
-      request.headers
-    );
+    return this.teacherService.findTeacherBySubject(subjectId, request);
   }
 }
