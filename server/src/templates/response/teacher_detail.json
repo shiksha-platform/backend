@@ -9,5 +9,6 @@
   "mobile": "contactDetails.mobile",
   "address": "contactDetails.address",
   "education": "education",
-  "experience": "experience"
+  "experience": "experience",
+  "image": "image"
 }

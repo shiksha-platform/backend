@@ -24,5 +24,6 @@
   "schoolId": "schoolId",
   "acrId": "acrId",
   "retirementDate": "retirementDate",
-  "workingStatus": "workingStatus"
+  "workingStatus": "workingStatus",
+  "image": "image"
 }

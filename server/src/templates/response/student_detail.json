@@ -20,5 +20,6 @@
   "migrant": "migrant",
   "schoolId": "schoolId",
   "classId": "classId",
+  "image": "image",
   "status": "status"
 }

@@ -1,46 +1,51 @@
-import { Exclude, Expose } from 'class-transformer';
-import { MaxLength, IsNotEmpty, IsEmail, IsString, IsNumber } from 'class-validator';
-import {ApiProperty} from "@nestjs/swagger";
+import { Exclude, Expose } from "class-transformer";
+import {
+  MaxLength,
+  IsNotEmpty,
+  IsEmail,
+  IsString,
+  IsNumber,
+} from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 
 export class TeacherDto {
-  
   @Exclude()
-  osid : string
+  osid: string;
 
   @Expose()
   teacherId: string;
 
   @ApiProperty({
     type: String,
-    description: 'The refTeacherId of the teacher'
+    description: "The refTeacherId of the teacher",
   })
   @Expose()
   refTeacherId: string;
 
   @ApiProperty({
     type: String,
-    description: 'The firstName of the teacher'
+    description: "The firstName of the teacher",
   })
   @Expose()
   firstName: string;
 
   @ApiProperty({
     type: String,
-    description: 'The lastName of the teacher'
+    description: "The lastName of the teacher",
   })
   @Expose()
   lastName: string;
 
   @ApiProperty({
     type: String,
-    description: 'The contact number of the teacher'
+    description: "The contact number of the teacher",
   })
   @IsNumber()
   contactNumber: string;
 
   @ApiProperty({
     type: String,
-    description: 'The email of the teacher'
+    description: "The email of the teacher",
   })
   @Expose()
   @IsEmail()
@@ -48,157 +53,159 @@ export class TeacherDto {
 
   @ApiProperty({
     type: String,
-    description: 'The gender of the teacher'
+    description: "The gender of the teacher",
   })
   @Expose()
   gender: string;
 
   @ApiProperty({
     type: String,
-    description: 'The socialCategory of the teacher'
+    description: "The socialCategory of the teacher",
   })
   @Expose()
   socialCategory: string;
 
   @ApiProperty({
     type: String,
-    description: 'The birthDate of the teacher'
+    description: "The birthDate of the teacher",
   })
   @Expose()
   birthDate: string;
 
   @ApiProperty({
     type: String,
-    description: 'The designation of the teacher'
+    description: "The designation of the teacher",
   })
   @Expose()
   designation: string;
 
   @ApiProperty({
     type: String,
-    description: 'The cadre of the teacher'
+    description: "The cadre of the teacher",
   })
   @Expose()
   cadre: string;
 
   @ApiProperty({
     type: String,
-    description: 'The profQualification of the teacher'
+    description: "The profQualification of the teacher",
   })
   @Expose()
   profQualification: string;
 
   @ApiProperty({
     type: String,
-    description: 'The joiningDate of the teacher'
+    description: "The joiningDate of the teacher",
   })
   @Expose()
   joiningDate: string;
 
   @ApiProperty({
     type: String,
-    description: 'The subjectId of the teacher'
+    description: "The subjectId of the teacher",
   })
   @Expose()
   subjectId: string;
 
   @ApiProperty({
     type: String,
-    description: 'The bloodGroup of the teacher'
+    description: "The bloodGroup of the teacher",
   })
   @Expose()
   bloodGroup: string;
 
   @ApiProperty({
     type: String,
-    description: 'The maritalStatus of the teacher'
+    description: "The maritalStatus of the teacher",
   })
   @Expose()
   maritalStatus: string;
 
   @ApiProperty({
     type: String,
-    description: 'The blockId of the teacher'
+    description: "The blockId of the teacher",
   })
   @Expose()
   blockId: string;
 
   @ApiProperty({
     type: String,
-    description: 'The address of the teacher'
+    description: "The address of the teacher",
   })
   @Expose()
   address: string;
 
   @ApiProperty({
     type: String,
-    description: 'The compSkills of the teacher'
+    description: "The compSkills of the teacher",
   })
   @Expose()
   compSkills: string;
 
   @ApiProperty({
     type: String,
-    description: 'The schoolId of the teacher'
+    description: "The schoolId of the teacher",
   })
   @Expose()
   schoolId: string;
 
   @ApiProperty({
     type: String,
-    description: 'The disability of the teacher'
+    description: "The disability of the teacher",
   })
   @Expose()
   disability: string;
 
   @ApiProperty({
     type: String,
-    description: 'The religion of the teacher'
+    description: "The religion of the teacher",
   })
   @Expose()
   religion: string;
 
   @ApiProperty({
     type: String,
-    description: 'The homeDistance of the teacher'
+    description: "The homeDistance of the teacher",
   })
   @Expose()
-  homeDistance : string;
+  homeDistance: string;
 
   @ApiProperty({
     type: String,
-    description: 'The roles of the teacher'
+    description: "The roles of the teacher",
   })
   @Expose()
-  roles : string;
+  roles: string;
 
   @ApiProperty({
     type: String,
-    description: 'The acrId of the teacher'
+    description: "The acrId of the teacher",
   })
   @Expose()
-  acrId : string;
+  acrId: string;
 
   @ApiProperty({
     type: String,
-    description: 'The retirementDate of the teacher'
+    description: "The retirementDate of the teacher",
   })
   @Expose()
-  retirementDate : string;
+  retirementDate: string;
 
   @ApiProperty({
     type: String,
-    description: 'The workingStatus of the teacher'
+    description: "The workingStatus of the teacher",
   })
   @Expose()
-  workingStatus : string;
+  workingStatus: string;
 
+  @ApiProperty({
+    type: String,
+    description: "The image of the teacher",
+  })
+  @Expose()
+  image: string;
 
   constructor(partial: TeacherDto) {
     Object.assign(this, partial);
-    
   }
-
-  
-
 }
