@@ -106,12 +106,13 @@ export class AttendanceDto {
   longitude: string;
 
   @ApiProperty({
-    type: String,
+    type: "string",
+    format: "binary",
     description: "The image of person",
     default: "",
   })
   @Expose()
-  image: string;
+  image: any;
 
   constructor(partial: AttendanceDto) {
     Object.assign(this, partial);

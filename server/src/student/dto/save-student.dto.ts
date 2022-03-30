@@ -22,7 +22,7 @@ export class SaveStudentDto {
   lastName: string;
 
   @IsNumber()
-  contactNumber: string;
+  phoneNumber: Number;
 
   @IsEmail()
   email: string;
@@ -78,6 +78,20 @@ export class SaveStudentDto {
   @Expose()
   studentId: string;
 
+  @Expose()
+  fullName: string;
+
+  @Expose()
+  fatherName: string;
+
+  @Expose()
+  admissionNo: string;
+
+  @Expose()
+  currentClassId: string;
+
+  @Expose()
+  address: string;
   constructor(obj: SaveStudentDto) {
     Object.keys(obj).forEach((key) => (obj[key] === "" ? delete obj[key] : {}));
     Object.assign(this, obj);

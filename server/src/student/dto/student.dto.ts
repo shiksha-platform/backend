@@ -40,10 +40,18 @@ export class StudentDto {
   })
   @Expose()
   lastName: string;
-
+  @ApiProperty({
+    type: Number,
+    description: "The phone number of student",
+  })
+  @Expose()
   @IsNumber()
-  contactNumber: string;
+  phoneNumber: Number;
 
+  @ApiProperty({
+    type: String,
+    description: "The email id of the student",
+  })
   @Expose()
   @IsEmail()
   email: string;
@@ -160,9 +168,40 @@ export class StudentDto {
   image: string;
   @Expose()
   studentId: string;
-
+  @ApiProperty({
+    type: String,
+    description: "Full name of student",
+  })
   @Expose()
-  studentName: string;
+  fullName: string;
+
+  @ApiProperty({
+    type: String,
+    description: "Father name of student",
+  })
+  @Expose()
+  fatherName: string;
+
+  @ApiProperty({
+    type: String,
+    description: "Admission number of student",
+  })
+  @Expose()
+  admissionNo: Number;
+
+  @ApiProperty({
+    type: String,
+    description: "The Current class id of the student",
+  })
+  @Expose()
+  currentClassId: string;
+
+  @ApiProperty({
+    type: String,
+    description: "The Address of the student",
+  })
+  @Expose()
+  address: string;
 
   constructor(obj: StudentDto) {
     // Object.keys(obj).forEach(key => obj[key] === '' ? delete obj[key] : {});

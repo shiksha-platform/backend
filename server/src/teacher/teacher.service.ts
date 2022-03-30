@@ -93,7 +93,6 @@ export class TeacherService {
     Object.keys(requestTemplate).forEach((key) => {
       updateTeacherDto[key] = resolvePath(teacherDto, requestTemplate[key]);
     });
-    console.log("95", updateTeacherDto);
 
     return this.httpService
       .put(`${this.url}/${teacherId}`, updateTeacherDto, request)

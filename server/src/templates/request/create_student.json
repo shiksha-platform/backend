@@ -3,7 +3,7 @@
   "refStudentId": "refStudentId",
   "firstName": "firstName",
   "lastName": "lastName",
-  "contactNumber": "contactNumber",
+  "phoneNumber": "phoneNumber",
   "email": "email",
   "gender": "gender",
   "socialCategory": "socialCategory",
@@ -20,5 +20,10 @@
   "schoolId": "schoolId",
   "classId": "classId",
   "image": "image",
-  "status": "status"
+  "status": "status",
+  "currentClassId": "currentClassId",
+  "fullName": "fullName",
+  "admissionNo": "admissionNo",
+  "fatherName": "fatherName",
+  "address": "address"
 }

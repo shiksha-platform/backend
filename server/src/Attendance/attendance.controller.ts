@@ -15,6 +15,7 @@ import {
   SerializeOptions,
   UsePipes,
   ValidationPipe,
+  UploadedFile,
 } from "@nestjs/common";
 import { AttendanceSearchDto } from "./dto/attendance-search.dto";
 import {
@@ -25,11 +26,14 @@ import {
   ApiOkResponse,
   ApiQuery,
   ApiTags,
+  ApiConsumes,
 } from "@nestjs/swagger";
 import { AttendanceDto } from "./dto/attendance.dto";
 import { AttendanceService } from "./attendance.service";
 import { Attendance } from "./attendance.entity";
-
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { editFileName, imageFileFilter } from "./utils/file-upload.utils";
 @ApiTags("Attendance")
 @Controller("attendance")
 export class AttendanceController {
@@ -105,11 +109,24 @@ export class AttendanceController {
   @ApiCreatedResponse({
     description: "Attendance has been created successfully.",
   })
+  @UseInterceptors(
+    FileInterceptor("image", {
+      storage: diskStorage({
+        destination: "./uploads",
+        filename: editFileName,
+      }),
+      fileFilter: imageFileFilter,
+    })
+  )
+  @ApiConsumes("multipart/form-data")
   @ApiBody({ type: AttendanceDto })
   @ApiForbiddenResponse({ description: "Forbidden" })
-  public async createAttendance(@Body() attendanceDto: AttendanceDto) {
+  public async createAttendance(
+    @Body() attendanceDto: AttendanceDto,
+    @UploadedFile() image
+  ) {
     const createAttendanceEntity = new Attendance();
-    Object.assign(createAttendanceEntity, attendanceDto);
+    Object.assign(createAttendanceEntity, attendanceDto, image);
     return this.attendanceService.createAttendance(createAttendanceEntity);
   }
 
