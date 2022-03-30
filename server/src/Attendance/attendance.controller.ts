@@ -105,6 +105,7 @@ export class AttendanceController {
   }
 
   @Post()
+  @ApiConsumes("multipart/form-data")
   @ApiBasicAuth("access-token")
   @ApiCreatedResponse({
     description: "Attendance has been created successfully.",
@@ -118,15 +119,18 @@ export class AttendanceController {
       fileFilter: imageFileFilter,
     })
   )
-  @ApiConsumes("multipart/form-data")
   @ApiBody({ type: AttendanceDto })
   @ApiForbiddenResponse({ description: "Forbidden" })
   public async createAttendance(
     @Body() attendanceDto: AttendanceDto,
     @UploadedFile() image
   ) {
+    const response = {
+      originalname: image.originalname,
+      filename: image.filename,
+    };
     const createAttendanceEntity = new Attendance();
-    Object.assign(createAttendanceEntity, attendanceDto, image);
+    Object.assign(createAttendanceEntity, attendanceDto, response);
     return this.attendanceService.createAttendance(createAttendanceEntity);
   }
 
