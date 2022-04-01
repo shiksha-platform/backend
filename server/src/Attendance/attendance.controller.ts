@@ -126,8 +126,7 @@ export class AttendanceController {
     @UploadedFile() image
   ) {
     const response = {
-      originalname: image.originalname,
-      filename: image.filename,
+      image: image.filename,
     };
     const createAttendanceEntity = new Attendance();
     Object.assign(createAttendanceEntity, attendanceDto, response);

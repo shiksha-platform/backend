@@ -6,9 +6,7 @@
       "$ref": "#/definitions/Config"
     }
   },
-  "required": [
-    "Config"
-  ],
+  "required": ["Config"],
   "title": "Config",
   "definitions": {
     "Class": {
@@ -41,9 +39,7 @@
         "core": {
           "$id": "#/properties/core",
           "type": "string"
-        },
-        
-        
+        }
       }
     }
   },
