@@ -6,7 +6,7 @@ import {
   IsString,
   IsNumber,
 } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class AttendanceDto {
   @ApiProperty({
@@ -15,6 +15,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   schoolId: string;
 
   @ApiProperty({
@@ -39,6 +40,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   topicId: string;
 
   @ApiProperty({
@@ -47,6 +49,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   eventId: string;
 
   @ApiProperty({
@@ -71,6 +74,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   remark: string;
 
   @ApiProperty({
@@ -79,6 +83,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   approved: string;
 
   @ApiProperty({
@@ -87,6 +92,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   approvedBy: string;
 
   @ApiProperty({
@@ -95,6 +101,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   latitude: string;
 
   @ApiProperty({
@@ -103,6 +110,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   longitude: string;
 
   @ApiProperty({
@@ -112,6 +120,7 @@ export class AttendanceDto {
     default: "",
   })
   @Expose()
+  @ApiPropertyOptional()
   image: any;
 
   constructor(partial: AttendanceDto) {

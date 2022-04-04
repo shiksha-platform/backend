@@ -22,7 +22,7 @@ export class SaveStudentDto {
   lastName: string;
 
   @IsNumber()
-  phoneNumber: Number;
+  phoneNumber: string;
 
   @IsEmail()
   email: string;

@@ -46,7 +46,7 @@ export class StudentDto {
   })
   @Expose()
   @IsNumber()
-  phoneNumber: Number;
+  phoneNumber: string;
 
   @ApiProperty({
     type: String,
