@@ -41,7 +41,7 @@ export class StudentDto {
   @Expose()
   lastName: string;
   @ApiProperty({
-    type: Number,
+    type: String,
     description: "The phone number of student",
   })
   @Expose()
