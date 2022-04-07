@@ -98,7 +98,7 @@ export class AttendanceDto {
   @ApiProperty({
     type: String,
     description: "The latitude of the attendance",
-    default: "",
+    default: 0,
   })
   @Expose()
   @ApiPropertyOptional()
@@ -107,7 +107,7 @@ export class AttendanceDto {
   @ApiProperty({
     type: String,
     description: "The longitude of the attendance",
-    default: "",
+    default: 0,
   })
   @Expose()
   @ApiPropertyOptional()
@@ -121,7 +121,7 @@ export class AttendanceDto {
   })
   @Expose()
   @ApiPropertyOptional()
-  image: any;
+  image: string;
 
   constructor(partial: AttendanceDto) {
     Object.assign(this, partial);
