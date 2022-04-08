@@ -95,7 +95,11 @@ export class TeacherService {
     });
 
     return this.httpService
-      .put(`${this.url}/${teacherId}`, updateTeacherDto, request)
+      .put(`${this.url}/${teacherId}`, updateTeacherDto, {
+        headers: {
+          Authorization: request.headers.authorization,
+        },
+      })
       .pipe(
         map((response) => {
           return new SuccessResponse({
