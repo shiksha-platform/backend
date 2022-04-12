@@ -50,7 +50,21 @@
         "teacherId": {
           "$id": "#/properties/teacherId",
           "type": "string"
+        },
+        "latitude": {
+          "$id": "#/properties/latitude",
+          "type": "real"
+        },
+        "longitude": {
+          "$id": "#/properties/longitude",
+          "type": "real"
+        },
+        "image":{
+          "$id":"#/properties/image",
+          "type": "string",
+          "format": "binary",
         }
+
       }
     }
   },
