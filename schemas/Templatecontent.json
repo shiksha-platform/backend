@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "Templatecontent": {
+        "$ref": "#/definitions/Templatecontent"
+      }
+    },
+    "required": [
+      "Templatecontent"
+    ],
+    "title": "Templatecontent",
+    "definitions": {
+      "Templatecontent": {
+        "$id": "#/properties/Templatecontent",
+        "type": "object",
+        "title": "The Template content schema",
+        "description": "All Template content.",
+        "required": [],
+        "properties": {
+          "template_id": {
+            "$id": "#/properties/template_id",
+            "type": "string"
+          },
+          "state": {
+            "$id": "#/properties/state",
+            "type": "string"
+          },
+          "language": {
+            "$id": "#/properties/language",
+            "type": "string"
+          },
+          "subject": {
+            "$id": "#/properties/subject",
+            "type": "string"
+          },
+          "body": {
+            "$id": "#/properties/body",
+            "type": "string"
+          },
+          "replacement_tags": {
+            "$id": "#/properties/replacement_tags",
+            "type": "string"
+          },
+          "user_control": {
+            "$id": "#/properties/user_control",
+            "type": "boolean"
+          }
+          
+        }
+      }
+    },
+    "_osConfig": {
+      "osComment": [
+        "This section contains the OpenSABER specific Template content information",
+        "privateFields: Optional; list of field names to be encrypted and stored in database",
+        "signedFields: Optional; list of field names that must be pre-signed",
+        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+      ],
+      "privateFields": [],
+      "signedFields": [],
+      "indexFields": [],
+      "uniqueIndexFields": [],
+      "systemFields": [
+        "osCreatedAt",
+        "osUpdatedAt",
+        "osCreatedBy",
+        "osUpdatedBy"
+      ],
+      "attestationPolicies": [],
+      "roles": ["Templatecontent-management"]
+    }
+  }
+  
