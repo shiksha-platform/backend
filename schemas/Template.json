@@ -18,8 +18,8 @@
         "description": "All Template stored with module",
         "required": [],
         "properties": {
-          "id": {
-            "$id": "#/properties/id",
+          "templateId": {
+            "$id": "#/properties/templateId",
             "type": "string"
           },
           "key": {

@@ -18,10 +18,6 @@
         "description": "All Template content.",
         "required": [],
         "properties": {
-          "id": {
-            "$id": "#/properties/id",
-            "type": "string"
-        },
           "templateId": {
             "$id": "#/properties/templateId",
             "type": "string"
