@@ -18,6 +18,10 @@
         "description": "All Template stored with module",
         "required": [],
         "properties": {
+          "id": {
+            "$id": "#/properties/id",
+            "type": "string"
+          },
           "key": {
             "$id": "#/properties/key",
             "type": "string"
@@ -34,12 +38,12 @@
             "$id": "#/properties/state",
             "type": "string"
           },
-          "replacement_tags": {
-            "$id": "#/properties/replacement_tags",
+          "replacementTags": {
+            "$id": "#/properties/replacementTags",
             "type": "string"
           },
-          "user_control": {
-            "$id": "#/properties/user_control",
+          "userControl": {
+            "$id": "#/properties/userControl",
             "type": "boolean"
           }
           

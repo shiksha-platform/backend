@@ -18,6 +18,10 @@
         "description": "All Notification log.",
         "required": [],
         "properties": {
+          "id": {
+            "$id": "#/properties/id",
+            "type": "string"
+          },
           "content": {
             "$id": "#/properties/content",
             "type": "string"
@@ -30,16 +34,16 @@
             "$id": "#/properties/module",
             "type": "string"
           },
-          "template_id": {
-            "$id": "#/properties/template_id",
+          "templateId": {
+            "$id": "#/properties/templateId",
             "type": "string"
           },
           "medium": {
             "$id": "#/properties/medium",
             "type": "string"
           },
-          "sent date": {
-            "$id": "#/properties/sent date",
+          "sentDate": {
+            "$id": "#/properties/sentDate",
             "type": "string"
           },
           "options": {

@@ -18,8 +18,12 @@
         "description": "All Template content.",
         "required": [],
         "properties": {
-          "template_id": {
-            "$id": "#/properties/template_id",
+          "id": {
+            "$id": "#/properties/id",
+            "type": "string"
+        },
+          "templateId": {
+            "$id": "#/properties/templateId",
             "type": "string"
           },
           "state": {
@@ -38,12 +42,12 @@
             "$id": "#/properties/body",
             "type": "string"
           },
-          "replacement_tags": {
-            "$id": "#/properties/replacement_tags",
+          "replacementTags": {
+            "$id": "#/properties/replacementTags",
             "type": "string"
           },
-          "user_control": {
-            "$id": "#/properties/user_control",
+          "userControl": {
+            "$id": "#/properties/userControl",
             "type": "boolean"
           }
           
