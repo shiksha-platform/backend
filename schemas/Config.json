@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
   "properties": {
-    "Class": {
+    "Config": {
       "$ref": "#/definitions/Config"
     }
   },
@@ -11,7 +11,7 @@
   ],
   "title": "Config",
   "definitions": {
-    "Class": {
+    "Config": {
       "$id": "#/properties/Config",
       "type": "object",
       "title": "The Config schema",
@@ -38,10 +38,18 @@
           "$id": "#/properties/contextId",
           "type": "string"
         },
-        "core": {
-          "$id": "#/properties/core",
+        "canOverride": {
+          "$id": "#/properties/canOverride",
+          "type": "boolean"
+        },
+        "overrideBy": {
+          "$id": "#/properties/overrideBy",
           "type": "string"
         },
+        "isPublic": {
+          "$id": "#/properties/overrideBy",
+          "type": "boolean"
+        }
         
         
       }
