@@ -18,6 +18,10 @@
         "description": "All Notification log.",
         "required": [],
         "properties": {
+          "notificationLogId": {
+            "$id": "#/properties/notificationLogId",
+            "type": "string"
+          },
           "content": {
             "$id": "#/properties/content",
             "type": "string"
