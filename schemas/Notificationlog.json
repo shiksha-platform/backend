@@ -30,7 +30,7 @@
             "$id": "#/properties/module",
             "type": "string"
           },
-          "templateId": {
+          "templateContentId": {
             "$id": "#/properties/templateId",
             "type": "string"
           },

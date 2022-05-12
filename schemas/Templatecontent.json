@@ -18,6 +18,10 @@
         "description": "All Template content.",
         "required": [],
         "properties": {
+          "templateContentId": {
+            "$id": "#/properties/templateContentId",
+            "type": "string"
+          },
           "templateId": {
             "$id": "#/properties/templateId",
             "type": "string"
@@ -40,7 +44,7 @@
           },
           "replacementTags": {
             "$id": "#/properties/replacementTags",
-            "type": "string"
+            "type": "array"
           },
           "userControl": {
             "$id": "#/properties/userControl",
