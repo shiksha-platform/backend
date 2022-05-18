@@ -28,7 +28,10 @@
           },
           "recepients": {
             "$id": "#/properties/recepients",
-            "type": "string"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Recepients"
+            }
           },
           "module": {
             "$id": "#/properties/module",
@@ -48,11 +51,23 @@
           },
           "options": {
             "$id": "#/properties/options",
-            "type": "string"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Options"
           }
+        }
           
         }
-      }
+      },
+      "Recepients": {
+        "$id": "#/properties/Recepients",
+        "type": "object",
+        "required": []
+    },
+    "Options": {
+      "$id": "#/properties/Options",
+      "type": "object"
+    }
     },
     "_osConfig": {
       "osComment": [

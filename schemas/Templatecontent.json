@@ -49,10 +49,25 @@
           "userControl": {
             "$id": "#/properties/userControl",
             "type": "boolean"
+          },
+          "options": {
+            "$id": "#/properties/options",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Options"
+            }
+          },
+          "scheduleOn": {
+            "$id": "#/properties/scheduleOn",
+            "type": "string"
           }
-          
         }
-      }
+      },
+    "Options": {
+      "$id": "#/properties/Options",
+      "type": "object",
+      "required": []
+  }
     },
     "_osConfig": {
       "osComment": [
