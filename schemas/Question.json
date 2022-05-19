@@ -26,6 +26,11 @@
             "$id": "#/properties/question",
             "type": "string"
           },
+
+          "platformId": {
+            "$id": "#/properties/platformId",
+            "type": "string"
+          },
           "source": {
             "$id": "#/properties/source",
             "type": "string"
