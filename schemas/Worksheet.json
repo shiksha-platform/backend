@@ -1,0 +1,147 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "Worksheet": {
+        "$ref": "#/definitions/Worksheet"
+      }
+    },
+    "required": [
+      "Worksheet"
+    ],
+    "title": "Worksheet",
+    "definitions": {
+      "Worksheet": {
+        "$id": "#/properties/Worksheet",
+        "type": "object",
+        "title": "The Worksheet content schema",
+        "description": "All Worksheet .",
+        "required": [],
+        "properties": {
+          "worksheetId": {
+            "$id": "#/properties/worksheetId",
+            "type": "string"
+          },
+          
+          "name": {
+            "$id": "#/properties/name",
+            "type": "string"
+           
+          },
+          "questions": {
+            "$id": "#/properties/questions",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/questions"
+            }
+          },
+          "author": {
+            "$id": "#/properties/author",
+            "type": "string"
+          },
+          "medium": {
+            "$id": "#/properties/medium",
+            "type": "string"
+          },
+          "gradeLevel": {
+            "$id": "#/properties/gradeLevel",
+            "type": "string"
+          },
+          "subject": {
+            "$id": "#/properties/subject",
+            "type": "string"
+            
+        },
+        "learningOutcome": {
+            "$id": "#/properties/learningOutcome",
+            "type": "string"
+            
+        },
+        "difficultyLevel": {
+            "$id": "#/properties/difficultyLevel",
+            "type": "string"
+            
+        },
+        "numberOfDownloads": {
+            "$id": "#/properties/numberOfDownloads",
+            "type": "string"
+            
+        },
+        "image": {
+            "$id": "#/properties/image",
+            "type": "string"
+            
+        },
+        "heading": {
+            "$id": "#/properties/heading",
+            "type": "string"
+            
+        },
+        "subHeading": {
+            "$id": "#/properties/subHeading",
+            "type": "string"
+            
+        },
+        "totalScore": {
+            "$id": "#/properties/totalScore",
+            "type": "array"
+            
+        },
+        "passingScore": {
+            "$id": "#/properties/passingScore",
+            "type": "array"
+            
+        }
+        ,
+        "maxTime": {
+            "$id": "#/properties/maxTime",
+            "type": "number"
+            
+        }
+        ,
+        "status": {
+            "$id": "#/properties/status",
+            "type": "string"
+            
+        }
+
+          
+        }
+      },
+      "questions": {
+        "$id": "#/properties/questions",
+        "type": "object",
+        "required": [],
+        "properties": {
+            "questionIds": {
+                "$id": "#/properties/questions",
+                "type": "string"
+            }
+        }
+    }
+      
+    },
+    "_osConfig": {
+      "osComment": [
+        "This section contains the OpenSABER specific Worksheet  information",
+        "privateFields: Optional; list of field names to be encrypted and stored in database",
+        "signedFields: Optional; list of field names that must be pre-signed",
+        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+      ],
+      "privateFields": [],
+      "signedFields": [],
+      "indexFields": [],
+      "uniqueIndexFields": [],
+      "systemFields": [
+        "osCreatedAt",
+        "osUpdatedAt",
+        "osCreatedBy",
+        "osUpdatedBy"
+      ],
+      "attestationPolicies": [],
+      "roles": ["Worksheet-management"]
+    }
+  }
+  

@@ -1,0 +1,154 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "Question": {
+        "$ref": "#/definitions/Question"
+      }
+    },
+    "required": [
+      "Question"
+    ],
+    "title": "Question",
+    "definitions": {
+      "Question": {
+        "$id": "#/properties/Question",
+        "type": "object",
+        "title": "The Question content schema",
+        "description": "All Question .",
+        "required": [],
+        "properties": {
+          "questionId": {
+            "$id": "#/properties/questionId",
+            "type": "string"
+          },
+          "question": {
+            "$id": "#/properties/question",
+            "type": "string"
+          },
+
+          "platformId": {
+            "$id": "#/properties/platformId",
+            "type": "string"
+          },
+          "source": {
+            "$id": "#/properties/source",
+            "type": "string"
+           
+          },
+          "questionType": {
+            "$id": "#/properties/questionType",
+            "type": "string"
+          },
+          "answerKey": {
+            "$id": "#/properties/answerKey",
+            "type": "string"
+          },
+          "options": {
+            "$id": "#/properties/options",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/options"
+            }
+          },
+          
+          
+          "marks": {
+            "$id": "#/properties/marks",
+            "type": "number"
+          },
+          "group": {
+            "$id": "#/properties/group",
+            "type": "string"
+            
+        },
+        "topic": {
+            "$id": "#/properties/topic",
+            "type": "string"
+            
+        },
+        "learningOutcome": {
+            "$id": "#/properties/learningOutcome",
+            "type": "string"
+            
+        },
+        "board": {
+            "$id": "#/properties/board",
+            "type": "string"
+            
+        },
+        "medium": {
+            "$id": "#/properties/medium",
+            "type": "string"
+            
+        },
+        "gradeLevel": {
+            "$id": "#/properties/gradeLevel",
+            "type": "string"
+            
+        },
+        "subject": {
+            "$id": "#/properties/subject",
+            "type": "string"
+            
+        },
+        "author": {
+            "$id": "#/properties/author",
+            "type": "string"
+            
+        },
+        "media": {
+            "$id": "#/properties/media",
+            "type": "array"
+            
+        }
+
+          
+        }
+      },
+      "options": {
+        "$id": "#/properties/options",
+        "type": "object",
+        "required": [],
+        "properties": {
+            "answer": {
+                "$id": "#/properties/options",
+                "type": "string"
+            },
+            "value": {
+              "$id": "#/properties/options",
+              "type": "string"
+             
+          },
+          "media": {
+            "$id": "#/properties/options",
+            "type": "string"
+        }
+        }
+    }
+      
+    },
+    "_osConfig": {
+      "osComment": [
+        "This section contains the OpenSABER specific question  information",
+        "privateFields: Optional; list of field names to be encrypted and stored in database",
+        "signedFields: Optional; list of field names that must be pre-signed",
+        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+      ],
+      "privateFields": [],
+      "signedFields": [],
+      "indexFields": [],
+      "uniqueIndexFields": [],
+      "systemFields": [
+        "osCreatedAt",
+        "osUpdatedAt",
+        "osCreatedBy",
+        "osUpdatedBy"
+      ],
+      "attestationPolicies": [],
+      "roles": ["Question-management"]
+    }
+  }
+  
