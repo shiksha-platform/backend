@@ -28,6 +28,12 @@
             "type": "string"
            
           },
+          "image": {
+            "$id": "#/properties/image",
+            "type": "string"
+           
+          },
+
           "body": {
             "$id": "#/properties/body",
             "type": "string"
