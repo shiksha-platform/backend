@@ -28,6 +28,11 @@
             "type": "string"
            
           },
+          "body": {
+            "$id": "#/properties/body",
+            "type": "string"
+           
+          },
           "replacementTags": {
             "$id": "#/properties/replacementTags",
             "type": "array",
@@ -48,13 +53,8 @@
       "replacementTags": {
         "$id": "#/properties/replacementTags",
         "type": "object",
-        "required": [],
-        "properties": {
-            "teacherID": {
-                "$id": "#/properties/replacementTags",
-                "type": "string"
-            }
-        }
+        "required": []
+        
     }
       
     },

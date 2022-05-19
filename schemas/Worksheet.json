@@ -22,10 +22,7 @@
             "$id": "#/properties/worksheetId",
             "type": "string"
           },
-          "likes": {
-            "$id": "#/properties/likes",
-            "type": "string"
-          },
+          
           "name": {
             "$id": "#/properties/name",
             "type": "string"
@@ -116,7 +113,7 @@
         "type": "object",
         "required": [],
         "properties": {
-            "teacherID": {
+            "questionIds": {
                 "$id": "#/properties/questions",
                 "type": "string"
             }

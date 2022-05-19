@@ -106,10 +106,19 @@
         "type": "object",
         "required": [],
         "properties": {
-            "teacherID": {
+            "answer": {
                 "$id": "#/properties/options",
                 "type": "string"
-            }
+            },
+            "value": {
+              "$id": "#/properties/options",
+              "type": "string"
+             
+          },
+          "media": {
+            "$id": "#/properties/options",
+            "type": "string"
+        }
         }
     }
       
