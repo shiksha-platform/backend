@@ -52,7 +52,15 @@
                 "frameworkid": {
                     "$id": "#/properties/frameworkid",
                     "type": "string"
+                },
+                "option": {
+                    "$id": "#/properties/option",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Option"
+                    }
                 }
+                
             }
         },
         "Teachers": {
@@ -62,6 +70,12 @@
                     "type": "string",
                     "title": "Teacher Id"
                 }
+            }
+        },
+        "Option": {
+            "type": "object",
+            "properties": {
+                
             }
         }
     },
