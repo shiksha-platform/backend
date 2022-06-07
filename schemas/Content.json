@@ -1,0 +1,1500 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "Content": {
+        "$ref": "#/definitions/Content"
+      }
+    },
+    "required": [
+      "Content"
+    ],
+    "title": "Content",
+    "definitions": {
+      "Content": {
+        "$id": "#/properties/Content",
+        "type": "object",
+        "title": "The ContentId schema",
+        "required": [],
+        "properties": {
+          "lessonPlanId": {
+            "$id": "#/properties/lessonPlanId",
+            "type": "string"
+          },
+          "name": {
+            "$id": "#/properties/name",
+            "type": "string"
+          },
+          "code": {
+            "$id": "#/properties/code",
+            "type": "string"
+            
+          },
+          "createdOn": {
+            "$id": "#/properties/createdOn",
+            "type": "string"
+          },
+          "lastUpdatedOn": {
+            "$id": "#/properties/lastUpdatedOn",
+            "type": "string"
+          },
+          "status": {
+            "$id": "#/properties/status",
+            "type": "string"
+          },
+          "channel": {
+            "$id": "#/properties/channel",
+            "type": "string"
+          },
+          "mimeType": {
+            "$id": "#/properties/mimeType",
+            "type": "string"
+          },
+          "osId": {
+            "$id": "#/properties/osId",
+            "type": "string"
+          },
+          "contentEncoding": {
+            "$id": "#/properties/contentEncoding",
+            "type": "string"
+          },
+          "contentDisposition": {
+            "$id": "#/properties/contentDisposition",
+            "type": "string"
+          },
+          "mediaType": {
+            "$id": "#/properties/mediaType",
+            "type": "string"
+          },
+          "os": {
+            "$id": "#/properties/os",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            },
+            "default": ["All"]
+          },
+          "minOsVersion": {
+            "$id": "#/properties/gpsPoints",
+            "type": "number"
+          },
+          "compatibilityLevel": {
+            "$id": "#/properties/compatibilityLevel",
+            "type": "number"
+          },
+          "minGenieVersion": {
+            "$id": "#/properties/minGenieVersion",
+            "type": "string"
+          },
+          "minSupportedVersion": {
+            "$id": "#/properties/minSupportedVersion",
+            "type": "string"
+          },
+          "filter": {
+            "$id": "#/properties/filter",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "variants": {
+            "$id": "#/properties/variants",
+            "type": "object"
+          },
+          "config": {
+            "$id": "#/properties/config",
+            "type": "object"
+          },
+          "visibility": {
+            "$id": "#/properties/visibility",
+            "type": "string"
+          }
+          ,
+          "audience": {
+            "$id": "#/properties/audience",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+          }
+          ,
+          "posterImage": {
+            "$id": "#/properties/posterImage",
+            "type": "string"
+          }
+          ,
+          "badgeAssertions": {
+            "$id": "#/properties/badgeAssertions",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+          }
+          ,
+          "targets": {
+            "$id": "#/properties/targets",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "contentCredits": {
+            "$id": "#/properties/contentCredits",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+            
+        },
+        "appIcon": {
+          "$id": "#/properties/appIcon",
+          "type": "string"
+        },
+        "grayScaleAppIcon": {
+          "$id": "#/properties/grayScaleAppIcon",
+          "type": "string"
+        },
+        "thumbnail": {
+          "$id": "#/properties/thumbnail",
+          "type": "string"
+        },
+        "screenshots": {
+          "$id": "#/properties/screenshots",
+          "type": "string"
+        },
+        "format": {
+          "$id": "#/properties/format",
+          "type": "string"
+        },
+        "duration": {
+          "$id": "#/properties/duration",
+          "type": "string"
+        },
+        "size": {
+          "$id": "#/properties/size",
+          "type": "number"
+        },
+        "idealScreenSize": {
+          "$id": "#/properties/idealScreenSize",
+          "type": "string"
+        },
+        "idealScreenDensity": {
+          "$id": "#/properties/idealScreenDensity",
+          "type": "string"
+        },
+        "releaseNotes": {
+          "$id": "#/properties/releaseNotes",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "pkgVersion": {
+          "$id": "#/properties/pkgVersion",
+          "type": "number"
+        },
+        "semanticVersion": {
+          "$id": "#/properties/semanticVersion",
+          "type": "string"
+        },
+        "versionKey": {
+          "$id": "#/properties/versionKey",
+          "type": "string"
+        },
+        "resources": {
+          "$id": "#/properties/resources",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "downloadUrl": {
+          "$id": "#/properties/downloadUrl",
+          "type": "string"
+        },
+        "artifactUrl": {
+          "$id": "#/properties/artifactUrl",
+          "type": "string"
+        },
+        "previewUrl": {
+          "$id": "#/properties/previewUrl",
+          "type": "string"
+        },
+        "streamingUrl": {
+          "$id": "#/properties/streamingUrl",
+          "type": "string"
+        },
+        "objects": {
+          "$id": "#/properties/objects",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "organization": {
+          "$id": "#/properties/organization",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "createdFor": {
+          "$id": "#/properties/createdFor",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "developer": {
+          "$id": "#/properties/developer",
+          "type": "string"
+        },
+        "source": {
+          "$id": "#/properties/source",
+          "type": "string"
+        },
+        "notes": {
+          "$id": "#/properties/notes",
+          "type": "string"
+        },
+        "pageNumber": {
+          "$id": "#/properties/pageNumber",
+          "type": "string"
+        },
+        "publication": {
+          "$id": "#/properties/publication",
+          "type": "string"
+        },
+        "edition": {
+          "$id": "#/properties/edition",
+          "type": "string"
+        },
+        "publisher": {
+          "$id": "#/properties/publisher",
+          "type": "string"
+        },
+        "author": {
+          "$id": "#/properties/author",
+          "type": "string"
+        },
+        "owner": {
+          "$id": "#/properties/owner",
+          "type": "string"
+        },
+        "attributions": {
+          "$id": "#/properties/attributions",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "collaborators": {
+          "$id": "#/properties/collaborators",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "voiceCredits": {
+          "$id": "#/properties/voiceCredits",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "soundCredits": {
+          "$id": "#/properties/soundCredits",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "imageCredits": {
+          "$id": "#/properties/imageCredits",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "copyright": {
+          "$id": "#/properties/copyright",
+          "type": "string"
+        },
+        "license": {
+          "$id": "#/properties/license",
+          "type": "string"
+        },
+        "languageCode": {
+          "$id": "#/properties/languageCode",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "language": {
+          "$id": "#/properties/language",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+       
+        },
+        "words": {
+          "$id": "#/properties/words",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "text": {
+          "$id": "#/properties/text",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "forkable": {
+          "$id": "#/properties/forkable",
+          "type": "boolean"
+        },
+        "translatable": {
+          "$id": "#/properties/translatable",
+          "type": "boolean"
+        },
+        "ageGroup": {
+          "$id": "#/properties/ageGroup",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$ref": "#/definitions/CommonArray"
+        }
+        },
+        "interactivityLevel": {
+          "$id": "#/properties/interactivityLevel",
+          "type": "string"
+        },
+        "contentType": {
+          "$id": "#/properties/contentType",
+          "type": "string"
+        },
+        "resourceType": {
+            "$id": "#/properties/contentType",
+            "type": "string"
+          },
+          "category": {
+            "$id": "#/properties/category",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "templateType": {
+            "$id": "#/properties/templateType",
+            "type": "string"
+        },
+        "genre": {
+            "$id": "#/properties/genre",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "theme": {
+            "$id": "#/properties/theme",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "themes": {
+            "$id": "#/properties/themes",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "rating": {
+            "$id": "#/properties/rating",
+            "type": "number"
+        },
+        "rating_a": {
+            "$id": "#/properties/rating_a",
+            "type": "number"
+        },
+        "quality": {
+            "$id": "#/properties/quality",
+            "type": "number"
+        },
+        "genieScore": {
+            "$id": "#/properties/genieScore",
+            "type": "number"
+        },
+        "authoringScore": {
+            "$id": "#/properties/authoringScore",
+            "type": "number"
+        },
+        "popularity": {
+            "$id": "#/properties/popularity",
+            "type": "number"
+        },
+        "downloads": {
+            "$id": "#/properties/downloads",
+            "type": "number"
+        },
+        "launchUrl": {
+            "$id": "#/properties/launchUrl",
+            "type": "string"
+        },
+        "activity_class": {
+            "$id": "#/properties/activity_class",
+            "type": "string"
+        },
+        "draftImage": {
+            "$id": "#/properties/draftImage",
+            "type": "string"
+        },
+        "scaffolding": {
+            "$id": "#/properties/scaffolding",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "interceptionPoints": {
+            "$id": "#/properties/interceptionPoints",
+            "type": "object",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "interceptionType": {
+            "$id": "#/properties/interceptionType",
+            "type": "string"
+        },
+        "feedback": {
+            "$id": "#/properties/feedback",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "feedbackType": {
+            "$id": "#/properties/feedbackType",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        
+        "teachingMode": {
+            "$id": "#/properties/teachingMode",
+            "type": "string"
+        },
+        "skills": {
+            "$id": "#/properties/skills",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "keywords": {
+            "$id": "#/properties/keywords",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+
+        },
+        
+        "domain": {
+            "$id": "#/properties/domain",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        
+        "dialcodes": {
+            "$id": "#/properties/dialcodes",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        
+        "optStatus": {
+            "$id": "#/properties/optStatus",
+            "type": "string"
+        },
+        
+        "description": {
+            "$id": "#/properties/description",
+            "type": "string"
+        },
+        
+        "instructions": {
+            "$id": "#/properties/instructions",
+            "type": "string"
+        },
+        
+        "body": {
+            "$id": "#/properties/body",
+            "type": "string"
+        },
+        
+        "oldBody": {
+            "$id": "#/properties/oldBody",
+            "type": "string"
+        },
+        
+        "stageIcons": {
+            "$id": "#/properties/stageIcons",
+            "type": "string"
+        },
+        
+        "editorState": {
+            "$id": "#/properties/editorState",
+            "type": "string"
+        },
+        
+        "data": {
+            "$id": "#/properties/data",
+            "type": "string"
+        },
+        
+        "loadingMessage": {
+            "$id": "#/properties/loadingMessage",
+            "type": "string"
+        },
+        
+        "checksum": {
+            "$id": "#/properties/checksum",
+            "type": "string"
+        },
+        
+        "learningObjective": {
+            "$id": "#/properties/learningObjective",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        
+        "createdBy": {
+            "$id": "#/properties/createdBy",
+            "type": "string"
+        },
+        
+        "creator": {
+            "$id": "#/properties/creator",
+            "type": "string"
+        },
+        
+        "reviewer": {
+            "$id": "#/properties/reviewer",
+            "type": "string"
+        },
+        
+        "lastUpdatedBy": {
+            "$id": "#/properties/lastUpdatedBy",
+            "type": "string"
+        },
+        
+        "lastSubmittedBy": {
+            "$id": "#/properties/lastSubmittedBy",
+            "type": "string"
+        },
+        
+        "lastSubmittedOn": {
+            "$id": "#/properties/lastSubmittedOn",
+            "type": "string"
+        },
+        
+        "lastPublishedBy": {
+            "$id": "#/properties/lastPublishedBy",
+            "type": "string"
+        },
+        
+        "lastPublishedOn": {
+            "$id": "#/properties/lastUpdatedBy",
+            "type": "string"
+        },
+        
+        "versionDate": {
+            "$id": "#/properties/versionDate",
+            "type": "string"
+        },
+        
+        "origin": {
+            "$id": "#/properties/origin",
+            "type": "string"
+        },
+        
+        "originData": {
+            "$id": "#/properties/originData",
+            "type": "object"
+        },
+        
+        "versionCreatedBy": {
+            "$id": "#/properties/versionCreatedBy",
+            "type": "string"
+        },
+        
+        "me_totalSessionsCount": {
+            "$id": "#/properties/me_totalSessionsCount",
+            "type": "number"
+        },
+        
+        "me_creationSessions": {
+            "$id": "#/properties/me_creationSessions",
+            "type": "number"
+        },
+        
+        "me_creationTimespent": {
+            "$id": "#/properties/me_creationTimespent",
+            "type": "number"
+        },
+        
+        "me_totalTimespent": {
+            "$id": "#/properties/me_totalTimespent",
+            "type": "number"
+        },
+        
+        
+        "me_totalInteractions": {
+            "$id": "#/properties/me_totalInteractions",
+            "type": "number"
+        },
+        
+        "me_averageInteractionsPerMin": {
+            "$id": "#/properties/me_averageInteractionsPerMin",
+            "type": "number"
+        },
+
+        "me_averageSessionsPerDevice": {
+            "$id": "#/properties/me_averageSessionsPerDevice",
+            "type": "number"
+        },
+        "me_totalDevices": {
+            "$id": "#/properties/me_totalDevices",
+            "type": "number"
+        },
+        "me_averageTimespentPerSession": {
+            "$id": "#/properties/me_averageTimespentPerSession",
+            "type": "number"
+        },
+        "me_averageRating": {
+            "$id": "#/properties/me_averageRating",
+            "type": "number"
+        },"me_totalDownloads": {
+            "$id": "#/properties/me_totalDownloads",
+            "type": "number"
+        },
+        "me_totalSideloads": {
+            "$id": "#/properties/me_totalSideloads",
+            "type": "number"
+        },
+        "me_totalRatings": {
+            "$id": "#/properties/me_totalRatings",
+            "type": "number"
+        },
+        "me_totalComments": {
+            "$id": "#/properties/me_totalComments",
+            "type": "number"
+        },
+        "me_totalUsage": {
+            "$id": "#/properties/me_totalUsage",
+            "type": "number"
+        },
+        "me_totalLiveContentUsage": {
+            "$id": "#/properties/me_totalLiveContentUsage",
+            "type": "number"
+        },
+        "me_usageLastWeek": {
+            "$id": "#/properties/me_usageLastWeek",
+            "type": "number"
+        },
+        "me_deletionsLastWeek": {
+            "$id": "#/properties/me_deletionsLastWeek",
+            "type": "number"
+        },
+        "me_lastUsedOn": {
+            "$id": "#/properties/me_lastUsedOn",
+            "type": "number"
+        },
+        "me_lastRemovedOn": {
+            "$id": "#/properties/me_lastRemovedOn",
+            "type": "number"
+        },
+        "me_hierarchyLevel": {
+            "$id": "#/properties/me_hierarchyLevel",
+            "type": "number"
+        },
+        "me_totalDialcodeAttached": {
+            "$id": "#/properties/me_totalDialcodeAttached",
+            "type": "number"
+        },
+        "me_totalDialcodeLinkedToContent": {
+            "$id": "#/properties/me_totalDialcodeLinkedToContent",
+            "type": "number"
+        },
+        "me_totalDialcode": {
+            "$id": "#/properties/me_totalDialcode",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "flagReasons": {
+            "$id": "#/properties/flagReasons",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "flaggedBy": {
+            "$id": "#/properties/flaggedBy",
+            "type": "array"
+        },
+        "flags": {
+            "$id": "#/properties/flags",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "lastFlaggedOn": {
+            "$id": "#/properties/lastFlaggedOn",
+            "type": "string"
+        },
+        "tempData": {
+            "$id": "#/properties/tempData",
+            "type": "string"
+        },
+        "copyType": {
+            "$id": "#/properties/copyType",
+            "type": "string"
+        },
+        "pragma": {
+            "$id": "#/properties/pragma",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "publishChecklist": {
+            "$id": "#/properties/publishChecklist",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "publishComment": {
+            "$id": "#/properties/publishComment",
+            "type": "string"
+        },
+        "rejectReasons": {
+            "$id": "#/properties/rejectReasons",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "rejectComment": {
+            "$id": "#/properties/rejectComment",
+            "type": "string"
+        },
+        "requestChanges": {
+            "$id": "#/properties/requestChanges",
+            "type": "string"
+        },
+        "totalQuestions": {
+            "$id": "#/properties/totalQuestions",
+            "type": "number"
+        },
+        "totalScore": {
+            "$id": "#/properties/totalScore",
+            "type": "number"
+        },
+        "ownershipType": {
+            "$id": "#/properties/ownershipType",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "reservedDialcodes": {
+            "$id": "#/properties/reservedDialcodes",
+            "type": "object"
+        },
+
+        "dialcodeRequired": {
+            "$id": "#/properties/dialcodeRequired",
+            "type": "string"    
+        },
+        "lockKey": {
+            "$id": "#/properties/lockKey",
+            "type": "string"    
+        },
+        "badgeAssociations": {
+            "$id": "#/properties/badgeAssociations",
+            "type": "object"    
+        },
+        "framework": {
+            "$id": "#/properties/framework",
+            "type": "string"    
+        },
+        "lastStatusChangedOn": {
+            "$id": "#/properties/lastStatusChangedOn",
+            "type": "string"    
+        },
+        "uploadError": {
+            "$id": "#/properties/uploadError",
+            "type": "string"    
+        },
+        "appId": {
+            "$id": "#/properties/appId",
+            "type": "string"    
+        },
+        "s3Key": {
+            "$id": "#/properties/s3Key",
+            "type": "string"    
+        },
+        "consumerId": {
+            "$id": "#/properties/consumerId",
+            "type": "string"    
+        },
+        "organisation": {
+            "$id": "#/properties/organisation",
+            "type": "string"    
+        },
+        "nodeType": {
+            "$id": "#/properties/nodeType",
+            "type": "string"    
+        },
+        "prevState": {
+            "$id": "#/properties/prevState",
+            "type": "string"    
+        },
+        "publishError": {
+            "$id": "#/properties/publishError",
+            "type": "string"    
+        },
+        "publish_type": {
+            "$id": "#/properties/publish_type",
+            "type": "string"    
+        },
+        "ownedBy": {
+            "$id": "#/properties/ownedBy",
+            "type": "string"    
+        },
+        "purpose": {
+            "$id": "#/properties/purpose",
+            "type": "string"    
+        },
+        "toc_url": {
+            "$id": "#/properties/toc_url",
+            "type": "string"    
+        },
+        "reviewError": {
+            "$id": "#/properties/reviewError",
+            "type": "string"    
+        },
+        "mimeTypesCount": {
+            "$id": "#/properties/mimeTypesCount",
+            "type": "string"    
+        },
+        "contentTypesCount": {
+            "$id": "#/properties/contentTypesCount",
+            "type": "string"    
+        },
+        "childNodes": {
+            "$id": "#/properties/childNodes",
+            "type": "array"
+        },
+        "leafNodesCount": {
+            "$id": "#/properties/leafNodesCount",
+            "type": "number"
+        },
+        "depth": {
+            "$id": "#/properties/depth",
+            "type": "number"
+        },
+        "SYS_INTERNAL_LAST_UPDATED_ON": {
+            "$id": "#/properties/SYS_INTERNAL_LAST_UPDATED_ON",
+            "type": "string"    
+        },
+        "assets": {
+            "$id": "#/properties/assets",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "version": {
+            "$id": "#/properties/version",
+            "type": "number"
+        },
+        "qrCodeProcessId": {
+            "$id": "#/properties/qrCodeProcessId",
+            "type": "string"    
+        },
+        "migratedUrl": {
+            "$id": "#/properties/migratedUrl",
+            "type": "string"    
+        },
+        "totalCompressedSize": {
+            "$id": "#/properties/totalCompressedSize",
+            "type": "number"
+        },
+        "leafNodes": {
+            "$id": "#/properties/leafNodes",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "editorVersion": {
+            "$id": "#/properties/editorVersion",
+            "type": "number"
+        },
+        "unitIdentifiers": {
+            "$id": "#/properties/unitIdentifiers",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "questionCategories": {
+            "$id": "#/properties/questionCategories",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "certTemplate": {
+            "$id": "#/properties/certTemplate",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "subject": {
+            "$id": "#/properties/subject",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "medium": {
+            "$id": "#/properties/medium",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "gradeLevel": {
+            "$id": "#/properties/gradeLevel",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "topic": {
+            "$id": "#/properties/topic",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "subDomains": {
+            "$id": "#/properties/subDomains",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "subjectCodes": {
+            "$id": "#/properties/subjectCodes",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "difficultyLevel": {
+            "$id": "#/properties/difficultyLevel",
+            "type": "string"    
+        },
+        "board": {
+            "$id": "#/properties/board",
+            "type": "string"    
+        },
+        "licenseterms": {
+            "$id": "#/properties/licenseterms",
+            "type": "string"    
+        },
+        "copyrightYear": {
+            "$id": "#/properties/copyrightYear",
+            "type": "number"
+        },
+        "organisationId": {
+            "$id": "#/properties/organisationId",
+            "type": "string"    
+        },
+        "programId": {
+            "$id": "#/properties/programId",
+            "type": "string"    
+        },
+        "itemSetPreviewUrl": {
+            "$id": "#/properties/itemSetPreviewUrl",
+            "type": "string"    
+        },
+        "sampleContent": {
+            "$id": "#/properties/sampleContent",
+            "type": "boolean"    
+        },
+        "contentPolicyCheck": {
+            "$id": "#/properties/contentPolicyCheck",
+            "type": "boolean"    
+        },
+        "textbook_name": {
+            "$id": "#/properties/textbook_name",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "level1Name": {
+            "$id": "#/properties/level1Name",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "level1Concept": {
+            "$id": "#/properties/level1Concept",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "level2Name": {
+            "$id": "#/properties/level2Name",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "level2Concept": {
+            "$id": "#/properties/level2Concept",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "level3Name": {
+            "$id": "#/properties/level3Name",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "level3Concept": {
+            "$id": "#/properties/level3Concept",
+            "type": "array",
+             "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "sourceURL": {
+            "$id": "#/properties/sourceURL",
+            "type": "string"    
+        },
+        "label": {
+            "$id": "#/properties/label",
+            "type": "string"    
+        },
+
+        "me_totalTimeSpentInSec": {
+            "$id": "#/properties/me_totalTimeSpentInSec",
+            "type": "object"    
+        },
+
+        "me_totalPlaySessionCount": {
+            "$id": "#/properties/me_totalPlaySessionCount",
+            "type": "object"    
+        },
+        "me_totalRatingsCount": {
+            "$id": "#/properties/me_totalRatingsCount",
+            "type": "number"    
+        },
+        "monitorable": {
+            "$id": "#/properties/monitorable",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "userConsent": {
+            "$id": "#/properties/userConsent",
+            "type": "string"    
+        },
+        "trackable": {
+            "$id": "#/properties/trackable",
+            "type": "object"
+           
+        },
+        "credentials": {
+            "$id": "#/properties/credentials",
+            "type": "object"
+            
+        },
+        "processId": {
+            "$id": "#/properties/processId",
+            "type": "string"    
+        },
+        "primaryCategory": {
+            "$id": "#/properties/primaryCategory",
+            "type": "string"    
+        },
+        "additionalCategories": {
+            "$id": "#/properties/additionalCategories",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "prevStatus": {
+            "$id": "#/properties/prevStatus",
+            "type": "string"    
+        },
+        "cloudStorageKey": {
+            "$id": "#/properties/cloudStorageKey",
+            "type": "string"    
+        },
+        "batches": {
+            "$id": "#/properties/batches",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            } 
+        },
+        "year": {
+            "$id": "#/properties/year",
+            "type": "string"    
+        },
+        "plugins": {
+            "$id": "#/properties/plugins",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "showNotification": {
+            "$id": "#/properties/showNotification",
+            "type": "boolean"    
+        },
+        "collectionId": {
+            "$id": "#/properties/collectionId",
+            "type": "string"    
+        },
+        "learningOutcome": {
+            "$id": "#/properties/learningOutcome",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "program": {
+            "$id": "#/properties/program",
+            "type": "string"    
+        },
+        "boardIds": {
+            "$id": "#/properties/boardIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "gradeLevelIds": {
+            "$id": "#/properties/gradeLevelIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "subjectIds": {
+            "$id": "#/properties/subjectIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "mediumIds": {
+            "$id": "#/properties/mediumIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "topicsIds": {
+            "$id": "#/properties/topicsIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "targetFWIds": {
+            "$id": "#/properties/targetFWIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "targetBoardIds": {
+            "$id": "#/properties/targetBoardIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "targetGradeLevelIds": {
+            "$id": "#/properties/targetGradeLevelIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "targetSubjectIds": {
+            "$id": "#/properties/targetSubjectIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "targetMediumIds": {
+            "$id": "#/properties/targetMediumIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "targetTopicIds": {
+            "$id": "#/properties/targetTopicIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_FWIds": {
+            "$id": "#/properties/se_FWIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_boardIds": {
+            "$id": "#/properties/se_boardIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_subjectIds": {
+            "$id": "#/properties/se_subjectIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_mediumIds": {
+            "$id": "#/properties/se_mediumIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_topicIds": {
+            "$id": "#/properties/se_topicIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_gradeLevelIds": {
+            "$id": "#/properties/se_gradeLevelIds",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_boards": {
+            "$id": "#/properties/se_boards",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_subjects": {
+            "$id": "#/properties/se_subjects",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_mediums": {
+            "$id": "#/properties/se_mediums",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_topics": {
+            "$id": "#/properties/se_topics",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "se_gradeLevels": {
+            "$id": "#/properties/se_gradeLevels",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "transcripts": {
+            "$id": "#/properties/transcripts",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        },
+        "accessibility": {
+            "$id": "#/properties/accessibility",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "$ref": "#/definitions/CommonArray"
+            }
+        }
+
+
+    }
+
+      },
+      "CommonArray": {
+        "$id": "#/properties/CommonArray",
+        "type": "object"
+        
+    }
+    },
+    "_osConfig": {
+        "osComment": [
+          "This section contains the OpenSABER specific Content content information",
+          "privateFields: Optional; list of field names to be encrypted and stored in database",
+          "signedFields: Optional; list of field names that must be pre-signed",
+          "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+          "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+          "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+        ],
+        "privateFields": [],
+        "signedFields": [],
+        "indexFields": [],
+        "uniqueIndexFields": [],
+        "systemFields": [
+          "osCreatedAt",
+          "osUpdatedAt",
+          "osCreatedBy",
+          "osUpdatedBy"
+        ],
+        "attestationPolicies": [],
+        "roles": ["Content-management"]
+      }
+  }
