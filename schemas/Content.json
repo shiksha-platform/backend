@@ -17,8 +17,8 @@
         "title": "The ContentId schema",
         "required": [],
         "properties": {
-          "lessonPlanId": {
-            "$id": "#/properties/lessonPlanId",
+          "contentId": {
+            "$id": "#/properties/contentId",
             "type": "string"
           },
           "name": {
@@ -50,10 +50,7 @@
             "$id": "#/properties/mimeType",
             "type": "string"
           },
-          "osId": {
-            "$id": "#/properties/osId",
-            "type": "string"
-          },
+          
           "contentEncoding": {
             "$id": "#/properties/contentEncoding",
             "type": "string"
