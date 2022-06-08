@@ -1,0 +1,643 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "Content": {
+        "$ref": "#/definitions/Content"
+      }
+    },
+    "required": ["Content"],
+    "title": "Content",
+    "definitions": {
+      "Content": {
+        "$id": "#/properties/Content",
+        "type": "object",
+        "title": "The ContentId schema",
+        "required": [],
+        "properties": {
+          "contentId": {
+            "$id": "#/properties/contentId",
+            "type": "string"
+          },
+          "name": {
+            "$id": "#/properties/name",
+            "type": "string"
+          },
+          "code": {
+            "$id": "#/properties/code",
+            "type": "string"
+          },
+          "createdOn": {
+            "$id": "#/properties/createdOn",
+            "type": "string"
+          },
+          "lastUpdatedOn": {
+            "$id": "#/properties/lastUpdatedOn",
+            "type": "string"
+          },
+          "status": {
+            "$id": "#/properties/status",
+            "type": "string"
+          },
+          "channel": {
+            "$id": "#/properties/channel",
+            "type": "string"
+          },
+          "mimeType": {
+            "$id": "#/properties/mimeType",
+            "type": "string"
+          },
+          "contentEncoding": {
+            "$id": "#/properties/contentEncoding",
+            "type": "string"
+          },
+          "contentDisposition": {
+            "$id": "#/properties/contentDisposition",
+            "type": "string"
+          },
+          "mediaType": {
+            "$id": "#/properties/mediaType",
+            "type": "string"
+          },
+          "filter": {
+            "$id": "#/properties/filter",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "variants": {
+            "$id": "#/properties/variants",
+            "type": "string"
+          },
+          "config": {
+            "$id": "#/properties/config",
+            "type": "string"
+          },
+          "visibility": {
+            "$id": "#/properties/visibility",
+            "type": "string"
+          },
+          "audience": {
+            "$id": "#/properties/audience",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "posterImage": {
+            "$id": "#/properties/posterImage",
+            "type": "string"
+          },
+          "badgeAssertions": {
+            "$id": "#/properties/badgeAssertions",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "targets": {
+            "$id": "#/properties/targets",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "contentCredits": {
+            "$id": "#/properties/contentCredits",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "format": {
+            "$id": "#/properties/format",
+            "type": "string"
+          },
+          "duration": {
+            "$id": "#/properties/duration",
+            "type": "string"
+          },
+          "size": {
+            "$id": "#/properties/size",
+            "type": "number"
+          },
+          "resources": {
+            "$id": "#/properties/resources",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "downloadUrl": {
+            "$id": "#/properties/downloadUrl",
+            "type": "string"
+          },
+          "artifactUrl": {
+            "$id": "#/properties/artifactUrl",
+            "type": "string"
+          },
+          "previewUrl": {
+            "$id": "#/properties/previewUrl",
+            "type": "string"
+          },
+          "streamingUrl": {
+            "$id": "#/properties/streamingUrl",
+            "type": "string"
+          },
+          "objects": {
+            "$id": "#/properties/objects",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "organization": {
+            "$id": "#/properties/organization",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "createdFor": {
+            "$id": "#/properties/createdFor",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "developer": {
+            "$id": "#/properties/developer",
+            "type": "string"
+          },
+          "source": {
+            "$id": "#/properties/source",
+            "type": "string"
+          },
+          "notes": {
+            "$id": "#/properties/notes",
+            "type": "string"
+          },
+          "pageNumber": {
+            "$id": "#/properties/pageNumber",
+            "type": "string"
+          },
+          "publication": {
+            "$id": "#/properties/publication",
+            "type": "string"
+          },
+          "edition": {
+            "$id": "#/properties/edition",
+            "type": "string"
+          },
+          "publisher": {
+            "$id": "#/properties/publisher",
+            "type": "string"
+          },
+          "author": {
+            "$id": "#/properties/author",
+            "type": "string"
+          },
+          "owner": {
+            "$id": "#/properties/owner",
+            "type": "string"
+          },
+          "languageCode": {
+            "$id": "#/properties/languageCode",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "language": {
+            "$id": "#/properties/language",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "words": {
+            "$id": "#/properties/words",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "text": {
+            "$id": "#/properties/text",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "forkable": {
+            "$id": "#/properties/forkable",
+            "type": "boolean"
+          },
+          "translatable": {
+            "$id": "#/properties/translatable",
+            "type": "boolean"
+          },
+          "ageGroup": {
+            "$id": "#/properties/ageGroup",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "interactivityLevel": {
+            "$id": "#/properties/interactivityLevel",
+            "type": "string"
+          },
+          "contentType": {
+            "$id": "#/properties/contentType",
+            "type": "string"
+          },
+          "resourceType": {
+            "$id": "#/properties/resourceType",
+            "type": "string"
+          },
+          "category": {
+            "$id": "#/properties/category",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "templateType": {
+            "$id": "#/properties/templateType",
+            "type": "string"
+          },
+          "quality": {
+            "$id": "#/properties/quality",
+            "type": "number"
+          },
+          "downloads": {
+            "$id": "#/properties/downloads",
+            "type": "number"
+          },
+          "feedback": {
+            "$id": "#/properties/feedback",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "feedbackType": {
+            "$id": "#/properties/feedbackType",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "teachingMode": {
+            "$id": "#/properties/teachingMode",
+            "type": "string"
+          },
+          "skills": {
+            "$id": "#/properties/skills",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "keywords": {
+            "$id": "#/properties/keywords",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+  
+          "domain": {
+            "$id": "#/properties/domain",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "description": {
+            "$id": "#/properties/description",
+            "type": "string"
+          },
+  
+          "instructions": {
+            "$id": "#/properties/instructions",
+            "type": "string"
+          },
+  
+          "body": {
+            "$id": "#/properties/body",
+            "type": "string"
+          },
+          "editorState": {
+            "$id": "#/properties/editorState",
+            "type": "string"
+          },
+  
+          "data": {
+            "$id": "#/properties/data",
+            "type": "string"
+          },
+          "learningObjective": {
+            "$id": "#/properties/learningObjective",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+  
+          "createdBy": {
+            "$id": "#/properties/createdBy",
+            "type": "string"
+          },
+  
+          "creator": {
+            "$id": "#/properties/creator",
+            "type": "string"
+          },
+  
+          "reviewer": {
+            "$id": "#/properties/reviewer",
+            "type": "string"
+          },
+  
+          "lastUpdatedBy": {
+            "$id": "#/properties/lastUpdatedBy",
+            "type": "string"
+          },
+  
+          "lastSubmittedBy": {
+            "$id": "#/properties/lastSubmittedBy",
+            "type": "string"
+          },
+  
+          "lastSubmittedOn": {
+            "$id": "#/properties/lastSubmittedOn",
+            "type": "string"
+          },
+  
+          "lastPublishedBy": {
+            "$id": "#/properties/lastPublishedBy",
+            "type": "string"
+          },
+  
+          "lastPublishedOn": {
+            "$id": "#/properties/lastUpdatedBy",
+            "type": "string"
+          },
+          "flagReasons": {
+            "$id": "#/properties/flagReasons",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "flaggedBy": {
+            "$id": "#/properties/flaggedBy",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "flags": {
+            "$id": "#/properties/flags",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "lastFlaggedOn": {
+            "$id": "#/properties/lastFlaggedOn",
+            "type": "string"
+          },
+          "tempData": {
+            "$id": "#/properties/tempData",
+            "type": "string"
+          },
+          "rejectReasons": {
+            "$id": "#/properties/rejectReasons",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "rejectComment": {
+            "$id": "#/properties/rejectComment",
+            "type": "string"
+          },
+          "requestChanges": {
+            "$id": "#/properties/requestChanges",
+            "type": "string"
+          },
+          "totalQuestions": {
+            "$id": "#/properties/totalQuestions",
+            "type": "number"
+          },
+          "totalScore": {
+            "$id": "#/properties/totalScore",
+            "type": "number"
+          },
+          "reservedDialcodes": {
+            "$id": "#/properties/reservedDialcodes",
+            "type": "string"
+          },
+          "purpose": {
+            "$id": "#/properties/purpose",
+            "type": "string"
+          },
+          "assets": {
+            "$id": "#/properties/assets",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "questionCategories": {
+            "$id": "#/properties/questionCategories",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "subject": {
+            "$id": "#/properties/subject",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "medium": {
+            "$id": "#/properties/medium",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "gradeLevel": {
+            "$id": "#/properties/gradeLevel",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "topic": {
+            "$id": "#/properties/topic",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "subDomains": {
+            "$id": "#/properties/subDomains",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "subjectCodes": {
+            "$id": "#/properties/subjectCodes",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "difficultyLevel": {
+            "$id": "#/properties/difficultyLevel",
+            "type": "string"
+          },
+          "board": {
+            "$id": "#/properties/board",
+            "type": "string"
+          },
+          "textbook_name": {
+            "$id": "#/properties/textbook_name",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "sourceURL": {
+            "$id": "#/properties/sourceURL",
+            "type": "string"
+          },
+          "label": {
+            "$id": "#/properties/label",
+            "type": "string"
+          },
+          "monitorable": {
+            "$id": "#/properties/monitorable",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "userConsent": {
+            "$id": "#/properties/userConsent",
+            "type": "string"
+          },
+          "trackable": {
+            "$id": "#/properties/trackable",
+            "type": "string"
+          },
+          "credentials": {
+            "$id": "#/properties/credentials",
+            "type": "string"
+          },
+          "processId": {
+            "$id": "#/properties/processId",
+            "type": "string"
+          },
+          "primaryCategory": {
+            "$id": "#/properties/primaryCategory",
+            "type": "string"
+          },
+          "additionalCategories": {
+            "$id": "#/properties/additionalCategories",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "learningOutcome": {
+            "$id": "#/properties/learningOutcome",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          },
+          "accessibility": {
+            "$id": "#/properties/accessibility",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "$ref": "#/definitions/CommonArray"
+            }
+          }
+        }
+      },
+      "CommonArray": {
+        "$id": "#/properties/CommonArray",
+        "type": "string"
+      }
+    },
+    "_osConfig": {
+      "osComment": [
+        "This section contains the OpenSABER specific Content content information",
+        "privateFields: Optional; list of field names to be encrypted and stored in database",
+        "signedFields: Optional; list of field names that must be pre-signed",
+        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+      ],
+      "privateFields": [],
+      "signedFields": [],
+      "indexFields": [],
+      "uniqueIndexFields": [],
+      "systemFields": [
+        "osCreatedAt",
+        "osUpdatedAt",
+        "osCreatedBy",
+        "osUpdatedBy"
+      ],
+      "attestationPolicies": [],
+      "roles": ["Content-management"]
+    }
+  }
