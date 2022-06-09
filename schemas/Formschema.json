@@ -2,54 +2,36 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
   "properties": {
-    "Config": {
-      "$ref": "#/definitions/Config"
+    "Formschema": {
+      "$ref": "#/definitions/Formschema"
     }
   },
-  "required": ["Config"],
-  "title": "Config",
+  "required": ["Formschema"],
+  "title": "Formschema",
   "definitions": {
-    "Config": {
-      "$id": "#/properties/Config",
+    "Class": {
+      "$id": "#/properties/Formschema",
       "type": "object",
-      "title": "The Config schema",
-      "description": "All configurations stored in key value pair.",
+      "title": "The Formschema schema",
+      "description": "A Formschema is an entity for stroin.",
       "required": [],
       "properties": {
-        "key": {
-          "$id": "#/properties/key",
+        "formschemaId": {
+          "$id": "#/properties/formschemaId",
           "type": "string"
         },
-        "value": {
-          "$id": "#/properties/value",
+        "moduleId": {
+          "$id": "#/properties/moduleId",
           "type": "string"
         },
-        "module": {
-          "$id": "#/properties/module",
+        "schema": {
+          "$id": "#/properties/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "uiSchema": {
+          "$id": "#/properties/uiSchema",
           "type": "string"
-        },
-        "context": {
-          "$id": "#/properties/context",
-          "type": "string"
-        },
-        "contextId": {
-          "$id": "#/properties/contextId",
-          "type": "string"
-        },
-        "canOverride": {
-          "$id": "#/properties/canOverride",
-          "type": "boolean"
-        },
-        "overrideBy": {
-          "$id": "#/properties/overrideBy",
-          "type": "string",
-          "items": {
-            "$ref": "#/definitions/Value"
-          }
-        },
-        "isPublic": {
-          "$id": "#/properties/overrideBy",
-          "type": "boolean"
         }
       }
     }

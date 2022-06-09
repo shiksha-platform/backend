@@ -4,6 +4,26 @@
   "type": "object",
   "required": ["body"],
   "properties": {
+    "name": {
+      "type": "string",
+      "title": "Worksheet Title"
+    },
+    "state": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "subject": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "grade": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "level": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
     "instructions": {
       "title": "Instructions on how to understand, attempt or how the question set will be evaluated.",
       "type": "string",
