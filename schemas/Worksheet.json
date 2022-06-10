@@ -1,147 +1,343 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "properties": {
-      "Worksheet": {
-        "$ref": "#/definitions/Worksheet"
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "QuestionSet",
+  "type": "object",
+  "required": ["body"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Worksheet Title"
+    },
+    "state": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "subject": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "grade": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "level": {
+      "type": "string",
+      "title": "State of worksheet eg: 'publish','draft','unpublish'"
+    },
+    "instructions": {
+      "title": "Instructions on how to understand, attempt or how the question set will be evaluated.",
+      "type": "string",
+      "$ref": "#/definitions/i18nData"
+    },
+    "feedback": {
+      "title": "Feedback shown to the students after outcome processing.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "body"],
+        "properties": {
+          "id": {
+            "title": "Identifier of the feedback object.",
+            "type": "string"
+          },
+          "body": {
+            "title": "Body of the feedback to be rendered for the specified feedback identifier.",
+            "type": "string"
+          }
+        }
       }
     },
-    "required": [
-      "Worksheet"
-    ],
-    "title": "Worksheet",
-    "definitions": {
-      "Worksheet": {
-        "$id": "#/properties/Worksheet",
+    "hints": {
+      "title": "Hints are shown to the students after outcome processing or when the student requests for hints.",
+      "type": "array",
+      "items": {
         "type": "object",
-        "title": "The Worksheet content schema",
-        "description": "All Worksheet .",
-        "required": [],
+        "required": ["id", "body"],
         "properties": {
-          "worksheetId": {
-            "$id": "#/properties/worksheetId",
+          "id": {
+            "title": "Identifier of the hint object.",
             "type": "string"
           },
-          
-          "name": {
-            "$id": "#/properties/name",
+          "body": {
+            "title": "Body of the hint to be rendered for the specified hint identifier.",
             "type": "string"
-           
-          },
-          "questions": {
-            "$id": "#/properties/questions",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/questions"
-            }
-          },
-          "author": {
-            "$id": "#/properties/author",
-            "type": "string"
-          },
-          "medium": {
-            "$id": "#/properties/medium",
-            "type": "string"
-          },
-          "gradeLevel": {
-            "$id": "#/properties/gradeLevel",
-            "type": "string"
-          },
-          "subject": {
-            "$id": "#/properties/subject",
-            "type": "string"
-            
-        },
-        "learningOutcome": {
-            "$id": "#/properties/learningOutcome",
-            "type": "string"
-            
-        },
-        "difficultyLevel": {
-            "$id": "#/properties/difficultyLevel",
-            "type": "string"
-            
-        },
-        "numberOfDownloads": {
-            "$id": "#/properties/numberOfDownloads",
-            "type": "string"
-            
-        },
-        "image": {
-            "$id": "#/properties/image",
-            "type": "string"
-            
-        },
-        "heading": {
-            "$id": "#/properties/heading",
-            "type": "string"
-            
-        },
-        "subHeading": {
-            "$id": "#/properties/subHeading",
-            "type": "string"
-            
-        },
-        "totalScore": {
-            "$id": "#/properties/totalScore",
-            "type": "array"
-            
-        },
-        "passingScore": {
-            "$id": "#/properties/passingScore",
-            "type": "array"
-            
+          }
         }
-        ,
-        "maxTime": {
-            "$id": "#/properties/maxTime",
-            "type": "number"
-            
+      }
+    },
+    "navigationMode": {
+      "type": "string",
+      "enum": ["linear", "non-linear"],
+      "title": "Determines the general paths that the student may take during the test session. Applicable only when questions data is present."
+    },
+    "timeLimits": {
+      "type": "object",
+      "title": "Time limits for the complete set and/or for each question in the question set.",
+      "properties": {
+        "questionSet": { "$ref": "#/definitions/timeRange" },
+        "question": { "$ref": "#/definitions/timeRange" }
+      }
+    },
+    "showHints": {
+      "type": "boolean",
+      "title": "Configuration to enable/disable hints for the student while using the question set."
+    },
+    "questions": {
+      "type": "object",
+      "title": "Questions associated with the question set. This property is mutually exclusive with questionSets property.",
+      "required": ["shuffle", "totalQuestions", "maxQuestions", "list"],
+      "properties": {
+        "shuffle": {
+          "type": "boolean",
+          "default": false
+        },
+        "totalQuestions": { "type": "integer" },
+        "maxQuestions": { "type": "integer" },
+        "list": {
+          "type": "array",
+          "items": { "type": "string" },
+          "title": "List of question identifiers that are added to the question set."
         }
-        ,
-        "status": {
-            "$id": "#/properties/status",
-            "type": "string"
-            
+      }
+    },
+    "questionSets": {
+      "type": "array",
+      "title": "Question Sets associated with the current set.",
+      "items": { "$ref": "#/definitions/questionSetDef" }
+    },
+    "outcomeDeclaration": {
+      "title": "Information about the outcome variables of the question set, i.e the values that are output of a question set session.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/outcomeVariableDef"
+      }
+    },
+    "outcomeProcessing": {
+      "title": "Rules to assign values to outcome variables based on the student's reponses.",
+      "type": "object",
+      "properties": {
+        "template": {
+          "enum": ["SUM_OF_SCORES", "AVG_OF_SCORES", "WEIGHTED_AVG_OF_SCORES"]
+        },
+        "ignoreNullValues": {
+          "type": "boolean",
+          "default": false
+        },
+        "weightageConfig": {
+          "type": "object",
+          "additionalProperties": { "type": "number" },
+          "title": "Weightages for questions or question sets when WEIGHTED_AVG_OF_SCORES template is used. If not provided, same weightage is given to all."
+        },
+        "mappingConfig": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/mappingConfigDef" },
+          "title": "Configuration to set additional outcome variables (other than SCORE)."
         }
-
-          
+      }
+    },
+    "questionSetType": {
+      "type": "string",
+      "enum": ["materialized", "dynamic"],
+      "title": "A question set can be comprised of a materialized list of questions, or can also be dynamically built at runtime by using a criteria to select member questions."
+    },
+    "criteria": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/anyTypeDef" },
+      "title": "Criteria to be used when the set type is dynamic."
+    },
+    "usedFor": {
+      "type": "string",
+      "enum": ["practice", "exam"]
+    },
+    "purpose": {
+      "type": "string",
+      "enum": ["recall", "explore", "sense", "assess", "teach", "revise"],
+      "title": "Purpose served by the question."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private", "parent"],
+      "title": "Visibility of the question set."
+    },
+    "qumlVersion": {
+      "type": "string",
+      "const": "0.5",
+      "title": "Version of the QuML specification using which the question set is created."
+    }
+  },
+  "additionalProperties": true,
+  "definitions": {
+    "cardinality": {
+      "enum": ["single", "multiple", "ordered"]
+    },
+    "type": {
+      "enum": [
+        "string",
+        "integer",
+        "float",
+        "boolean",
+        "map",
+        "uri",
+        "points",
+        "coordinate"
+      ]
+    },
+    "coordinate": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "points": {
+      "type": "object",
+      "required": ["shape", "coordinates"],
+      "properties": {
+        "shape": { "enum": ["point", "circle", "ellipse", "poly", "rect"] },
+        "coordinates": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/coordinateDef" }
         }
       },
-      "questions": {
-        "$id": "#/properties/questions",
-        "type": "object",
-        "required": [],
-        "properties": {
-            "questionIds": {
-                "$id": "#/properties/questions",
-                "type": "string"
-            }
-        }
-    }
-      
+      "additionalProperties": false
     },
-    "_osConfig": {
-      "osComment": [
-        "This section contains the OpenSABER specific Worksheet  information",
-        "privateFields: Optional; list of field names to be encrypted and stored in database",
-        "signedFields: Optional; list of field names that must be pre-signed",
-        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
-        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
-        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
-      ],
-      "privateFields": [],
-      "signedFields": [],
-      "indexFields": [],
-      "uniqueIndexFields": [],
-      "systemFields": [
-        "osCreatedAt",
-        "osUpdatedAt",
-        "osCreatedBy",
-        "osUpdatedBy"
-      ],
-      "attestationPolicies": [],
-      "roles": ["Worksheet-management"]
+    "anyTypeDef": {
+      "type": ["string", "number", "integer", "boolean", "object", "array"]
+    },
+    "i18nData": {
+      "type": "object",
+      "title": "i18n data in map format, where key is the ISO language code and value is string data in the the specified language.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "timeRange": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "questionSetDef": {
+      "type": "object",
+      "required": ["questionSetId"],
+      "properties": {
+        "questionSetId": {
+          "type": "string",
+          "title": "Identifier of the member question set."
+        },
+        "shuffle": {
+          "type": "boolean",
+          "default": false,
+          "title": "If questions in the member question set should be shuffled or not when presented to the student."
+        },
+        "totalQuestions": {
+          "type": "integer",
+          "title": "Total number of questions in the member question set. applicable only if the member question set has questions."
+        },
+        "maxQuestions": {
+          "type": "integer",
+          "title": "Number of questions in the member question set that should be used in one session. applicable only if the member question set has questions."
+        },
+        "preConditions": {
+          "type": "array",
+          "title": "Conditions to be validated before rendering the question set. generally depends on the outcomes of question sets presented earlier in the session.",
+          "items": { "$ref": "#/definitions/preConditionDef" }
+        },
+        "branchRules": {
+          "type": "array",
+          "title": "Evaluated after question set is complete and jumps forward to the specified target.",
+          "items": { "$ref": "#/definitions/branchRuleDef" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "preConditionDef": {
+      "type": "object",
+      "required": ["questionSetId", "match"],
+      "properties": {
+        "questionSetId": {
+          "type": "string",
+          "title": "Identifier of the question set whose outcome will be used to do the precondition check."
+        },
+        "match": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/outcomeMatchDef" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "outcomeMatchDef": {
+      "type": "object",
+      "required": ["outcomeVariable", "operator", "value"],
+      "properties": {
+        "outcomeVariable": { "type": "string" },
+        "operator": {
+          "type": "string",
+          "enum": ["lt", "le", "eq", "ge", "gt", "in"]
+        },
+        "value": {
+          "type": ["string", "number", "integer", "boolean", "array", "object"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "branchRuleDef": {
+      "type": "object",
+      "required": ["match", "target"],
+      "properties": {
+        "match": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/outcomeMatchDef" }
+        },
+        "target": {
+          "type": "object",
+          "required": ["questionSetId"],
+          "properties": {
+            "questionSetId": { "type": "string" }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "outcomeVariableDef": {
+      "type": "object",
+      "required": ["cardinality", "type"],
+      "properties": {
+        "cardinality": { "$ref": "#/definitions/cardinality" },
+        "type": { "$ref": "#/definitions/type" },
+        "defaultValue": { "$ref": "#/definitions/anyTypeDef" },
+        "range": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/anyTypeDef" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "mappingConfigDef": {
+      "type": "object",
+      "properties": {
+        "SCORE": {
+          "type": "object",
+          "required": ["regex"],
+          "properties": {
+            "regex": { "type": "string", "format": "regex" }
+          },
+          "$comment": "Alternatively, a regex expression can also be used to define the SCORE range."
+        },
+        "outcomeVariables": {
+          "type": "object",
+          "title": "List of outcome variables, defined in outcomeDeclaration, and the values to be set for them when the computed SCORE falls in the defined range.",
+          "additionalProperties": {
+            "$ref": "#/definitions/anyTypeDef"
+          }
+        }
+      },
+      "additionalProperties": false
     }
   }
-  
+}
