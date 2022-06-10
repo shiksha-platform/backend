@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "Like": {
+        "$ref": "#/definitions/Like"
+      }
+    },
+    "required": [
+      "Like"
+    ],
+    "title": "Like",
+    "definitions": {
+      "Like": {
+        "$id": "#/properties/Like",
+        "type": "object",
+        "title": "The Like schema",
+        "description": "All Like .",
+        "required": [],
+        "properties": {
+          "contextId": {
+            "$id": "#/properties/contextId",
+            "type": "string"
+          },
+          "context": {
+            "$id": "#/properties/context",
+            "type": "string"
+          },
+        "userId": {
+            "$id": "#/properties/author",
+            "type": "string"
+            
+        },
+        "type": {
+            "$id": "#/properties/type",
+            "type": "string"
+            
+        }
+
+          
+        }
+      }
+      
+    },
+    "_osConfig": {
+      "osComment": [
+        "This section contains the OpenSABER specific like information",
+        "privateFields: Optional; list of field names to be encrypted and stored in database",
+        "signedFields: Optional; list of field names that must be pre-signed",
+        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+      ],
+      "privateFields": [],
+      "signedFields": [],
+      "indexFields": [],
+      "uniqueIndexFields": [],
+      "systemFields": [
+        "osCreatedAt",
+        "osUpdatedAt",
+        "osCreatedBy",
+        "osUpdatedBy"
+      ],
+      "attestationPolicies": [],
+      "roles": ["Like-management"]
+    }
+  }
+  
