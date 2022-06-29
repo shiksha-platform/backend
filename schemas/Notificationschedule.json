@@ -2,61 +2,54 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
   "properties": {
-    "Config": {
-      "$ref": "#/definitions/Config"
+    "Notificationschedule": {
+      "$ref": "#/definitions/Notificationschedule"
     }
   },
-  "required": ["Config"],
-  "title": "Config",
+  "required": [],
+  "title": "Notificationschedule",
   "definitions": {
-    "Config": {
-      "$id": "#/properties/Config",
+    "Notificationschedule": {
+      "$id": "#/properties/Notificationschedule",
       "type": "object",
-      "title": "The Config schema",
-      "description": "All configurations stored in key value pair.",
+      "title": "The Notification log content schema",
+      "description": "All Notification log.",
       "required": [],
       "properties": {
-        "key": {
-          "$id": "#/properties/key",
-          "type": "string"
-        },
-        "value": {
-          "$id": "#/properties/value",
+        "sceduleDate": {
+          "$id": "#/properties/sceduleDate",
           "type": "string"
         },
         "module": {
           "$id": "#/properties/module",
           "type": "string"
         },
-        "context": {
-          "$id": "#/properties/context",
+        "templateContentId": {
+          "$id": "#/properties/templateContentId",
           "type": "string"
         },
-        "contextId": {
-          "$id": "#/properties/contextId",
+        "medium": {
+          "$id": "#/properties/medium",
           "type": "string"
         },
-        "canOverride": {
-          "$id": "#/properties/canOverride",
-          "type": "boolean"
+        "trigger": {
+          "$id": "#/properties/trigger",
+          "type": "string"
         },
-        "overrideBy": {
-          "$id": "#/properties/overrideBy",
-          "type": "string",
-          "items": {
-            "$ref": "#/definitions/Value"
-          }
+        "sentBy": {
+          "$id": "#/properties/sentBy",
+          "type": "string"
         },
-        "isPublic": {
-          "$id": "#/properties/overrideBy",
-          "type": "boolean"
+        "options": {
+          "$id": "#/properties/options",
+          "type": "string"
         }
       }
     }
   },
   "_osConfig": {
     "osComment": [
-      "This section contains the OpenSABER specific configuration information",
+      "This section contains the OpenSABER specific Notification log information",
       "privateFields: Optional; list of field names to be encrypted and stored in database",
       "signedFields: Optional; list of field names that must be pre-signed",
       "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
@@ -74,7 +67,6 @@
       "osUpdatedBy"
     ],
     "inviteRoles": ["anonymous"],
-    "attestationPolicies": [],
-    "roles": ["class-management"]
+    "attestationPolicies": []
   }
 }

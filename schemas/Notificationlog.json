@@ -1,95 +1,83 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "properties": {
-      "Notificationlog": {
-        "$ref": "#/definitions/Notificationlog"
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "Notificationlog": {
+      "$ref": "#/definitions/Notificationlog"
+    }
+  },
+  "required": ["Notificationlog"],
+  "title": "Notificationlog",
+  "definitions": {
+    "Notificationlog": {
+      "$id": "#/properties/Notificationlog",
+      "type": "object",
+      "title": "The Notification log content schema",
+      "description": "All Notification log.",
+      "required": [],
+      "properties": {
+        "content": {
+          "$id": "#/properties/content",
+          "type": "string"
+        },
+        "recepients": {
+          "$id": "#/properties/recepients",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Recepients"
+          }
+        },
+        "module": {
+          "$id": "#/properties/module",
+          "type": "string"
+        },
+        "templateContentId": {
+          "$id": "#/properties/templateContentId",
+          "type": "string"
+        },
+        "medium": {
+          "$id": "#/properties/medium",
+          "type": "string"
+        },
+        "sentDate": {
+          "$id": "#/properties/sentDate",
+          "type": "string"
+        },
+        "sentBy": {
+          "$id": "#/properties/sentBy",
+          "type": "string"
+        },
+        "options": {
+          "$id": "#/properties/options",
+          "type": "string"
+        }
       }
     },
-    "required": [
-      "Notificationlog"
+    "Recepients": {
+      "$id": "#/properties/Recepients",
+      "type": "string"
+    }
+  },
+  "_osConfig": {
+    "osComment": [
+      "This section contains the OpenSABER specific Notification log information",
+      "privateFields: Optional; list of field names to be encrypted and stored in database",
+      "signedFields: Optional; list of field names that must be pre-signed",
+      "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+      "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+      "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
     ],
-    "title": "Notificationlog",
-    "definitions": {
-      "Notificationlog": {
-        "$id": "#/properties/Notificationlog",
-        "type": "object",
-        "title": "The Notification log content schema",
-        "description": "All Notification log.",
-        "required": [],
-        "properties": {
-          "notificationLogId": {
-            "$id": "#/properties/notificationLogId",
-            "type": "string"
-          },
-          "content": {
-            "$id": "#/properties/content",
-            "type": "string"
-          },
-          "recepients": {
-            "$id": "#/properties/recepients",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Recepients"
-            }
-          },
-          "module": {
-            "$id": "#/properties/module",
-            "type": "string"
-          },
-          "templateContentId": {
-            "$id": "#/properties/templateId",
-            "type": "string"
-          },
-          "medium": {
-            "$id": "#/properties/medium",
-            "type": "string"
-          },
-          "sentDate": {
-            "$id": "#/properties/sentDate",
-            "type": "string"
-          },
-          "options": {
-            "$id": "#/properties/options",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/Options"
-          }
-        }
-          
-        }
-      },
-      "Recepients": {
-        "$id": "#/properties/Recepients",
-        "type": "object",
-        "required": []
-    },
-    "Options": {
-      "$id": "#/properties/Options",
-      "type": "object"
-    }
-    },
-    "_osConfig": {
-      "osComment": [
-        "This section contains the OpenSABER specific Notification log information",
-        "privateFields: Optional; list of field names to be encrypted and stored in database",
-        "signedFields: Optional; list of field names that must be pre-signed",
-        "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
-        "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
-        "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
-      ],
-      "privateFields": [],
-      "signedFields": [],
-      "indexFields": [],
-      "uniqueIndexFields": [],
-      "systemFields": [
-        "osCreatedAt",
-        "osUpdatedAt",
-        "osCreatedBy",
-        "osUpdatedBy"
-      ],
-      "attestationPolicies": [],
-      "roles": ["Notificationlog-management"]
-    }
+    "privateFields": [],
+    "signedFields": [],
+    "indexFields": [],
+    "uniqueIndexFields": [],
+    "systemFields": [
+      "osCreatedAt",
+      "osUpdatedAt",
+      "osCreatedBy",
+      "osUpdatedBy"
+    ],
+    "attestationPolicies": [],
+    "inviteRoles": ["anonymous"]
   }
-  
+}

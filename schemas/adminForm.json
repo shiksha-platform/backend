@@ -2,54 +2,36 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
   "properties": {
-    "Config": {
-      "$ref": "#/definitions/Config"
+    "adminForms": {
+      "$ref": "#/definitions/adminForms"
     }
   },
-  "required": ["Config"],
-  "title": "Config",
+  "required": ["adminForms"],
+  "title": "adminForms",
   "definitions": {
-    "Config": {
-      "$id": "#/properties/Config",
+    "AdminForm": {
+      "$id": "#/properties/adminForms",
       "type": "object",
-      "title": "The Config schema",
-      "description": "All configurations stored in key value pair.",
+      "title": "The adminForms schema",
+      "description": "A adminForms is an entity for stroin.",
       "required": [],
       "properties": {
-        "key": {
-          "$id": "#/properties/key",
+        "adminFormId": {
+          "$id": "#/properties/adminFormId",
           "type": "string"
         },
-        "value": {
-          "$id": "#/properties/value",
+        "moduleId": {
+          "$id": "#/properties/moduleId",
           "type": "string"
         },
-        "module": {
-          "$id": "#/properties/module",
-          "type": "string"
-        },
-        "context": {
-          "$id": "#/properties/context",
-          "type": "string"
-        },
-        "contextId": {
-          "$id": "#/properties/contextId",
-          "type": "string"
-        },
-        "canOverride": {
-          "$id": "#/properties/canOverride",
-          "type": "boolean"
-        },
-        "overrideBy": {
-          "$id": "#/properties/overrideBy",
-          "type": "string",
-          "items": {
-            "$ref": "#/definitions/Value"
+        "schema": {
+          "$id": "#/properties/schema",
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "type": { "type": "string" },
+            "properties": { "type": "object" }
           }
-        },
-        "isPublic": {
-          "$id": "#/properties/overrideBy",
-          "type": "boolean"
         }
       }
     }
@@ -73,7 +55,6 @@
       "osCreatedBy",
       "osUpdatedBy"
     ],
-    "inviteRoles": ["anonymous"],
     "attestationPolicies": [],
     "roles": ["class-management"]
   }
