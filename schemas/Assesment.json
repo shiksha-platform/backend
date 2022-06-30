@@ -44,6 +44,11 @@
           "type": "string",
           "title": "Calculated score from the answer sheet"
         },
+        "result": {
+          "$id": "#/properties/result",
+          "type": "string",
+          "title": "Result based on score"
+        },
         "reviewerId": {
           "$id": "#/properties/reviewerId",
           "type": "string"
