@@ -34,6 +34,11 @@
             "type": "string"
           }
         },
+        "assessmetsetId": {
+          "$id": "#/properties/assessmetsetId",
+          "type": "string",
+          "title": "Assesment set id"
+        },
         "answersheet": {
           "$id": "#/properties/score",
           "type": "string",

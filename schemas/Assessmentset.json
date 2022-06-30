@@ -21,6 +21,19 @@
           "type": "string",
           "title": "Assessment set title"
         },
+        "questions": {
+          "$id": "#/properties/questions",
+          "type": "array",
+          "title": "Array of question Id's against the assessment set",
+          "items": {
+            "type": "string"
+          }
+        },
+        "worksheetId": {
+          "$id": "#/properties/worksheetId",
+          "type": "number",
+          "title": "Worksheet Id against assesment set"
+        },
         "attempts": {
           "$id": "#/properties/attempts",
           "type": "number",
