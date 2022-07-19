@@ -22,13 +22,13 @@
           "title": "Assessment set title"
         },
         "markLevel": {
-          "$id": "#/properties/type",
+          "$id": "#/properties/markLevel",
           "type": "string",
-          "title": "Assessment set Type",
+          "title": "Assessment set mark level",
           "enum": ["SUBJECTLEVEL", "QUESTIONLEVEL"]
         },
         "csvData": {
-          "$id": "#/properties/questions",
+          "$id": "#/properties/csvData",
           "type": "string",
           "title": "JSON encoded string for the CSV"
         },
