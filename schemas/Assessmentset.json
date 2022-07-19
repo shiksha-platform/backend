@@ -21,33 +21,32 @@
           "type": "string",
           "title": "Assessment set title"
         },
-        "questions": {
+        "markLevel": {
+          "$id": "#/properties/type",
+          "type": "string",
+          "title": "Assessment set Type",
+          "enum": ["SUBJECTLEVEL", "QUESTIONLEVEL"]
+        },
+        "csvData": {
           "$id": "#/properties/questions",
+          "type": "string",
+          "title": "JSON encoded string for the CSV"
+        },
+        "subjects": {
+          "$id": "#/properties/subjects",
           "type": "array",
-          "title": "Array of question Id's against the assessment set",
+          "title": "",
           "items": {
             "type": "string"
           }
         },
-        "worksheetId": {
-          "$id": "#/properties/worksheetId",
-          "type": "number",
-          "title": "Worksheet Id against assesment set"
-        },
-        "attempts": {
-          "$id": "#/properties/attempts",
-          "type": "number",
-          "title": "Number of times assesment is allowed to attempt"
-        },
-        "gradetype": {
-          "$id": "#/properties/gradetype",
-          "type": "string",
-          "title": "Assessmentset type, Ex - marks, boolean, grade"
-        },
-        "options": {
-          "$id": "#/properties/options",
-          "type": "string",
-          "title": "JSON encoded QUML player response against the given questions of the assessment"
+        "classes": {
+          "$id": "#/properties/classes",
+          "type": "array",
+          "title": "",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
@@ -57,7 +56,7 @@
       "This section contains the OpenSABER specific configuration information",
       "privateFields: Optional; list of field names to be encrypted and stored in database",
       "signedFields: Optional; list of field names that must be pre-signed",
-      "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+      "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this",
       "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
       "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
     ],

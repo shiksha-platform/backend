@@ -2,61 +2,59 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "type": "object",
   "properties": {
-    "Assessment": {
-      "$ref": "#/definitions/Assessment"
+    "Examscore": {
+      "$ref": "#/definitions/Trackexamassessment"
     }
   },
-  "required": ["Assessment"],
-  "title": "Assessment",
+  "required": ["Trackexamassessment"],
+  "title": "Trackexamassessment",
   "definitions": {
-    "Assessment": {
-      "$id": "#/properties/Assessment",
+    "Trackexamassessment": {
+      "$id": "#/properties/Trackexamassessment",
       "type": "object",
-      "title": "The Assessment schema",
-      "description": "A Assessment is an entity for stroin.",
+      "title": "The exam Assessment track schema",
+      "description": "A exam Assessment track is an entity for stroing.",
       "required": [],
       "properties": {
-        "filter": {
-          "$id": "#/properties/filter",
+        "title": {
+          "$id": "#/properties/title",
           "type": "string",
-          "title": "JSON string of filters selected for the assessment"
+          "title": ""
         },
         "type": {
           "$id": "#/properties/type",
           "type": "string",
-          "title": "Assessment type, spot assessment or exam"
+          "title": "Assessment type Practical&Theory, Question level marks, etc"
         },
-        "questions": {
-          "$id": "#/properties/questions",
-          "type": "array",
-          "title": "Array of question Id's against the assessment is given",
-          "items": {
-            "type": "string"
-          }
-        },
-        "assessmetsetId": {
-          "$id": "#/properties/assessmetsetId",
+        "assessmentId": {
+          "$id": "#/properties/assessmentId",
           "type": "string",
-          "title": "Assesment set id"
+          "title": "Assessment set Id"
         },
-        "answersheet": {
-          "$id": "#/properties/score",
+        "source": {
+          "$id": "#/properties/source",
           "type": "string",
-          "title": "JSON encoded QUML player response against the given questions of the assessment"
+          "title": "Assesment questions source"
         },
-        "score": {
-          "$id": "#/properties/score",
+        "markDetails": {
+          "$id": "#/properties/markDetails",
           "type": "string",
-          "title": "Calculated score from the answer sheet"
+          "title": "JSON encoded input added for marks"
         },
-        "result": {
-          "$id": "#/properties/result",
+        "totalScore": {
+          "$id": "#/properties/totalScore",
           "type": "string",
-          "title": "Result based on score"
+          "title": "Calculated score from the mark Details"
         },
-        "reviewerId": {
-          "$id": "#/properties/reviewerId",
-          "type": "string"
+        "studentId": {
+          "$id": "#/properties/studentId",
+          "type": "string",
+          "title": "Student Id who has given assessment"
+        },
+        "teacherId": {
+          "$id": "#/properties/teacherId",
+          "type": "string",
+          "title": "Teacher Id who has assigned the assessment"
         }
       }
     }
