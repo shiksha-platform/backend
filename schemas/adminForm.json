@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "adminForms": {
+      "$ref": "#/definitions/adminForms"
+    }
+  },
+  "required": ["adminForms"],
+  "title": "adminForms",
+  "definitions": {
+    "AdminForm": {
+      "$id": "#/properties/adminForms",
+      "type": "object",
+      "title": "The adminForms schema",
+      "description": "A adminForms is an entity for stroin.",
+      "required": [],
+      "properties": {
+        "adminFormId": {
+          "$id": "#/properties/adminFormId",
+          "type": "string"
+        },
+        "moduleId": {
+          "$id": "#/properties/moduleId",
+          "type": "string"
+        },
+        "schema": {
+          "$id": "#/properties/schema",
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "type": { "type": "string" },
+            "properties": { "type": "object" }
+          }
+        }
+      }
+    }
+  },
+  "_osConfig": {
+    "osComment": [
+      "This section contains the OpenSABER specific configuration information",
+      "privateFields: Optional; list of field names to be encrypted and stored in database",
+      "signedFields: Optional; list of field names that must be pre-signed",
+      "indexFields: Optional; list of field names used for creating index. Enclose within braces to indicate it is a composite index. In this definition, (serialNum, schoolCode) is a composite index and schoolName is a single column index.",
+      "uniqueIndexFields: Optional; list of field names used for creating unique index. Field names must be different from index field name",
+      "systemFields: Optional; list of fields names used for system standard information like created, updated timestamps and userid"
+    ],
+    "privateFields": [],
+    "signedFields": [],
+    "indexFields": [],
+    "uniqueIndexFields": [],
+    "systemFields": [
+      "osCreatedAt",
+      "osUpdatedAt",
+      "osCreatedBy",
+      "osUpdatedBy"
+    ],
+    "attestationPolicies": [],
+    "roles": ["class-management"]
+  }
+}

@@ -6,9 +6,7 @@
       "$ref": "#/definitions/Config"
     }
   },
-  "required": [
-    "Config"
-  ],
+  "required": ["Config"],
   "title": "Config",
   "definitions": {
     "Config": {
@@ -44,14 +42,15 @@
         },
         "overrideBy": {
           "$id": "#/properties/overrideBy",
-          "type": "string"
+          "type": "string",
+          "items": {
+            "$ref": "#/definitions/Value"
+          }
         },
         "isPublic": {
           "$id": "#/properties/overrideBy",
           "type": "boolean"
         }
-        
-        
       }
     }
   },
@@ -74,6 +73,7 @@
       "osCreatedBy",
       "osUpdatedBy"
     ],
+    "inviteRoles": ["anonymous"],
     "attestationPolicies": [],
     "roles": ["class-management"]
   }
